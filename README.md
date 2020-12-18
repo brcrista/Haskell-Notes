@@ -1,8 +1,6 @@
 # Haskell
 
-The file names here correspond to the modules in *Learn You a Haskell*: <http://learnyouahaskell.com>.
-
-Other resources:
+Resources:
 - [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
 - [`Prelude` reference on Hackage](https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html)
 - [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
