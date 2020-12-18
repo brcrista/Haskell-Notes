@@ -15,4 +15,4 @@ instance Truthy [a] where
 
 instance Truthy a => Truthy (Maybe a) where
   truthy (Just x) = truthy x
-  truthy Nothing  = False
+  truthy Nothing = False

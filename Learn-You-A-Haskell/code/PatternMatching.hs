@@ -34,7 +34,7 @@ factorial n = n * factorial (n - 1)
 
 addPairs (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
 
-head' []      = error "empty list"
+head' [] = error "empty list"
 head' (x : _) = x
 
 -- Mass in kg, height in m

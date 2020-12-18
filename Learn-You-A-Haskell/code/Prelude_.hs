@@ -1,88 +1,88 @@
-module Prelude_(
-  -- abs',
-  all',
-  -- and',
-  any',
-  -- break',
-  -- ceiling',
-  compare',
-  -- concat',
-  -- concatMap',
-  const',
-  -- cos',
-  curry',
-  cycle',
-  -- div',
-  drop',
-  dropWhile',
-  elem',
-  -- error',
-  even',
-  filter',
-  flip',
-  -- floor',
-  foldl',
-  foldl1',
-  -- foldMap',
-  foldr',
-  foldr1',
-  -- fromIntegral',
-  fst',
-  head',
-  id',
-  init',
-  -- iterate',
-  last',
-  length',
-  -- lines',
-  -- lookup',
-  map',
-  max',
-  -- maxBound',
-  maximum',
-  min',
-  -- minBound',
-  minimum',
-  -- mod',
-  -- negate',
-  not',
-  -- notElem',
-  null',
-  odd',
-  -- or',
-  otherwise',
-  -- pred',
-  product',
-  -- read',
-  repeat',
-  replicate',
-  reverse',
-  scanl',
-  scanl1',
-  scanr',
-  scanr1',
-  -- show',
-  -- sin',
-  snd',
-  -- span',
-  -- splitAt',
-  -- sqrt',
-  subtract',
-  -- succ',
-  sum',
-  tail',
-  take',
-  takeWhile',
-  -- tan',
-  uncurry',
-  -- unlines',
-  -- unwords',
-  -- words',
-  zip',
-  -- zip3',
-  zipWith',
-  -- zipWith3'
-)
+module Prelude_
+  ( -- abs',
+    all',
+    -- and',
+    any',
+    -- break',
+    -- ceiling',
+    compare',
+    -- concat',
+    -- concatMap',
+    const',
+    -- cos',
+    curry',
+    cycle',
+    -- div',
+    drop',
+    dropWhile',
+    elem',
+    -- error',
+    even',
+    filter',
+    flip',
+    -- floor',
+    foldl',
+    foldl1',
+    -- foldMap',
+    foldr',
+    foldr1',
+    -- fromIntegral',
+    fst',
+    head',
+    id',
+    init',
+    -- iterate',
+    last',
+    length',
+    -- lines',
+    -- lookup',
+    map',
+    max',
+    -- maxBound',
+    maximum',
+    min',
+    -- minBound',
+    minimum',
+    -- mod',
+    -- negate',
+    not',
+    -- notElem',
+    null',
+    odd',
+    -- or',
+    otherwise',
+    -- pred',
+    product',
+    -- read',
+    repeat',
+    replicate',
+    reverse',
+    scanl',
+    scanl1',
+    scanr',
+    scanr1',
+    -- show',
+    -- sin',
+    snd',
+    -- span',
+    -- splitAt',
+    -- sqrt',
+    subtract',
+    -- succ',
+    sum',
+    tail',
+    take',
+    takeWhile',
+    -- tan',
+    uncurry',
+    -- unlines',
+    -- unwords',
+    -- words',
+    zip',
+    -- zip3',
+    zipWith',
+    -- zipWith3'
+  )
 where
 
 emptyListError = error "empty list"
@@ -158,12 +158,12 @@ flip' f y x = f x y
 -- Replace Foldable with lists until I know more about Foldable
 -- foldl' :: Foldable t => (b -> a -> b) -> b -> t a -> b
 foldl' :: (b -> a -> b) -> b -> [a] -> b
-foldl' _ acc []       = acc
+foldl' _ acc [] = acc
 foldl' f acc (x : xs) = foldl' f (f acc x) xs
 
 -- foldl1' :: Foldable t => (a -> a -> a) -> t a -> a
 foldl1' :: (a -> a -> a) -> [a] -> a
-foldl1' f []       = emptyListError
+foldl1' f [] = emptyListError
 foldl1' f (x : xs) = foldl' f x xs
 
 -- foldr' :: Foldable t => (a -> b -> b) -> b -> t a -> b
@@ -180,22 +180,22 @@ fst' :: (a, b) -> a
 fst' (x, _) = x
 
 head' :: [a] -> a
-head' []      = emptyListError
+head' [] = emptyListError
 head' (x : _) = x
 
 id' :: a -> a
 id' x = x
 
 init' :: [a] -> [a]
-init' []       = emptyListError
-init' [x]      = []
+init' [] = emptyListError
+init' [x] = []
 init' (x : xs) = x : init' xs
 
 -- iterate' :: (a -> a) -> a -> [a]
 
 last' :: [a] -> a
-last' []       = emptyListError
-last' [x]      = x
+last' [] = emptyListError
+last' [x] = x
 last' (x : xs) = last' xs
 
 -- length' :: Foldable t => t a -> Int
@@ -238,7 +238,7 @@ minimum' = foldl1' min'
 
 not' :: Bool -> Bool
 not' False = True
-not' True  = False
+not' True = False
 
 -- notElem' :: (Eq a, Foldable t) => a -> t a -> Bool
 
@@ -272,15 +272,15 @@ replicate' n x
   | otherwise' = x : replicate' (n - 1) x
 
 reverse' :: [a] -> [a]
-reverse' []       = []
+reverse' [] = []
 reverse' (x : xs) = reverse' xs ++ [x]
 
 scanl' :: (b -> a -> b) -> b -> [a] -> [b]
-scanl' _ acc []       = [acc]
+scanl' _ acc [] = [acc]
 scanl' f acc (x : xs) = acc : scanl' f (f acc x) xs
 
 scanl1' :: (a -> a -> a) -> [a] -> [a]
-scanl1' f []       = emptyListError
+scanl1' f [] = emptyListError
 scanl1' f (x : xs) = scanl' f x xs
 
 scanr' :: (a -> b -> b) -> b -> [a] -> [b]
@@ -311,7 +311,7 @@ sum' :: Num a => [a] -> a
 sum' = foldl' (+) 0
 
 tail' :: [a] -> [a]
-tail' []       = emptyListError
+tail' [] = emptyListError
 tail' (_ : xs) = xs
 
 take' :: Int -> [a] -> [a]
@@ -343,6 +343,6 @@ zip' = zipWith' (,)
 
 zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith' f (x : xs) (y : ys) = f x y : zipWith' f xs ys
-zipWith' _ _ _               = []
+zipWith' _ _ _ = []
 
 -- zipWith3' :: (a -> b -> c -> d) -> [a] -> [b] -> [c] -> [d]
