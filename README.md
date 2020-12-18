@@ -16,6 +16,16 @@ Resources:
 - [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
 - [ ] Project Euler 1-20
 
+## Installation
+
+### VSCode
+- Install the [Haskell extension](https://marketplace.visualstudio.com/items?itemName=haskell.haskell)
+- Under Extension Settings, set formatting rules to `ormolu` or `stylish-haskell`. I slightly prefer `stylish-haskell`.
+    - These are pretty similar rule sets
+    - `ormulu` will format record types and module export lists
+    - `stylish-haskell` will align `=` in patterns and `::` in records
+    - `stylish-haskell` will enforce trailing newlines in files
+
 ## GHCi cheat sheet:
 
 - `:q`: quit
