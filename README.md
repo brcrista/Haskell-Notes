@@ -30,7 +30,7 @@ Resources:
 - `:q`: quit
 - `:l`: load file
 - `:t`: show type of expression
-- `:k`: show kind of type constructor
+- `:k`: show kind of type
 - `:i`: show info for function, operator, or type
 
 ## Style guide

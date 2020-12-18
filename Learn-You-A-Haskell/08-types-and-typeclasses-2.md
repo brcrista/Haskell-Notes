@@ -151,11 +151,18 @@ instance Eq Shape where
     -- Define `==`
 ```
 
-To make a type constructor produce instances of a type class, do:
+To make a type constructor produce instances of a typeclass, do:
 
 ```
 instance Eq m => Eq (Maybe m) where
     -- Define `==`
+```
+
+Unless the type constructor itself is an instance, as we shall see with `Functor`:
+
+```
+instance Functor Maybe where
+    -- Define `fmap`
 ```
 
 A typeclass can also be a subclass of another typeclass.
@@ -164,7 +171,7 @@ Just add a typeclass constraint as usual: `class Eq a => Num a where`.
 If you poke around in GHCi with `:i`, you'll see that a whole lot of the built-in functions are actually defined in typeclasses.
 Note that, unlike .NET, you can have non-user-defined types implement typeclasses.
 
-## Type synonym
+## Type synonyms
 
 A **type synonym** is another name for a type.
 The two names are considered equivalent for type checking.
@@ -174,3 +181,124 @@ type String = [Char]
 ```
 
 Type synonyms can help make our code more self-documenting without the overhead of defining and using new types.
+
+## Functors
+
+We've already seen the `map` function with lists:
+
+```
+> map (+1) [0..3]
+[1,2,3,4]
+```
+
+Functors generalize this concept.
+If we run `:i Functor` in GHCi, we see its definition:
+
+```
+class Functor f where
+  fmap :: (a -> b) -> f a -> f b
+  (<$) :: a -> f b -> f
+```
+
+The first thing to note is that type constructors can also belong to a typeclass (`f a` and `f b`).
+
+Second, note the similarity of `map` and `fmap`:
+
+```
+> :t map
+map :: (a -> b) -> [a] -> [b]
+
+> :t map
+fmap :: Functor f => (a -> b) -> f a -> f b
+```
+
+Since `[]` is an instance of `Functor`, it's reasonable to expect that `fmap` for lists behaves the same way as `map` does:
+
+```
+> fmap (+1) [0..3]
+[1,2,3,4]
+
+> fmap (const $ error "kaboom") []
+[]
+```
+
+However, `fmap` extends to other types besides lists:
+
+```
+> fmap (+1) (Just 1)
+Just 2
+
+> fmap (+1) Nothing
+Nothing
+
+> fmap (+1) (Left 1)
+Left 1
+
+> fmap (+1) (Right 1)
+Right 2
+```
+
+`:i Functor` shows the whole list of instances:
+- `(->) r`
+- `[]`
+- `Either a`
+- `IO`
+- `Map k`
+- `Maybe`
+- 1, 2, and 3-tuples
+
+One interesting thing here is that `Either a`, `Map k`, and `(->) r` are partially applied type constructors!
+
+Note that `Map k` only appears here if you import `Data.Map`.
+`Set` is not a Functor even if you import `Data.Set`, though it does have its own `map` function.
+If we look at the type for its `map` function, we see:
+
+```
+> :t Data.Set.map
+Data.Set.map :: Ord b => (a -> b) -> Set a -> Set b
+```
+
+The `Ord` requirement keeps it from being an instance of `Functor` since `fmap` has no type constraints.
+
+## Kinds
+
+We've seen that Haskell has both a compile-time type language (types and type constructors) and a run-time computation language (values and functions).
+We want to be able to reason about type constructors in the same way as we can reason about functions, though to talk about type constructors as having types is a bit confusing.
+
+The **kind** of a type is the number and order of other concrete types or type constructors needed to construct a concrete type from a given type.
+So actually, all types have a kind, not just type constructors.
+You can inspect the kind of a type in GHCi with `:k`:
+
+```
+> :k Int
+Int :: *
+
+> :k Num
+Num :: * -> Constraint
+
+> :k Maybe
+Maybe :: * -> *
+
+> :k Data.Map.Map
+Data.Map.Map :: * -> * -> *
+```
+
+Say we make a type constructor like
+
+```
+data Foo t a = Foo {x :: t a} deriving (Show)
+```
+
+We see its kind is
+
+```
+> :k Foo
+Foo :: (* -> *) -> * -> *
+```
+
+This means that the `t` type parameter needs to be something with kind `* -> *`:
+
+```
+> Foo (Just 1)
+Foo {x = Just 1}
+```

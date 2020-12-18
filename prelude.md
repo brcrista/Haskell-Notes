@@ -14,6 +14,7 @@
 (+)
 (<)
 (<=)
+(<$)
 (==)
 (>)
 (>=)
@@ -42,6 +43,7 @@ even
 filter
 flip
 floor
+fmap
 foldl
 foldl1
 foldMap
@@ -128,6 +130,7 @@ Bounded
 Enum
 Eq
 Floating
+Functor
 Integral
 Num
 Ord
