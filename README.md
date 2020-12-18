@@ -1,10 +1,11 @@
 # Haskell
 
 Resources:
+- [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
 - [`Prelude` reference on Hackage](https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html)
 - [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
-- https://cabal.readthedocs.io/
+- <https://cabal.readthedocs.io>
 
 ## Learning path
 
