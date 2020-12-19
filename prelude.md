@@ -78,6 +78,8 @@ otherwise
 pi
 pred
 product
+putStr
+putStrLn
 read
 repeat
 replicate
