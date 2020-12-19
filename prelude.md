@@ -51,6 +51,7 @@ foldr
 foldr1
 fromIntegral
 fst
+getLine
 head
 id
 init
@@ -145,6 +146,7 @@ Show
 ```
 (->)
 Either
+IO
 Maybe
 Monad
 ```
