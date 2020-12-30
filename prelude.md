@@ -51,6 +51,7 @@ foldr
 foldr1
 fromIntegral
 fst
+gcd
 getLine
 head
 id

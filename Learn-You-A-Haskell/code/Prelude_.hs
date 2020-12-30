@@ -28,6 +28,7 @@ module Prelude_
     foldr1',
     -- fromIntegral',
     fst',
+    -- gcd',
     head',
     id',
     init',
