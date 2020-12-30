@@ -78,6 +78,7 @@ or
 otherwise
 pi
 pred
+print
 product
 putStr
 putStrLn
@@ -104,6 +105,7 @@ take
 takeWhile
 tan
 uncurry
+undefined
 unlines
 unwords
 words
