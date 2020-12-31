@@ -281,6 +281,8 @@ elem' :: Eq a => a -> [a] -> Bool
 elem' x = any' (== x)
 
 -- notElem' :: (Eq a, Foldable t) => a -> t a -> Bool
+notElem' :: Eq a => a -> [a] -> Bool
+notElem' x = not' . elem' x
 
 -- length' :: Foldable t => t a -> Int
 length' :: [a] -> Int
