@@ -105,7 +105,65 @@ sum' :: (Num a, Foldable t) => t a -> a
 
 In fact, we could even implement `map` and `filter` with folds.
 
-While we used `foldl` here, we could just as easily use `foldr` since addition is associative.
+### Right fold
+
+<https://stackoverflow.com/questions/7396978/left-and-right-folding-over-an-infinite-list>
+
+The `l` in `foldl` stands for "left".
+There are also `foldr` and `foldr1` functions.
+
+The reason for this naming is clear from their definitions:
+
+```hs
+-- Note: the real definitions use `Foldable` instead of `[]`
+foldl :: (b -> a -> b) -> b -> [a] -> b
+foldl _ acc [] = acc
+foldl f acc (x : xs) = foldl f (f acc x) xs
+
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr _ acc [] = acc
+foldr f acc (x : xs) = f x (foldr f acc xs)
+```
+
+While both pop values out of the list in the same order (left-to-right), `foldl` calls the function with the leftmost value first, while `foldr` calls it with the rightmost value first.
+
+To see why it matters, consider these two calls:
+
+```hs
+> foldl (\acc x -> x) 0 [1..]
+^CInterrupted.
+
+> foldr (\x acc -> x) 0 [1..]
+1
+```
+
+But, `foldl` won't even work in this case:
+
+```hs
+> foldl (\acc x -> acc) 0 [1..]
+^CInterrupted.
+```
+
+We can see the difference by expanding the two:
+
+```hs
+foldl (\acc x -> acc) 0 [1..]
+= foldl (\acc x -> acc) 0 [2..]
+= ...
+
+foldr (\x acc -> x) 0 [1..]
+= (\x acc -> x) 1 (foldr f acc xs)
+```
+
+Since the result of this function only depends on the first value, `foldr` doesn't even have to evaluate the rest of the list.
+It's the same as:
+
+```hs
+> (\x acc -> x) 1 undefined
+1
+```
+
+While we used `foldl` to implement `sum'`, we could also use `foldr` since addition is associative.
 
 ### Scans
 

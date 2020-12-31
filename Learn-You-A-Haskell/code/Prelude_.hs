@@ -224,6 +224,7 @@ foldl1' f (x : xs) = foldl' f x xs
 --   foldr (\x y -> x) 0 [1..]
 --   take 10 $ foldr (:) [] [1..]
 foldr' :: (a -> b -> b) -> b -> [a] -> b
+foldr' _ acc [] = acc
 foldr' f acc (x : xs) = f x (foldr' f acc xs)
 
 -- foldr1' :: Foldable t => (a -> a -> a) -> t a -> a
