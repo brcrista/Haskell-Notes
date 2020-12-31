@@ -1,7 +1,7 @@
 module Prelude_
   ( -- abs',
     all',
-    -- and',
+    and',
     any',
     -- break',
     -- ceiling',
@@ -50,7 +50,7 @@ module Prelude_
     -- notElem',
     null',
     odd',
-    -- or',
+    or',
     otherwise',
     -- pred',
     product',
@@ -90,15 +90,21 @@ emptyListError = error "empty list"
 
 -- abs' :: Num a => a -> a
 
+-- and' :: Foldable t => t Bool -> Bool
+and' :: [Bool] -> Bool
+and' = foldl' (&&) True
+
+-- or' :: Foldable t => t Bool -> Bool
+or' :: [Bool] -> Bool
+or' = foldl' (||) False
+
 -- all' :: Foldable t => (a -> Bool) -> t a -> Bool
 all' :: (a -> Bool) -> [a] -> Bool
-all' f = foldl' (\acc x -> acc && f x) True
-
--- and' :: Foldable t => t Bool -> Bool
+all' f = and' . map f
 
 -- any' :: Foldable t => (a -> Bool) -> t a -> Bool
 any' :: (a -> Bool) -> [a] -> Bool
-any' f = foldl' (\acc x -> acc || f x) False
+any' f = or' . map' f
 
 -- break' :: (a -> Bool) -> [a] -> ([a], [a])
 
@@ -253,8 +259,6 @@ null' xs = False
 
 odd' :: Integral a => a -> Bool
 odd' n = n `mod` 2 /= 0
-
--- or' :: Foldable t => t Bool -> Bool
 
 otherwise' :: Bool
 otherwise' = True
