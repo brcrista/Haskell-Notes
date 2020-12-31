@@ -91,6 +91,7 @@ scanl
 scanl1
 scanr
 scanr1
+seq
 show
 signum
 sin

@@ -13,4 +13,12 @@ Everything is a function:
 - Laziness
 - Polymorphic "values"
 
+Laziness:
+- Separate data production from data consumption
+- Currying by default
+
+Currying by default:
+- Point-free style
+- Combinators
+
 Rich compile-time type syntax + type inference

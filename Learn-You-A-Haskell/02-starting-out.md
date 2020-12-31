@@ -74,6 +74,39 @@ infixr 5 ++ -- define the `++` operator to be right-associative with a precedenc
 if x > 100 then x else x * 2
 ```
 
+## Referential transparency
+
+Haskell is said to be **referentially transparent.**
+This means that (pure) functions always produce the same result for the same inputs.
+This has three important consequences:
+
+1. You can reason about programs by just replacing functions with their definitions as in algebra
+1. It doesn't matter when a function is evaluated
+1. The results of functions can be cached or memoized without worrying about the results becoming stale
+
+## Laziness
+
+- <https://wiki.haskell.org/Lazy_vs._non-strict>
+- <https://wiki.haskell.org/Seq>
+- <https://wiki.haskell.org/Performance/Strictness>
+
+Haskell is often described as **lazy**, which means that expressions are not evaluated until they are needed.
+Of course, this is a natural property of functions in most programming languages.
+So if everything is a function, then everything is lazy!
+
+However, the language spec only says that Haskell "non-strict."
+Strictness is the abstract mathematical concept while laziness is an implementation technique.
+**Strict** evaluation is the "inside-out" evaluation familiar from languages such as C and Python.
+When you call a function, the arguments are evaluated first, and then the function is called.
+**Non-strict** evaluation is "outside-in" evaluation.
+C's "short-circuiting" `&&` and `||` operators are familiar examples of non-strict evaluation.
+
+For example, in the evaluation of `a + b * c`:
+- Strict: `b * c` first, then `a + _`
+- Non-strict: `a + _` first, then `b * c`
+
+Of course, the non-strict evaluation works in Haskell because of currying.
+
 ## Lists
 
 - Lists in Haskell are backed by linked lists.
