@@ -89,6 +89,7 @@ This has three important consequences:
 - <https://wiki.haskell.org/Lazy_vs._non-strict>
 - <https://wiki.haskell.org/Seq>
 - <https://wiki.haskell.org/Performance/Strictness>
+- <https://stackoverflow.com/questions/7396978/left-and-right-folding-over-an-infinite-list>
 
 Haskell is often described as **lazy**, which means that expressions are not evaluated until they are needed.
 Of course, this is a natural property of functions in most programming languages.

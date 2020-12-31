@@ -1,4 +1,5 @@
 -- This is a pretty painful memoization example I want to revisit and improve upon.
+-- See https://wiki.haskell.org/Memoization
 import qualified Data.Map
 
 -- Build up a memo table to the nth Fibonacci number.
