@@ -165,6 +165,12 @@ It's the same as:
 
 While we used `foldl` to implement `sum'`, we could also use `foldr` since addition is associative.
 
+Also, note the following identity for folds on lists:
+
+```hs
+foldr (:) [] = id
+```
+
 ### Scans
 
 You can think of folds as producing a list of accumulators mirroring the input list.
