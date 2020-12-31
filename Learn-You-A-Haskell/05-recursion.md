@@ -15,3 +15,23 @@ quicksort (pivot:xs) = (quicksort lessThan) ++ [pivot] ++ (quicksort greaterThan
         lessThan = filter (<= pivot) xs
         greaterThan = filter (> pivot) xs
 ```
+
+## Infinite lists and recursion
+
+Note the definitions of these functions for infinite lists:
+
+```hs
+repeat' :: a -> [a]
+repeat' x = x : repeat' x
+
+cycle' :: [a] -> [a]
+cycle' [] = emptyListError
+cycle' xs = xs ++ cycle' xs
+```
+
+The recursion being on the right is what allows us to evaluate the list without falling down an infinite call stack.
+
+```hs
+-- This doesn't work.
+repeat' x = repeat' x ++ [x]
+```
