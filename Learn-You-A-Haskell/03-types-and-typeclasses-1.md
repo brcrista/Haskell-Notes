@@ -16,7 +16,7 @@ The `:t` command in GHCi will show you the type of an expression.
 
 If we look at the type of the `head` function, we get:
 
-```
+```hs
 > :t head
 head :: [a] -> a
 ```
@@ -33,7 +33,7 @@ The compiler will often infer a more generic type for you, which I think is desi
 
 For example, consider the code for Fizzbuzz with the type annotations I would choose:
 
-```
+```hs
 divisible :: Int -> Int -> Bool
 divisible a b = a `mod` b == 0
 
@@ -54,7 +54,7 @@ fizzBuzz n = map fizzBuzzInner [1..n]
 
 However, if you leave it to the compiler, it will infer more general types:
 
-```
+```hs
 > :t divisible
 divisible :: Integral a => a -> a -> Bool
 
@@ -68,7 +68,7 @@ fizzBuzz :: (Integral a, Show a) => a -> [[Char]]
 On the other hand, you might want to use the type system to prevent certain error cases.
 Consider a definition for the factorial function:
 
-```
+```hs
 factorial 0 = 1
 factorial n = n * (factorial $ n - 1)
 ```
@@ -94,21 +94,21 @@ Some common typeclasses:
 
 Consider what happens if you try to use `read` in GHCi:
 
-```
+```hs
 > read "1"
 *** Exception: Prelude.read: no parse
 ```
 
 Adding a **type annotation** will work though:
 
-```
+```hs
 > read "1" :: Int
 1
 ```
 
 Consider the type of `read`:
 
-```
+```hs
 > :t read
 read :: Read a => String -> a
 ```
@@ -117,7 +117,7 @@ You can think of `Read a` as an open generic type.
 If you say `read "1"` by itself, the compiler can't infer what the return type is supposed to be.
 You can see what happens if you provide different annotations:
 
-```
+```hs
 > read "1" :: Float
 1.0
 > read "1" :: Integer
@@ -130,7 +130,7 @@ Haskell has an intricate numeric type hierarchy that includes both typeclasses a
 The `Num` typeclass is the top of the hierarchy.
 It basically means, "able to act like a number."
 
-```
+```hs
 > :t 5
 5 :: (Num t) => t
 ```
@@ -138,7 +138,7 @@ It basically means, "able to act like a number."
 Woah -- it's a "generic" literal!
 The arithmetic operators are likewise generic:
 
-```
+```hs
 > :t (+)
 (+) :: Num a => a -> a -> a
 ```
@@ -159,7 +159,7 @@ Num
 Unlike C and its descendants, Haskell won't coerce integral numeric types to floating-point types.
 For this, you can use the `fromIntegral` function:
 
-```
+```hs
 > :t fromIntegral
 fromIntegral :: (Integral a, Num b) => a -> b
 ```

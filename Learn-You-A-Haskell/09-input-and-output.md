@@ -4,7 +4,7 @@
 
 The function `putStrLn` has the following type:
 
-```
+```hs
 > :t putStrLn
 putStrLn :: String -> IO ()
 ```
@@ -21,7 +21,7 @@ By the way, it's conventional not to put an explicit type on `main`.
 
 `do` allows you to write code in the procedural style in the `IO` context:
 
-```
+```hs
 main = do
   _ <- putStrLn "What's your name?"
   name <- getLine
@@ -30,7 +30,7 @@ main = do
 
 Since the first line discards its result (which is just `()`), Haskell also lets us write:
 
-```
+```hs
 main = do
   putStrLn "What's your name?"
   name <- getLine
@@ -41,7 +41,7 @@ However, note that the last line in a `do` block **cannot** be bound to a name.
 
 The type of `getLine` is
 
-```
+```hs
 > :t getLine
 getLine :: IO String
 ```

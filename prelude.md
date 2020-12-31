@@ -4,7 +4,7 @@
 
 ## Functions
 
-```
+```hs
 (-)
 (.)
 (*)
@@ -119,7 +119,7 @@ zipWith3
 
 ## Types
 
-```
+```hs
 Bool
 Char
 Double
@@ -132,7 +132,7 @@ String
 
 ## Typeclasses
 
-```
+```hs
 Bounded
 Enum
 Eq
@@ -147,7 +147,7 @@ Show
 
 ## Type constructors
 
-```
+```hs
 (->)
 Either
 IO

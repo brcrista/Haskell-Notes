@@ -4,7 +4,7 @@
 
 Pattern matching looks like defining functions for different fixed values and then a variable last:
 
-```
+```hs
 englishNumber :: (Integral a) => a -> String
 englishNumber 0 = "zero"
 englishNumber 1 = "one"
@@ -22,7 +22,7 @@ If no pattern matches the input, you'll get an exception at runtime.
 
 You can also pattern match to decompose lists and tuples:
 
-```
+```hs
 addPairs (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
 
 head' []    = error "empty list"
@@ -38,7 +38,7 @@ Since function application has higher precedence than any operator, we need the 
 
 You can also pattern match inside list comprehensions:
 
-```
+```hs
 let xs = zip [1..10] $ repeat 4
 [a + b | (a, b) <- xs]
 ```
@@ -49,7 +49,7 @@ If you want to keep a reference to the whole list while matching elements, you c
 
 While patterns work simply by checking for equality, **guards** work on any kind of boolean expression.
 
-```
+```hs
 englishNumber' :: Integral a => a -> String
 englishNumber' n
     | n == 0    = "zero"
@@ -67,7 +67,7 @@ englishNumber' n
 
 `case` expressions are Haskell's version of `switch-case` statements from C-like languages:
 
-```
+```hs
 englishNumber'' :: Integral a => a -> String
 englishNumber'' n =
     case n of
@@ -97,7 +97,7 @@ quadratic a b c = ((-b) + sqrt determinant) / (2 * a)
 `let ... in` expressions are used to define a function for a single expression (the `in` clause).
 The whole `let ... in` expression evaluates to the value of the `in` expression with the substitutions applied.
 
-```
+```hs
 4 * (let a = 9 in a + 1) + 2
 ```
 

@@ -9,7 +9,7 @@ Calling a function with fewer arguments than parameters is called **partial appl
 
 By the way, you can still write functions in the "normal" way and they won't be curried:
 
-```
+```hs
 > let add(x, y) = x + y
 > :t add
 add :: Num a => (a, a) -> a
@@ -24,7 +24,7 @@ The `curry` and `uncurry` functions convert between these forms.
 
 Identities from <https://wiki.haskell.org/Currying> (exercises):
 
-```
+```hs
 (,) = curry id
 fst = uncurry const
 snd = (uncurry . flip) const
@@ -43,7 +43,7 @@ swap = (uncurry . flip . curry) id
 A **lambda** is an anonymous function.
 Lambdas are created with the syntax
 
-```
+```hs
 \x y -> f x y
 ```
 
@@ -57,7 +57,7 @@ These could be computed with explicit recursion, but the case is common enough t
 There are several flavors of folds.
 `foldl` takes a function, a starting value, and a list to apply it to:
 
-```
+```hs
 > :t foldl
 foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
 ```
@@ -75,13 +75,13 @@ At the end, the final accumulator value is returned.
 
 Here's an implementation of `sum` using `foldl`, which folds from the left:
 
-```
+```hs
 sum' xs = foldl (+) 0 xs
 ```
 
 In this case, we can use `foldl1`, which just uses the first element for the initial value of the accumulator:
 
-```
+```hs
 sum' xs = foldl1 (+) xs
 ```
 
@@ -89,13 +89,13 @@ In general, we can perform this simplification whenever the initial value of the
 
 One final simplification we can make is to take advantage of partial application and define the function in **point-free** style:
 
-```
+```hs
 sum' = foldl1 (+)
 ```
 
 Notice that we end up with the same function type as the built-in `sum`:
 
-```
+```hs
 > :t sum
 sum :: (Num a, Foldable t) => t a -> a
 
@@ -176,7 +176,7 @@ They return the whole list of computed accumulators.
 The `$` operator simply applies a function, but has the lowest precedence of any operation.
 So, its main use is for getting rid of pairs of parentheses.
 
-```
+```hs
 > length $ scanl1 (+) [1..10]
 10
 ```
@@ -184,13 +184,13 @@ So, its main use is for getting rid of pairs of parentheses.
 The `.` operator is the **function composition** operator.
 In Haskell, we use the definition of function composition that `g` is called first, then `f`:
 
-```
+```hs
 (f . g) x = f $ g x
 ```
 
 The types of these operators are:
 
-```
+```hs
 > :t ($)
 ($) :: (a -> b) -> a -> b
 
@@ -200,7 +200,7 @@ The types of these operators are:
 
 so
 
-```
+```hs
 > t: flip (.)
 flip (.) :: (a -> b) -> (b -> c) -> (a -> c)
 ```
@@ -222,7 +222,7 @@ Since all functions are curried, the above steps can just be repeated for every 
 
 For the following examples, refer to these types:
 
-```
+```hs
 'A' :: Char
 1 :: Num a => a
 
@@ -234,7 +234,7 @@ flip :: (a -> b -> c) -> (b -> a -> c)
 (.) :: (b -> c) -> (a -> b) -> (a -> c)
 ```
 
-```
+```hs
 > :t id 'A'
 
 -- Equate
@@ -247,7 +247,7 @@ Char -> Char
 id 'A' :: Char
 ```
 
-```
+```hs
 > :t const 1
 
 -- Equate
@@ -264,7 +264,7 @@ const 1 :: Num a_arg => a_arg -> b -> a_arg
 const 1 :: Num a => b -> a
 ```
 
-```
+```hs
 > :t curry id
 
 -- Equate
@@ -279,7 +279,7 @@ curry id :: a -> b -> c
 curry id :: a -> b -> (a, b)
 ```
 
-```
+```hs
 > :t uncurry const
 
 -- Equate
@@ -294,7 +294,7 @@ a = a_arg = c
 uncurry const :: (a, b) -> a
 ```
 
-```
+```hs
 > :t (uncurry . flip) const
 
 -- (uncurry .)

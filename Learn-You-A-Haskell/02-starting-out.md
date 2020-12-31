@@ -13,13 +13,13 @@ The only "weird" stuff is:
 
 Functions look just like variables:
 
-```
+```hs
 add a b = a + b
 ```
 
 Note that in GHCi, you have to use `let`:
 
-```
+```hs
 let add a b = a + b
 ```
 
@@ -31,13 +31,13 @@ It can also mean "prime" as in mathematics.
 
 Functions are called without parentheses:
 
-```
+```hs
 add 1 2
 ```
 
 Also, any function can be called as an **infix function** by surrounding it with backticks:
 
-```
+```hs
 1 `add` 2
 ```
 
@@ -47,7 +47,7 @@ A function whose name consists only of special characters is called an **operato
 Operators are called with infix syntax by default.
 To call an operator with prefix syntax or pass it to another function, surround it with parentheses.
 
-```
+```hs
 > (+) 1 2
 3
 ```
@@ -56,7 +56,7 @@ You can change the precedence rules for an operator with a **fixity declaration*
 This says whether an operator is non, left or right-associative (`infix`, `infixl`, `infixr`) and its precedence level (0-9).
 Function application always has highest precedence (fixity 10).
 
-```
+```hs
 infixr 5 ++ -- define the `++` operator to be right-associative with a precedence level of 5
 ```
 
@@ -70,7 +70,7 @@ infixr 5 ++ -- define the `++` operator to be right-associative with a precedenc
 
 ## `if` expression
 
-```
+```hs
 if x > 100 then x else x * 2
 ```
 
@@ -138,7 +138,7 @@ Of course, the non-strict evaluation works in Haskell because of currying.
 
 Range syntax will create lists of integers or strings:
 
-```
+```hs
 [1..20]
 ['a'..'z']
 ```
@@ -148,13 +148,13 @@ You can technically do floating-point numbers as well, but you might not get wha
 
 If you leave off the upper bound, you will get an infinite list:
 
-```
+```hs
 [1..]
 ```
 
 ### List comprehensions
 
-```
+```hs
 [x * 2 | x <- [1..10]]
 [x * 2 | x <- [50..100], x `mod` 7 == 3]
 ```
@@ -162,13 +162,13 @@ If you leave off the upper bound, you will get an infinite list:
 We can include several predicates, separated by commas.
 I'm not sure if there's any difference here from just using `&&`.
 
-```
+```hs
 [x | x <- [10..20], x /= 13, x /= 15, x /= 19]
 ```
 
 We can also draw elements from multiple lists:
 
-```
+```hs
 [x * y | x <- [1..3], y <- [-1..1]]
 ```
 
@@ -177,7 +177,7 @@ We can also draw elements from multiple lists:
 **Tuples**, unlike lists, can contain different types of elements.
 The order and number of element types in the tuple determine the tuple's type.
 
-```
+```hs
 (1, 2, "hello") -- this is a tuple
 ```
 

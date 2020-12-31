@@ -47,7 +47,7 @@ Resources:
 - Use spaces instead of tabs
 - Format your code so you need to indent only one level at a time
 
-```
+```hs
 -- Good
 case foo of
     Foo -> "Foo"

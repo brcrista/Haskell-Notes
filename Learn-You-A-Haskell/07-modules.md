@@ -13,7 +13,7 @@ There are lots of varieties of this syntax to avoid clashes:
 
 For example:
 
-```
+```hs
 import Data.List
 import Data.List (nub, sort)
 import Data.List hiding (nub)
@@ -91,7 +91,7 @@ So, `Maybe` is an example of a **type constructor**, which is similar to generic
 
 You use it like
 
-```
+```hs
 Just 1  -- Creates a `Num a => Maybe a` with a value
 Nothing -- Creates a `Maybe a` with no value
 ```
@@ -106,7 +106,7 @@ So `Just 1` is a function, and Haskell will figure out how that number is repres
 The `Data.Map` module contains the `Map` type constructor.
 This has nothing to do with the `map` function and is just the normal map data structure.
 
-```
+```hs
 > :t fromList [("a", 1)]
 fromList [("a", 1)] :: Num a => Map String -> a
 ```
@@ -116,7 +116,7 @@ Therefore, the key type for the map must derive from `Ord`.
 
 **Note:** because `Data.Map` and `Data.Set` have functions that clash with `Prelude`, `Data.List` and each other, it's good practice to import them qualified:
 
-```
+```hs
 import qualified Data.Map as Map
 import qualified Data.Set as Set
 ```

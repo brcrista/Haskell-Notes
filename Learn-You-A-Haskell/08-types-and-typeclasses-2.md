@@ -6,14 +6,14 @@
 
 We can define a new type with the `data` keyword:
 
-```
+```hs
 data Bool = False | True
 ```
 
 `False` and `True` here are called **data constructors**.
 Data constructors can also take parameters:
 
-```
+```hs
 > data Shape = Circle (Float, Float) Float | Rectangle (Float, Float) Float Float
 > c = Circle (0, 0) 1
 > :t c
@@ -23,14 +23,14 @@ c :: Shape
 If a data constructor takes no parameters, it is said to be **nullary**.
 Of course, data constructors are just functions:
 
-```
+```hs
 > :t Shape
 Circle :: (Float, Float) -> Float -> Shape
 ```
 
 Any data constructor can be used in pattern matching:
 
-```
+```hs
 area :: Shape -> Float
 area (Circle _ r) = pi * r ^ 2
 area (Rectangle _ w h) = abs $ w * h
@@ -45,7 +45,7 @@ This is common when a type can only be constructed in one way.
 
 When exporting types from a module, you can choose to export all, some, or none of its data constructors:
 
-```
+```hs
 module Shapes(
     Shape (..) -- export all
     Shape (Circle, Rectange) -- export all
@@ -60,7 +60,7 @@ Sum types, also called **records**, give you a way to define a data constructor 
 
 So, we could define `Shape` as
 
-```
+```hs
 data Shape =
     Circle { center :: (Float, Float), radius :: Float }
     | Rectangle { bottomLeftCorner :: (Float, Float), width :: Float, height :: Float }
@@ -68,7 +68,7 @@ data Shape =
 
 The data constructors are called in the same way, but then we can also do:
 
-```
+```hs
 > width $ Rectangle (0, 0) 5 3
 5.0
 ```
@@ -81,7 +81,7 @@ The type name is actually a constructor too.
 It's called a **type constructor**, and we can give it parameters:
 
 
-```
+```hs
 data Maybe a = Nothing | Just a
 ```
 
@@ -112,13 +112,13 @@ Haskell can automatically implement the following typeclasses:
 
 For example, given
 
-```
+```hs
 data Color = Red | Green | Blue deriving (Show, Eq, Enum)
 ```
 
 we can do:
 
-```
+```hs
 > succ Red
 Green
 
@@ -132,7 +132,7 @@ Note that the implementation of `==` actually checks if the same data constructo
 
 We can define our own typeclass with the `class` keyword:
 
-```
+```hs
 class Eq a where
     (==) :: a -> a -> Bool
     (/=) :: a -> a -> Bool
@@ -146,21 +146,21 @@ When we go to implement `Eq`, we only need to define one of these operators, and
 
 You implement a typeclass like this:
 
-```
+```hs
 instance Eq Shape where
     -- Define `==`
 ```
 
 To make a type constructor produce instances of a typeclass, do:
 
-```
+```hs
 instance Eq m => Eq (Maybe m) where
     -- Define `==`
 ```
 
 Unless the type constructor itself is an instance, as we shall see with `Functor`:
 
-```
+```hs
 instance Functor Maybe where
     -- Define `fmap`
 ```
@@ -176,7 +176,7 @@ Note that, unlike .NET, you can have non-user-defined types implement typeclasse
 A **type synonym** is another name for a type.
 The two names are considered equivalent for type checking.
 
-```
+```hs
 type String = [Char]
 ```
 
@@ -186,7 +186,7 @@ Type synonyms can help make our code more self-documenting without the overhead 
 
 We've already seen the `map` function with lists:
 
-```
+```hs
 > map (+1) [0..3]
 [1,2,3,4]
 ```
@@ -194,7 +194,7 @@ We've already seen the `map` function with lists:
 Functors generalize this concept.
 If we run `:i Functor` in GHCi, we see its definition:
 
-```
+```hs
 class Functor f where
   fmap :: (a -> b) -> f a -> f b
   (<$) :: a -> f b -> f
@@ -204,7 +204,7 @@ The first thing to note is that type constructors can also belong to a typeclass
 
 Second, note the similarity of `map` and `fmap`:
 
-```
+```hs
 > :t map
 map :: (a -> b) -> [a] -> [b]
 
@@ -214,7 +214,7 @@ fmap :: Functor f => (a -> b) -> f a -> f b
 
 Since `[]` is an instance of `Functor`, it's reasonable to expect that `fmap` for lists behaves the same way as `map` does:
 
-```
+```hs
 > fmap (+1) [0..3]
 [1,2,3,4]
 
@@ -224,7 +224,7 @@ Since `[]` is an instance of `Functor`, it's reasonable to expect that `fmap` fo
 
 However, `fmap` extends to other types besides lists:
 
-```
+```hs
 > fmap (+1) (Just 1)
 Just 2
 
@@ -253,7 +253,7 @@ Note that `Map k` only appears here if you import `Data.Map`.
 `Set` is not a Functor even if you import `Data.Set`, though it does have its own `map` function.
 If we look at the type for its `map` function, we see:
 
-```
+```hs
 > :t Data.Set.map
 Data.Set.map :: Ord b => (a -> b) -> Set a -> Set b
 ```
@@ -269,7 +269,7 @@ The **kind** of a type is the number and order of other concrete types or type c
 So actually, all types have a kind, not just type constructors.
 You can inspect the kind of a type in GHCi with `:k`:
 
-```
+```hs
 > :k Int
 Int :: *
 
@@ -285,20 +285,20 @@ Data.Map.Map :: * -> * -> *
 
 Say we make a type constructor like
 
-```
+```hs
 data Foo t a = Foo {x :: t a} deriving (Show)
 ```
 
 We see its kind is
 
-```
+```hs
 > :k Foo
 Foo :: (* -> *) -> * -> *
 ```
 
 This means that the `t` type parameter needs to be something with kind `* -> *`:
 
-```
+```hs
 > Foo (Just 1)
 Foo {x = Just 1}
 ```
