@@ -19,7 +19,13 @@ Resources:
 
 ## Installation
 
+The easiest way to get up and running with Haskell "IRL" is with [Stack](https://docs.haskellstack.org/en/stable/README/).
+This will install GHC (the compiler), Cabal (the build system and package manager), and Stack (a Cabal wrapper for reproducible builds and isolated environments).
+
+When creating a project, `stack new` will give you a template to work from.
+
 ### VSCode
+
 - Install the [Haskell extension](https://marketplace.visualstudio.com/items?itemName=haskell.haskell)
 - Under Extension Settings, set formatting rules to `ormolu`.
     - I like `stylish-haskell` because it will align `=` in patterns and `::` in records.
@@ -38,12 +44,14 @@ Resources:
 <https://wiki.haskell.org/Programming_guidelines>
 
 ### Naming
+
 - Camel case for all names
 - Types names are capitalized
 - Function names are lowercase
 - Defining operators should only be done by libraries
 
 ### Indentation
+
 - Use spaces instead of tabs
 - Format your code so you need to indent only one level at a time
 
@@ -62,6 +70,7 @@ The "Bad" case can quickly end up with code too far to the right if clauses are 
 You can also end up with irregular indentation (# of spaces not divisible by 4 or whatever you chose) and renamings can force you to re-indent everything.
 
 ### I/O
+
 - Try to keep pure and impure (`do`) code in separate modules
 - Don't write code where a different order of evaluation may lead to incorrect results.
     - Common example: reading and writing to the same file
