@@ -103,3 +103,10 @@ getCurrentDirectory
 removeFile
 renameFile
 ```
+
+## `System.Environment`
+
+```hs
+getArgs
+getProgName
+```
