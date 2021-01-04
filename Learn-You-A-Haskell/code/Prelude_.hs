@@ -23,6 +23,7 @@ module Prelude_
     foldr1',
     fst',
     -- gcd',
+    getLine',
     head',
     id',
     init',
@@ -323,6 +324,16 @@ odd' n = n `mod` 2 /= 0
 -- lines' :: String -> [String]
 
 -- I/O functions
+
+getLineRecursive' :: String -> IO String
+getLineRecursive' xs = do
+  nextChar <- getChar
+  if nextChar == '\n'
+    then return xs
+    else getLineRecursive' (xs ++ [nextChar])
+
+getLine' :: IO String
+getLine' = getLineRecursive' []
 
 putStr' :: String -> IO ()
 putStr' [] = return ()
