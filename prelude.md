@@ -53,10 +53,12 @@ fromIntegral
 fst
 gcd
 getChar
+getContents
 getLine
 head
 id
 init
+interact
 iterate
 last
 length
@@ -98,6 +100,7 @@ scanr
 scanr1
 seq
 sequence
+sequenceA
 show
 signum
 sin
@@ -139,16 +142,22 @@ String
 ## Typeclasses
 
 ```hs
+Applicative
 Bounded
 Enum
 Eq
 Floating
+Foldable
 Functor
 Integral
+Monad
+Monoid
 Num
 Ord
 Read
+Semigroup
 Show
+Traversable
 ```
 
 ## Type constructors
@@ -158,5 +167,4 @@ Show
 Either
 IO
 Maybe
-Monad
 ```

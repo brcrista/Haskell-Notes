@@ -16,6 +16,7 @@ Everything is a function:
 Laziness:
 - Separate data production from data consumption
 - Currying by default
+- Streaming I/O by default
 
 Currying by default:
 - Point-free style

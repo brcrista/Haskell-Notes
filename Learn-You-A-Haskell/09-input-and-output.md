@@ -65,3 +65,41 @@ forM
 forever
 when
 ```
+
+## `System.IO`
+
+Functions and types for reading and writing files are in the `System.IO` module.
+
+```hs
+BufferMode
+FilePath
+Handle
+IOMode
+appendFile
+hClose
+hFlush
+hGetChar
+hGetLine
+hGetContents
+hPrint
+hPutChar
+hPutStr
+hPutStrLn
+hSetBuffering
+openFile
+openTempFile
+readFile
+withFile
+writeFile
+```
+
+Note that functions that read from a file such as `hGetContents` will stream the file rather than loading all of its contents into memory.
+By default, this is by line, but you can set it with `hSetBuffering` and `BufferMode`.
+
+## `System.Directory`
+
+```hs
+getCurrentDirectory
+removeFile
+renameFile
+```
