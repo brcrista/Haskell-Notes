@@ -22,66 +22,80 @@ import qualified Data.List as L
 ```
 
 Some other common modules besides `Prelude`:
-- `Data.Char`
-- `Data.List`
-    - `\\`
-    - `delete`
-    - `elemIndices`
-    - `elemIndex`
-    - `find`
-    - `findIndices`
-    - `findIndex`
-    - `foldl'`
-    - `foldl1'`
-    - `group`
-    - `inits`
-    - `insert`
-    - `intercalate`
-    - `intersect`
-    - `intersperse`
-    - `isInfixOf`
-    - `isPrefixOf`
-    - `isSuffixOf`
-    - `lookup`
-    - `nub`
-    - `partition`
-    - `sort`
-    - `tails`
-    - `transpose`
-    - `union`
-    - `zip4`, etc.
-    - `zipWith4`, etc.
-    - Note: a lot of list functions exposed by `Prelude` are actually defined in `Data.List`
-- `Data.Map`
-    - `Map`
-    - `elems`
-    - `empty`
-    - `insert`
-    - `keys`
-    - `filter`
-    - `fromList`
-    - `lookup`
-    - `map`
-    - `member`
-    - `null`
-    - `singleton`
-    - `size`
-    - `toList`
-- `Data.Set`
-    - `delete`
-    - `difference`
-    - `empty`
-    - `filter`
-    - `fromList`
-    - `insert`
-    - `intersection`
-    - `map`
-    - `member`
-    - `null`
-    - `singleton`
-    - `size`
-    - `toList`
-    - `union`
+
+## `Data.Char`
+
+## `Data.List`
+
+```hs
+\\
+delete
+elemIndices
+elemIndex
+find
+findIndices
+findIndex
+foldl'
+foldl1'
+group
+inits
+insert
+intercalate
+intersect
+intersperse
+isInfixOf
+isPrefixOf
+isSuffixOf
+lookup
+nub
+partition
+sort
+tails
+transpose
+union
+zip4 -- etc.
+zipWith4 -- etc.
+```
+
+Note: a lot of list functions exposed by `Prelude` are actually defined in `Data.List`!
+
+## `Data.Map`
+
+```hs
+Map
+elems
+empty
+insert
+keys
+filter
+fromList
+lookup
+map
+member
+null
+singleton
+size
+toList
+```
+
+## `Data.Set`
+
+```hs
+delete
+difference
+empty
+filter
+fromList
+insert
+intersection
+map
+member
+null
+singleton
+size
+toList
+union
+```
 
 ## Maybe
 
