@@ -6,11 +6,14 @@ import System.IO
 
 usage = error "Usage: todo COMMAND FILENAME [ARGS]..."
 
-dispatch :: [(String, [String] -> IO ())]
+type Action = [String] -> IO ()
+
+dispatch :: [(String, Action)]
 dispatch =
   [ ("add", add),
     ("view", view),
-    ("remove", remove)
+    ("remove", remove),
+    ("bump", bump)
   ]
 
 lookupCommand command = fromMaybe usage (lookup command dispatch)
@@ -20,22 +23,22 @@ main = do
   let action = lookupCommand command
   action args
 
-add :: [String] -> IO ()
-add [fileName, todoItem] = appendFile fileName (todoItem ++ "\n")
+add :: Action
+add [filename, todoItem] = appendFile filename (todoItem ++ "\n")
 add _ = usage
 
-view :: [String] -> IO ()
-view [fileName] = do
-  contents <- readFile fileName
+view :: Action
+view [filename] = do
+  contents <- readFile filename
   let todoTasks = lines contents
       numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0 ..] todoTasks
   putStr $ unlines numberedTasks
 view _ = usage
 
-remove :: [String] -> IO ()
-remove [fileName, numberString] = do
-  handle <- openFile fileName ReadMode
+remove :: Action
+remove [filename, numberString] = do
   cwd <- getCurrentDirectory
+  handle <- openFile filename ReadMode
   (tempName, tempHandle) <- openTempFile cwd "temp"
   contents <- hGetContents handle
   let number = read numberString
@@ -44,6 +47,23 @@ remove [fileName, numberString] = do
   hPutStr tempHandle $ unlines newTodoItems
   hClose handle
   hClose tempHandle
-  removeFile fileName
-  renameFile tempName fileName
+  removeFile filename
+  renameFile tempName filename
 remove _ = usage
+
+bump :: Action
+bump [filename, numberString] = do
+  cwd <- getCurrentDirectory
+  handle <- openFile filename ReadMode
+  (tempName, tempHandle) <- openTempFile cwd "temp"
+  contents <- hGetContents handle
+  let number = read numberString
+      todoTasks = lines contents
+      itemToBump = todoTasks !! number
+      newTodoItems =  itemToBump : delete itemToBump todoTasks
+  hPutStr tempHandle $ unlines newTodoItems
+  hClose handle
+  hClose tempHandle
+  removeFile filename
+  renameFile tempName filename
+bump _ = usage
