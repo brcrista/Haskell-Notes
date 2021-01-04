@@ -52,6 +52,7 @@ foldr1
 fromIntegral
 fst
 gcd
+getChar
 getLine
 head
 id
@@ -63,6 +64,8 @@ lines
 log
 lookup
 map
+mapM
+mapM_
 max
 maxBound
 maximum
@@ -87,12 +90,14 @@ putStrLn
 read
 repeat
 replicate
+return
 reverse
 scanl
 scanl1
 scanr
 scanr1
 seq
+sequence
 show
 signum
 sin

@@ -53,3 +53,15 @@ So, we can make two generalizations:
 
 Code that doesn't perform I/O is called **pure**.
 While you could just give up and make everything `IO`, Haskell encourages you not to by making I/O a little bit uglier.
+
+## `Control.Monad`
+
+The `Control.Monad` module has some handy functions for flow of control.
+Since Haskell is non-strict, you can define ordinary functions that work like `if`, `for`, and `while` in C-like languages:
+
+
+```hs
+forM
+forever
+when
+```
