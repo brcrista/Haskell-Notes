@@ -42,7 +42,10 @@ module Prelude_
     odd',
     or',
     otherwise',
+    print',
     product',
+    putStr',
+    putStrLn',
     repeat',
     replicate',
     reverse',
@@ -318,3 +321,19 @@ odd' n = n `mod` 2 /= 0
 -- words' :: String -> [String]
 
 -- lines' :: String -> [String]
+
+-- I/O functions
+
+putStr' :: String -> IO ()
+putStr' [] = return ()
+putStr' (x : xs) = do
+  putChar x
+  putStr' xs
+
+putStrLn' :: String -> IO ()
+putStrLn' xs = do
+  putStr' xs
+  putChar '\n'
+
+print' :: Show a => a -> IO ()
+print' = putStrLn' . show

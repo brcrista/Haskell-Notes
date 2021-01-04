@@ -81,6 +81,7 @@ pi
 pred
 print
 product
+putChar
 putStr
 putStrLn
 read
