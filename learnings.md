@@ -17,9 +17,15 @@ Laziness:
 - Separate data production from data consumption
 - Currying by default
 - Streaming I/O by default
+- Can use normal lists / strings to represent data produced on-demand (ex. no need for a special "stream" type)
 
 Currying by default:
 - Point-free style
 - Combinators
+
+Separation of I/O and application logic:
+- Code is unit-testable by default
+- Exceptions must be caught late and can't be abused for control flow
+- Separation of computation and communication
 
 Rich compile-time type syntax + type inference

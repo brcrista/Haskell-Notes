@@ -59,6 +59,7 @@ head
 id
 init
 interact
+ioError
 iterate
 last
 length
@@ -90,6 +91,7 @@ putChar
 putStr
 putStrLn
 read
+reads
 repeat
 replicate
 return
@@ -119,6 +121,7 @@ uncurry
 undefined
 unlines
 unwords
+userError
 words
 zip
 zip3
@@ -135,6 +138,7 @@ Double
 Float
 Int
 Integer
+IOError
 Ordering
 String
 ```

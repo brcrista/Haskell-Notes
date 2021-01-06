@@ -99,6 +99,7 @@ By default, this is by line, but you can set it with `hSetBuffering` and `Buffer
 ## `System.Directory`
 
 ```hs
+doesFileExist
 getCurrentDirectory
 removeFile
 renameFile
@@ -110,3 +111,16 @@ renameFile
 getArgs
 getProgName
 ```
+
+## Exceptions
+
+Haskell has a concept of exceptions like C# and Java.
+A common source of exceptions is I/O, where performing an I/O operation can fail for reasons outside of the program's control.
+Another is **partial functions**, which are functions not defined on every value in their input type. `div` and `head` are examples of partial functions (not to be confused with *partially applied functions*).
+
+One twist in Haskell is that exceptions may only be caught in an `IO` context.
+The reason is that pure code doesn't have a well-defined order of execution whereas `IO` code does.
+
+Exceptions are caught with the *function* `System.IO.Error.catch`.
+As with other "control flow" functions such as `forever`, `catch` works because everything in Haskell is a function (or "action" in the case of I/O).
+It's like passing a `Func` in C#.
