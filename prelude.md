@@ -73,6 +73,7 @@ mapM_
 max
 maxBound
 maximum
+maybe
 min
 minBound
 minimum

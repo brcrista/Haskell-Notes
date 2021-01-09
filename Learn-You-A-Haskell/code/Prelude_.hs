@@ -324,11 +324,14 @@ odd' n = n `mod` 2 /= 0
 
 -- lines' :: String -> [String]
 
--- Either functions
+-- Either / Maybe functions
 either' :: (a -> c) -> (b -> c) -> Either a b -> c
-either' left right either_ = case either_ of
-  Left l -> left l
-  Right r -> right r
+either' left right (Left l) = left l
+either' left right (Right r) = right r
+
+maybe' :: b -> (a -> b) -> Maybe a -> b
+maybe' _ f (Just x) = f x
+maybe' y _ Nothing = y
 
 -- I/O functions
 
