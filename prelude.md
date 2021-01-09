@@ -37,6 +37,7 @@ cycle
 div
 drop
 dropWhile
+either
 elem
 error
 even
@@ -171,4 +172,13 @@ Traversable
 Either
 IO
 Maybe
+```
+
+## Data constructors
+
+```hs
+Just
+Left
+Nothing
+Right
 ```
