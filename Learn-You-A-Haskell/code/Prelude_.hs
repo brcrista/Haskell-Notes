@@ -11,6 +11,7 @@ module Prelude_
     cycle',
     drop',
     dropWhile',
+    either',
     elem',
     -- error',
     even',
@@ -322,6 +323,15 @@ odd' n = n `mod` 2 /= 0
 -- words' :: String -> [String]
 
 -- lines' :: String -> [String]
+
+-- Either / Maybe functions
+either' :: (a -> c) -> (b -> c) -> Either a b -> c
+either' left right (Left l) = left l
+either' left right (Right r) = right r
+
+maybe' :: b -> (a -> b) -> Maybe a -> b
+maybe' _ f (Just x) = f x
+maybe' y _ Nothing = y
 
 -- I/O functions
 

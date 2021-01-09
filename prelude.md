@@ -37,6 +37,7 @@ cycle
 div
 drop
 dropWhile
+either
 elem
 error
 even
@@ -72,6 +73,7 @@ mapM_
 max
 maxBound
 maximum
+maybe
 min
 minBound
 minimum
@@ -171,4 +173,13 @@ Traversable
 Either
 IO
 Maybe
+```
+
+## Data constructors
+
+```hs
+Just
+Left
+Nothing
+Right
 ```
