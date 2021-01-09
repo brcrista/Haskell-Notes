@@ -29,3 +29,16 @@ Separation of I/O and application logic:
 - Separation of computation and communication
 
 Rich compile-time type syntax + type inference
+
+## How should you define function composition?
+
+There are two ways I've seen function composition defined in mathematics:
+
+```
+f*g(x) = f(g(x))
+f*g(x) = g(f(x))
+```
+
+We should go with the definition that's more useful, and there are pros and cons to each.
+Haskell defines it the first way.
+With the concept of functors, function composition provides an additional benefit: functions are functors with `fmap = (.)`.
