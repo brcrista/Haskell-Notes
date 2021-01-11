@@ -1,6 +1,6 @@
 # Functors, Applicative Functors, and Monoids
 
-## More on functors
+## Functions as Functors
 
 We're already seen a few types that are instances of `Functor`:
 
@@ -38,4 +38,120 @@ This looks a lot like the signature of function composition:
 (.) :: (b -> c) -> (a -> b) -> (a -> c)
 ```
 
-So, mapping a function over another function is the same as calling that function on the first function's result, as you'd expect.
+So, mapping a function over another function is the same as calling that function on the first function's result, as you'd expect:
+
+```hs
+fmap = (.)
+```
+
+## Functor Laws
+
+While it's not enforced by Haskell's type system, we define functors mathematically by a set of properties that must hold for the way `fmap` is defined.
+This is just like how we observe the reflexive, associative, and transitive properties for any definition of an equality function.
+These properties are called the **functor laws.**
+
+1. Identity law: `fmap id = id`
+1. Composition law: `fmap (f . g) = fmap f . fmap g`
+
+Basically, these laws ensure that `fmap` applies its function to the functor in a sane way.
+Let's play around with some functors to see how these work.
+
+### Lists
+
+```hs
+fmap = map
+map f xs = [f x | x <- xs]
+```
+
+```hs
+-- Identity law
+fmap id [] = []
+fmap id [1, 2] = [id 1, id 2] = [1, 2]
+
+-- Composition law
+square x = x * x
+
+fmap ((+1) . square) [1, 2]
+= [((+1) . square) 1, ((+1) . square) 2]
+= [2, 5]
+
+fmap (+1) . fmap square $ [1, 2]
+= fmap (+1) $ fmap square [1, 2]
+= fmap (+1) [square 1, square 2]
+= [((+1) . square) 1, ((+1) . square) 2]
+= [2, 5]
+```
+
+### Maybes
+
+```hs
+fmap _ Nothing = Nothing
+fmap f (Just x) = Just $ f x
+```
+
+```hs
+-- Identity law
+fmap id Nothing = Nothing
+fmap id (Just 1) = Just $ id 1 = Just 1
+
+-- Composition law
+square x = x * x
+
+fmap ((+1) . square) (Just 1)
+= Just $ ((+1) . square) 1
+= Just 2
+
+fmap (+1) . fmap square $ Just 1
+= fmap (+1) $ Just $ square 1
+= Just $ (+1) $ square 1
+= Just $ ((+1) . square) 1
+= Just 2
+```
+
+### Functions
+
+```hs
+fmap = (.)
+```
+
+```hs
+-- Identity law
+fmap id id = id . id = id
+fmap id (+1) = id . (+1) = (+1)
+
+-- Composition law
+square x = x * x
+
+fmap ((+1) . square) (+1)
+= (+1) . square . (+1)
+
+fmap (+1) . fmap square $ (+1)
+= fmap (+1) $ square . (+1)
+= (+1) . square . (+1)
+```
+
+### Counterexample
+
+Let's come up with an implementation of `fmap` that breaks the laws.
+
+```hs
+fmap :: (a -> b) -> [a] -> [b]
+fmap _ _ = []
+```
+
+```hs
+-- Identity law
+fmap id [] = []
+fmap id [1, 2] = [] -- Nope!
+
+-- Composition law
+square x = x * x
+
+fmap ((+1) . square) [1, 2]
+= []
+
+fmap (+1) . fmap square $ [1, 2]
+= fmap (+1) $ fmap square [1, 2]
+= fmap (+1) []
+= [] -- Ok
+```
