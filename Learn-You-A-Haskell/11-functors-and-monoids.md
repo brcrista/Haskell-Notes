@@ -54,6 +54,13 @@ A better fit at this point would be "something that produces values."
 
 When you map over a functor, you add something to it that changes the values as they come out.
 
+It may seem strange that functions and lists could be fundamentally connected like this.
+Consider though the concept of **coroutines**.
+Languages like C#, JavaScript, and Python have a concept of "generators."
+Basically, these are plain-old coroutines: routines that can be started and stopped and yield values along the way.
+The language presents these coroutines as iterators that produce a sequence of values, one call to the coroutine for each element.
+Haskell has no iterators; it only has lists, which function much like iterators in other languages.
+
 ## Functor Laws
 
 While it's not enforced by Haskell's type system, we define functors mathematically by a set of properties that must hold for the way `fmap` is defined.
@@ -164,4 +171,42 @@ fmap (+1) . fmap square $ [1, 2]
 = fmap (+1) $ fmap square [1, 2]
 = fmap (+1) []
 = [] -- Ok
+```
+
+## Applicative functors
+
+What happens when we have a functor of partially applied functions?
+
+```hs
+> xs = fmap (*) [1..4]
+> :t xs
+xs :: (Num a, Enum a) => [a -> a]
+
+> fmap ($ 1) xs
+[1,2,3,4]
+
+> fmap ($ 2) xs
+[2,4,6,8]
+```
+
+So far so good.
+But what if we have:
+
+```hs
+> (|>) = flip ($)
+> xs = fmap (*) [1..4]
+> ys = fmap [($ 2)]
+```
+
+How can we apply `ys` to the `xs`?
+
+The `Control.Applicative` module contains a typeclass `Applicative`.
+This typeclass represents **applicative functors**.
+
+```hs
+> pure 1 :: [Int]
+[1]
+
+> pure 1 :: Maybe Int
+Just 1
 ```
