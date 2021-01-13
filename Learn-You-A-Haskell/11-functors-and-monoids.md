@@ -44,6 +44,16 @@ So, mapping a function over another function is the same as calling that functio
 fmap = (.)
 ```
 
+## Another view of functors
+
+A first look at functors usually characterize them as a "container" for a value that can be mapped over.
+A better fit at this point would be "something that produces values."
+- A list produces values when you iterate over it.
+- A `Maybe` produces 0 or 1 values.
+- A function produces a value when you call it with an argument.
+
+When you map over a functor, you add something to it that changes the values as they come out.
+
 ## Functor Laws
 
 While it's not enforced by Haskell's type system, we define functors mathematically by a set of properties that must hold for the way `fmap` is defined.
@@ -51,7 +61,7 @@ This is just like how we observe the reflexive, associative, and transitive prop
 These properties are called the **functor laws.**
 
 1. Identity law: `fmap id = id`
-1. Composition law: `fmap (f . g) = fmap f . fmap g`
+1. Distributive property over composition: `fmap (f . g) = fmap f . fmap g`
 
 Basically, these laws ensure that `fmap` applies its function to the functor in a sane way.
 Let's play around with some functors to see how these work.
@@ -130,7 +140,7 @@ fmap (+1) . fmap square $ (+1)
 = (+1) . square . (+1)
 ```
 
-### Counterexample
+### Pathological functor
 
 Let's come up with an implementation of `fmap` that breaks the laws.
 
