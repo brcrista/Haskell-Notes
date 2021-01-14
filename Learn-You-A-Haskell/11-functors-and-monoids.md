@@ -269,9 +269,71 @@ We can simplify this using the `<$>` operator, which is just `fmap` as an infix 
 Just 8
 ```
 
-This simplification is guaranteed to work for all applicatives because of the **applicative laws**.
-One of those laws is
+This is kind of the zen of applicative functors.
+`fmap` gives us a way to apply a unary function to a functor,
+and `<*>` gives us a way to apply a binary function to two functors.
+
+### Applicative functor laws
+
+This simplification is guaranteed to work for all applicatives because of the **applicative laws** (namely, the first one).
+These laws are:
+
+1. Functor reduction law: `pure f <*> x = f <$> x`
+1. Identity law: `pure id <*> x = x`
+1. Homomorphism law: `pure f <*> pure x = pure (f x)`
+1. Composition law: `pure (.) <*> x <*> y <*> z = x <*> (y <*> z)`
+1. Interchange law: `x <*> pure y = pure ($ y) <*> x`
+
+## `Control.Applicative`
+
+The `Control.Applicative` module contains more types and functions related to applicatives.
+
+### `liftA2`
+
+We just saw how we can "lift" a function to work on an applicative functor:
 
 ```hs
-`pure f <*> x = f <$> x`
+> (+) <$> Just 3 <*> Just 5
+Just 8
+```
+
+This can also be achieved with the `liftA2` function:
+
+```hs
+> liftedAdd = liftA2 (+)
+> Just 3 `liftedAdd` Just 5
+Just 8
+```
+
+The `2` in `liftA2` refers to the arity of the function.
+There's also `liftA` (which is the same as `fmap` except with a more restrictive type constraint) and `liftA3`.
+
+### `ZipList`
+
+We've seen that lists are applicative functors.
+However, there are actually *more* ways that they can fulfill the definition.
+
+An alternative way is given by `ZipList`.
+`ZipList` wraps a normal list.
+Rather than implementing `<*>` through Cartesian product, it does so through `zipWith`.
+
+## Other functions for applicatives
+
+### `sequenceA`
+
+The `sequenceA` function gives us a way to pull an applicative out of square brackets.
+
+```hs
+> :t sequenceA
+sequenceA :: (Traversable t, Applicative f) => t (f a) -> f (t a)
+```
+
+For example:
+
+```hs
+> sequenceA [Just 1, Just 2]
+Just [1, 2]
+
+> sequenceA [Just 1, Just 2, Nothing]
+Nothing
 ```
