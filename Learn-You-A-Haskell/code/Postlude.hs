@@ -1,7 +1,8 @@
 -- This module contains Prelude-like functions that aren't actually in Prelude.
 module Postlude(
   (|>),
-  negative
+  negative,
+  cartesian
 )
 where
 
@@ -10,3 +11,6 @@ where
 
 negative :: Integer -> Integer
 negative = negate . abs
+
+cartesian :: Applicative f => f a -> f b -> f (a, b)
+cartesian xs ys = (,) <$> xs <*> ys

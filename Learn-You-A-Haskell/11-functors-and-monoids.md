@@ -67,7 +67,7 @@ While it's not enforced by Haskell's type system, we define functors mathematica
 This is just like how we observe the reflexive, associative, and transitive properties for any definition of an equality function.
 These properties are called the **functor laws.**
 
-1. Identity law: `fmap id = id`
+1. Functor identity law: `fmap id = id`
 1. Distributive property over composition: `fmap (f . g) = fmap f . fmap g`
 
 Basically, these laws ensure that `fmap` applies its function to the functor in a sane way.
@@ -193,15 +193,42 @@ So far so good.
 But what if we have:
 
 ```hs
-> (|>) = flip ($)
-> xs = fmap (*) [1..4]
-> ys = fmap [($ 2)]
+xs = fmap (*) [0..2]
+ys = [1..4]
 ```
 
-How can we apply `ys` to the `xs`?
+How can we apply each of the `xs` to each of the `ys`?
+We would have to write a list comprehension like
 
-The `Control.Applicative` module contains a typeclass `Applicative`.
-This typeclass represents **applicative functors**.
+```hs
+applyList :: [a -> b] -> [a] -> [b]
+applyList xs ys = [x y | x <- xs, y <- ys]
+```
+
+And what if we wanted to apply a function in a `Maybe` to another `Maybe`?
+
+```hs
+x = Just (* 3)
+y = Just 2
+```
+
+We'd have to write a function like
+
+```hs
+applyMaybe :: Maybe (a -> b) -> Maybe a -> Maybe b
+applyMaybe Nothing _ = Nothing
+applyMaybe (Just f) something = fmap f something
+```
+
+The `Applicative` typeclass represents **applicative functors**.
+The typeclass is defined with two functions:
+
+```hs
+pure :: Applicative f => a -> f a
+(<*>) :: Applicative f => f (a -> b) -> f a -> f b
+```
+
+The `pure` function takes any value and turns it into an `Applicative`:
 
 ```hs
 > pure 1 :: [Int]
@@ -209,4 +236,42 @@ This typeclass represents **applicative functors**.
 
 > pure 1 :: Maybe Int
 Just 1
+```
+
+Coming from object-oriented languages, `pure` is interesting.
+In Java and C#, interfaces don't usually specify a way to construct an object.
+
+The `<*>` operator is a generalized version of `applyList` and `applyMaybe` up above.
+Note that any instance of `Applicative` must also be a `Functor`.
+
+Note the similarity of `<*>` and `fmap`:
+
+```hs
+> :t fmap
+fmap :: Functor f => (a -> b) -> f a -> f b
+
+> :t (<*>)
+(<*>) :: Applicative f => f (a -> b) -> f a -> f b
+```
+
+You can even write stuff like
+
+```hs
+> Just (+) <*> Just 3 <*> Just 5
+Just 8
+```
+
+Here, we've "lifted" the `+` operator to work on `Num a => Maybe a`.
+We can simplify this using the `<$>` operator, which is just `fmap` as an infix operator.
+
+```hs
+> (+) <$> Just 3 <*> Just 5
+Just 8
+```
+
+This simplification is guaranteed to work for all applicatives because of the **applicative laws**.
+One of those laws is
+
+```hs
+`pure f <*> x = f <$> x`
 ```
