@@ -74,10 +74,13 @@ lookup
 map
 mapM
 mapM_
+mappend
 max
 maxBound
 maximum
 maybe
+mconcat
+mempty
 min
 minBound
 minimum

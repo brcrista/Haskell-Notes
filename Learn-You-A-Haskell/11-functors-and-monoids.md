@@ -337,3 +337,95 @@ Just [1, 2]
 > sequenceA [Just 1, Just 2, Nothing]
 Nothing
 ```
+
+## Monoids
+
+A **monoid** is a type that defines a binary function that is *associative* and has an *identity element*.
+
+For example, `+` and `*` are associative and have identity elements `0` and `1`, respectively.
+`++` is also associative with `[]` as the identity element.
+However, `-` is not associative.
+
+The typeclass `Monoid` defines the following functions:
+- `mempty`
+- `mappend`
+- `mconcat` (which has a default implementation in terms of `mempty` and `mappend`)
+
+Naturally, the **monoid laws** are:
+1. Identity element: `mappend mempty x = x`
+1. Commutativity on the identity element: `mappend x mempty = mappend mempty x`
+1. Associativity: `mappend x (mappend y z) = mappend (mappend x y) z`
+
+Lists are probably the most obvious example of monoids, as you might expect from the names of the monoid functions:
+
+```hs
+instance Monoid [a] where
+    mempty = []
+    mappend = (++)
+```
+
+`mconcat` works as follows:
+
+```hs
+> mconcat [[0, 1, 2], [3, 4, 5], [6, 7, 8, 9]]
+[0,1,2,3,4,5,6,7,8,9]
+```
+
+The `Data.Monoid` module defines several other types that implement `Monoid`:
+
+| Type | `mappend` |
+| ---- | --------- |
+| `Sum` | `+` |
+| `Product` | `*` |
+| `Any` | `||` |
+| `All` | `&&` |
+
+Why these and not just `Num a` and `Bool`?
+Well, clearly, `Num a` and `Bool` can each act as monoids in different ways depending on which operation to use to define `mappend`, so that's why we need distinct types.
+
+Another type that we've seen before, `Ordering`, is also a monoid:
+
+```hs
+instance Monoid Ordering where
+    mempty = EQ
+    EQ `mappend` x = x
+    x `mappend` _ = x
+```
+
+`Maybe a` is also a monoid if the type `a` is also a monoid:
+
+```hs
+instance Monoid a => Monoid (Maybe a) where
+    mempty = Nothing
+    mappend Nothing m = m
+    mappend m Nothing = m
+    Just m1 `mappend` Just m2 = Just (m1 `mappend` m2)
+```
+
+`Data.Monoid` also includes a monoid called `First`, which wraps a `Maybe`.
+It doesn't have the constraint that the inner type of the `Maybe` also be a monoid.
+Instead, its `mappend` operation is just null-coalescing -- it finds the *first* `Maybe` in a chain that has a value.
+
+`Monoid` is also what lies behind the `Foldable` typeclass, where `foldl` and `foldr` are declared.
+It also declares the `foldMap` function, which has the signature
+
+```hs
+foldMap :: (Monoid m, Foldable t) => (a -> m) -> t a -> m
+```
+
+`foldMap` maps the function over the foldable, producing a foldable of monoids.
+Then, it combines all of the monoids into one with `mappend`.
+
+This is one case where a "useless" function like `mempty` has a use.
+When implementing `Foldable` through `foldMap`, we don't have to specify *which* monoid instance is being used.
+We can just say `mempty` and it will work for all monoids.
+
+For lists, the following expressions are equivalent:
+
+```hs
+> import Data.Monoid
+> getSum $ foldMap (\x -> Sum $ x + 2) [1..10]
+75
+> sum $ map (+2) [1..10]
+75
+```
