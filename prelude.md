@@ -8,6 +8,7 @@
 (-)
 (.)
 (*)
+(*>)
 (/)
 (/=)
 (&&)
@@ -15,6 +16,9 @@
 (<)
 (<=)
 (<$)
+(<*)
+(<$>)
+(<*>)
 (==)
 (>)
 (>=)
@@ -70,10 +74,13 @@ lookup
 map
 mapM
 mapM_
+mappend
 max
 maxBound
 maximum
 maybe
+mconcat
+mempty
 min
 minBound
 minimum
@@ -89,6 +96,7 @@ pi
 pred
 print
 product
+pure
 putChar
 putStr
 putStrLn

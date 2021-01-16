@@ -1,15 +1,16 @@
 -- This module contains Prelude-like functions that aren't actually in Prelude.
 module Postlude(
-  apply,
-  compose,
-  negative
+  (|>),
+  negative,
+  cartesian
 )
 where
 
-apply :: (a -> b) -> a -> b
-apply f = f
+(|>) :: a -> (a -> b) -> b
+(|>) = flip ($)
 
-compose :: (b -> c) -> (a -> b) -> (a -> c)
-compose f g x = f $ g x
+negative :: Integer -> Integer
+negative = negate . abs
 
-negative = compose negate abs
+cartesian :: Applicative f => f a -> f b -> f (a, b)
+cartesian xs ys = (,) <$> xs <*> ys

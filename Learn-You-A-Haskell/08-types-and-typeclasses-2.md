@@ -75,11 +75,38 @@ The data constructors are called in the same way, but then we can also do:
 
 The default implementation of `Show` will also use these names.
 
+## `newtype`
+
+*Note: this is taken from Chapter 11 in the text, but fits better here.*
+
+Consider the following declarations:
+
+```hs
+type Name1 = String
+data Name2 = Name2 { getName2 :: String }
+newtype Name3 = Name3 { getName3 :: String }
+```
+
+They'd each be used like:
+
+```hs
+> "Brian" :: Name1
+"Brian"
+
+> getName2 $ Name2 "Brian"
+"Brian"
+
+> getName3 $ Name3 "Brian"
+"Brian"
+```
+
+The `newtype` keyword can be used in this case where a new type is just wrapping an instance of an old type.
+It's a bit faster at runtime than the equivalent `data` declaration.
+
 ## Type constructors
 
-The type name is actually a constructor too.
+A type name is actually a constructor too.
 It's called a **type constructor**, and we can give it parameters:
-
 
 ```hs
 data Maybe a = Nothing | Just a
