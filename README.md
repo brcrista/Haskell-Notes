@@ -15,6 +15,8 @@ Resources:
 - [ ] Add HUnit tests
 - [ ] Add QuickCheck tests
 - [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
+- [x] Falling water in Haskell
+- [ ] Equilibrium index in Haskell
 - [ ] Project Euler 1-20
 
 ## Installation
