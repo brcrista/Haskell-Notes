@@ -131,6 +131,7 @@ quot
 quotRem
 read
 reads
+realToFrac
 recip
 rem
 repeat
