@@ -29,9 +29,6 @@ When creating a project, `stack new` will give you a template to work from.
 ### VSCode
 
 - Install the [Haskell extension](https://marketplace.visualstudio.com/items?itemName=haskell.haskell)
-- Under Extension Settings, set formatting rules to `ormolu`.
-    - I like `stylish-haskell` because it will align `=` in patterns and `::` in records.
-    - However, it doesn't seem to be able to handle indentation in many situations, which makes it a lot less useful in my opinion.
 
 ## GHCi cheat sheet:
 
@@ -44,6 +41,20 @@ When creating a project, `stack new` will give you a template to work from.
 ## Style guide
 
 <https://wiki.haskell.org/Programming_guidelines>
+
+I've looked at a couple code formatters.
+I've tried `ormulu` through the Haskell VS Code extension. It doesn't offer any sort of config, unfortunately.
+I've tried `stylish-haskell` and played around with the config, but couldn't really get a result I like.
+
+I mostly care about lining up `=` in `where` clauses, cases, and patterns, and lining up `::` in records.
+I'm not too crazy about lining up import statements, as long as they're sorted.
+I don't like putting `,` before comma-separated elements.
+I get that it keeps things lined up but just doesn't look natural.
+Every formatter seems to do that.
+I also prefer Allman-style braces, but both formatters want to put the first element on the same line as the brace.
+
+And I'm not being pragmatic here and just pick a format and sticking with it.
+I'm fine doing that with JavaScript, but I'm coding in Haskell because I like the way it looks.
 
 ### Naming
 
