@@ -170,6 +170,8 @@ uncurry
 undefined
 unlines
 unwords
+unzip
+unzip3
 userError
 words
 zip
