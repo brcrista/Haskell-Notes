@@ -92,6 +92,7 @@ isNaN
 isNegativeZero
 iterate
 last
+lcm
 length
 lines
 log
