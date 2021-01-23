@@ -4,6 +4,7 @@
 
 - Bifunctor
 - Comonad
+- Lens
 
 ## Language extensions
 
