@@ -35,6 +35,8 @@
 - [x] Falling water in Haskell
 - [x] Equilibrium index in Haskell
 - [ ] Project Euler 1-20
+- [ ] Regexes
+- [ ] HTTP requests
 
 ## Installation
 
