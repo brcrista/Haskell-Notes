@@ -1,11 +1,28 @@
 # Haskell
 
-Resources:
+## Resources
+
+### Tutorials
+
 - [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [`Prelude` reference on Hackage](https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html)
+
+### References
+
+- [Hackage: base](https://hackage.haskell.org/package/base-4.14.0.0)
+- [Prelude source code](https://www.haskell.org/onlinereport/standard-prelude.html)
 - [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
-- <https://cabal.readthedocs.io>
+- [Numeric types quick reference](https://martingalemeasure.wordpress.com/2014/07/07/haskell-numeric-types-quick-reference/)
+
+### Ecosystem
+
+- [Hoogle](https://hoogle.haskell.org/)
+- [QuickCheck tutorial](https://begriffs.com/posts/2017-01-14-design-use-quickcheck.html)
+- [GHC User's Guide](https://downloads.haskell.org/ghc/latest/docs/html/users_guide/)
+- [Cabal](https://cabal.readthedocs.io)
+- [Stack](https://docs.haskellstack.org/en/stable/README/)
+- [Haddock](https://haskell-haddock.readthedocs.io/en/latest/index.html)
+- [pandoc](https://github.com/jgm/pandoc)
 
 ## Learning path
 
