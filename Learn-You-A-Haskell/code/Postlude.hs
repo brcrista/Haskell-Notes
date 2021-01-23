@@ -14,3 +14,6 @@ negative = negate . abs
 
 cartesian :: Applicative f => f a -> f b -> f (a, b)
 cartesian xs ys = (,) <$> xs <*> ys
+
+cartesian3 :: Applicative f => f a -> f b -> f c -> f (a, b, c)
+cartesian3 xs ys zs = (,,) <$> xs <*> ys <*> zs
