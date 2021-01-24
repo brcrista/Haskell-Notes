@@ -17,6 +17,7 @@
 ### Ecosystem
 
 - [Hoogle](https://hoogle.haskell.org/)
+- [QuickCheck](http://www.cse.chalmers.se/~rjmh/QuickCheck/manual.html)
 - [QuickCheck tutorial](https://begriffs.com/posts/2017-01-14-design-use-quickcheck.html)
 - [GHC User's Guide](https://downloads.haskell.org/ghc/latest/docs/html/users_guide/)
 - [Cabal](https://cabal.readthedocs.io)
