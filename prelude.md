@@ -21,9 +21,11 @@
 (<=)
 (<$)
 (<$>)
+(=<<)
 (==)
 (>)
 (>=)
+(>>)
 (>>=)
 (||)
 ($)
@@ -60,6 +62,7 @@ error
 even
 exp
 exponent
+fail
 filter
 flip
 floatDigits
@@ -208,6 +211,7 @@ Foldable
 Functor
 Integral
 Monad
+MonadFail
 Monoid
 Num
 Ord
