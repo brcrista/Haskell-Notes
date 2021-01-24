@@ -108,3 +108,61 @@ Some monads will just have this call `error`.
 
 For lists, `return = (:[])` and `fail = const []`.
 The meaning of `>>=` is to "flat map" -- map the function over the list to produce a list of lists and then flatten the result.
+
+## `MonadPlus`
+
+Not all monads are monoids, but some are.
+The `MonadPlus` typeclass represents monads that are also monoids.
+
+```hs
+class Monad m => MonadPlus m where
+    mzero :: m a
+    mplus :: m a -> m a -> m a
+```
+
+You can see from the definition that the `m` type parameter isn't actually contrained to be an instance of `Monoid`:
+
+```hs
+class Monoid a where
+    mempty  :: a
+    mappend :: a -> a -> a
+```
+
+Rather, `MonadPlus` is governed by the **monoid law**:
+
+```hs
+mzero = mempty
+mplus = mappend
+```
+
+```hs
+> pure []
+[]
+> return []
+[]
+> mempty :: [a]
+[]
+> mzero :: [a]
+[]
+```
+
+## The `guard` function
+
+The `Control.Monad` module contains a function called `guard`.
+It is used like this:
+
+```hs
+> [0 .. 5] >>= \x -> guard (even x) >> return x
+[0,2,4]
+```
+
+For lists, this is the same as filtering.
+It can be used in `do` blocks as well:
+
+
+```hs
+evens xs = do
+    x <- xs
+    guard (even x)
+    return x
+```
