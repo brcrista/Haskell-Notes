@@ -7,11 +7,13 @@ All functions are pure:
 - Everything is a function
 - Declarative syntax
 - Immutability
+- `=` means "equal"
 - Separation of I/O and application logic
 
 Everything is a function:
 - Laziness
 - Polymorphic "values"
+- Functions can be defined as other functions
 
 Laziness:
 - Separate data production from data consumption
@@ -20,7 +22,9 @@ Laziness:
 - Can use normal lists / strings to represent data produced on-demand (ex. no need for a special "stream" type)
 
 Currying by default:
-- Point-free style
+- Partial application
+- Functions are defined as in mathematics: n-ary functions (uncurried functions) operate on n-tuples
+- Point-free style: defining functions in terms of other functions
 - Combinators
 
 Separation of I/O and application logic:

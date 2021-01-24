@@ -103,3 +103,8 @@ In that case, it's the same as calling `>>` in the middle of the chain.
 By the way, if pattern matching fails at some point in a `do` block, the `fail` function is called on the monad.
 Some monads will just have this call `error`.
 `Maybe` just defines it as `fail = const Nothing`.
+
+## Lists as monads
+
+For lists, `return = (:[])` and `fail = const []`.
+The meaning of `>>=` is to "flat map" -- map the function over the list to produce a list of lists and then flatten the result.
