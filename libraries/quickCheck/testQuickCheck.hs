@@ -11,12 +11,10 @@ involutory f x = f (f x) == x
 prop_reverseIsInvolutory :: [Int] -> Bool
 prop_reverseIsInvolutory = involutory reverse
 
--- prop_integerAdditionIsCommutative :: Integral a => a -> a -> Bool
-prop_integerAdditionIsCommutative :: Int -> Int -> Bool
+prop_integerAdditionIsCommutative :: Integral a => a -> a -> Bool
 prop_integerAdditionIsCommutative = commutative (+)
 
--- -- prop_integerSubtractionIsCommutative :: Integral a => a -> a -> Bool
-prop_integerSubtractionIsCommutative :: Int -> Int -> Bool
+prop_integerSubtractionIsCommutative :: Integral a => a -> a -> Bool
 prop_integerSubtractionIsCommutative = commutative (-)
 
 return []
