@@ -38,7 +38,7 @@ Let's compare the operations we have:
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
 ```
 
-If we just use `Monad` for the type constraint (since monads are also functors and applicative functors and use `(=<<) = flip (>>=)`, we can see the similarity more clearly:
+If we just use `Monad` for the type constraint (since monads are also functors and applicative functors and the `=<<` operator (defined as `(=<<) = flip (>>=)`), we can see the similarity more clearly:
 
 ```hs
 (<$>) :: Monad m =>   (a -> b) -> m a -> m b
@@ -165,4 +165,44 @@ evens xs = do
     x <- xs
     guard (even x)
     return x
+```
+
+## Monad laws
+
+Like functors, monads have laws that are made to ensure that `return` is implemented in a sane way and that `>>=` applies a function in a sane way.
+These laws are:
+
+```hs
+-- 1. Left identity
+return x >>= f = f x
+
+-- 2. Right identity
+m >>= return = m
+
+-- 3. Associativity
+(m >>= f) >>= g = m >>= (\x -> f x >>= g)
+```
+
+We can express these laws more clearly with the "Kleisli arrow operator" `<=<` from `Control.Monad`.
+`<=<` is like function composition for monads:
+
+```hs
+> :t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+
+> :t (<=<)
+(<=<) :: Monad m => (b -> m c) -> (a -> m b) -> a -> m c
+```
+
+With `<=<`, the Monad laws can be written as
+
+```hs
+-- 1. Left identity
+f <=< return = f
+
+-- 2. Right identity
+return <=< f = f
+
+-- 3. Associativity
+(f <=< g) <=< h = f <=< (g <=< h)
 ```

@@ -67,8 +67,13 @@ While it's not enforced by Haskell's type system, we define functors mathematica
 This is just like how we observe the reflexive, associative, and transitive properties for any definition of an equality function.
 These properties are called the **functor laws.**
 
-1. Functor identity law: `fmap id = id`
-1. Distributive property over composition: `fmap (f . g) = fmap f . fmap g`
+```hs
+-- Identity law
+fmap id = id
+
+-- Distributive property over composition
+fmap (f . g) = fmap f . fmap g
+```
 
 Basically, these laws ensure that `fmap` applies its function to the functor in a sane way.
 Let's play around with some functors to see how these work.
@@ -85,7 +90,7 @@ map f xs = [f x | x <- xs]
 fmap id [] = []
 fmap id [1, 2] = [id 1, id 2] = [1, 2]
 
--- Composition law
+-- Distributive property
 square x = x * x
 
 fmap ((+1) . square) [1, 2]
@@ -111,7 +116,7 @@ fmap f (Just x) = Just $ f x
 fmap id Nothing = Nothing
 fmap id (Just 1) = Just $ id 1 = Just 1
 
--- Composition law
+-- Distributive property
 square x = x * x
 
 fmap ((+1) . square) (Just 1)
@@ -136,7 +141,7 @@ fmap = (.)
 fmap id id = id . id = id
 fmap id (+1) = id . (+1) = (+1)
 
--- Composition law
+-- Distributive property
 square x = x * x
 
 fmap ((+1) . square) (+1)
@@ -161,7 +166,7 @@ fmap _ _ = []
 fmap id [] = []
 fmap id [1, 2] = [] -- Nope!
 
--- Composition law
+-- Distributive property
 square x = x * x
 
 fmap ((+1) . square) [1, 2]
@@ -278,11 +283,22 @@ and `<*>` gives us a way to apply a binary function to two functors.
 This simplification is guaranteed to work for all applicatives because of the **applicative laws** (namely, the first one).
 These laws are:
 
-1. Functor reduction law: `pure f <*> x = f <$> x`
-1. Identity law: `pure id <*> x = x`
-1. Homomorphism law: `pure f <*> pure x = pure (f x)`
-1. Composition law: `pure (.) <*> x <*> y <*> z = x <*> (y <*> z)`
-1. Interchange law: `x <*> pure y = pure ($ y) <*> x`
+```hs
+-- 1. Functor reduction law
+pure f <*> x = f <$> x
+
+-- 2. Identity law
+pure id <*> x = x
+
+-- 3. Homomorphism law
+pure f <*> pure x = pure (f x)
+
+-- 4. Composition law
+pure (.) <*> x <*> y <*> z = x <*> (y <*> z)
+
+-- 5. Interchange law
+x <*> pure y = pure ($ y) <*> x
+```
 
 ## `Control.Applicative`
 
