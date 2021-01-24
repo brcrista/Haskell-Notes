@@ -1,2 +1,10 @@
+*.dyn_hi
+*.dyn_o
 *.hi
 *.o
+
+rpn
+testIO
+testQuickCheck
+todo
+todo.txt
