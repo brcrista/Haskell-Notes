@@ -30,14 +30,13 @@
 - [ ] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [ ] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
 - [ ] Re-implement `Prelude`
-- [ ] Add HUnit tests
-- [ ] Add QuickCheck tests
+- [ ] Add QuickCheck tests to `Identities.hs`
 - [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
 - [x] Falling water in Haskell
 - [x] Equilibrium index in Haskell
 - [ ] Project Euler 1-20
 - [ ] Regexes
-- [ ] HTTP requests
+- [ ] Calling a REST API
 
 ## Installation
 
