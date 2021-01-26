@@ -37,6 +37,9 @@
 - [ ] Project Euler 1-20
 - [ ] Regexes
 - [ ] Calling a REST API
+- [ ] Combinators
+- [ ] Semigroups
+- [ ] Arrows
 
 ## Installation
 
