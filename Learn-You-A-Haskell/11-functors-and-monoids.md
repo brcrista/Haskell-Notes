@@ -1,6 +1,6 @@
 # Functors, Applicative Functors, and Monoids
 
-## Functions as Functors
+## Functions as functors
 
 We're already seen a few types that are instances of `Functor`:
 
@@ -61,7 +61,7 @@ Basically, these are plain-old coroutines: routines that can be started and stop
 The language presents these coroutines as iterators that produce a sequence of values, one call to the coroutine for each element.
 Haskell has no iterators; it only has lists, which function much like iterators in other languages.
 
-## Functor Laws
+## Functor laws
 
 While it's not enforced by Haskell's type system, we define functors mathematically by a set of properties that must hold for the way `fmap` is defined.
 This is just like how we observe the reflexive, associative, and transitive properties for any definition of an equality function.
