@@ -196,6 +196,7 @@ Integer
 IOError
 Ordering
 Rational
+ShowS
 String
 ```
 

@@ -1,4 +1,3 @@
-
 import System.Environment
 
 main = do
@@ -25,10 +24,10 @@ parse "+" = Right Add
 parse "-" = Right Subtract
 parse "*" = Right Multiply
 parse "/" = Right Divide
-parse x = Left $ read x
+parse x   = Left $ read x
 
 dispatchOp :: Fractional a => Operator -> a -> a -> a
-dispatchOp Add = (+)
+dispatchOp Add      = (+)
 dispatchOp Subtract = (-)
 dispatchOp Multiply = (*)
-dispatchOp Divide = (/)
+dispatchOp Divide   = (/)
