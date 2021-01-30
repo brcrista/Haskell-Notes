@@ -1,11 +1,16 @@
 import Control.Monad
+import Numeric.Natural
 
+type Coordinate = (Natural, Natural)
+
+inbounds :: Coordinate -> Bool
 inbounds (x, y) = x `between` (0, 7) && y `between` (0, 7)
   where k `between` (low, high) = low <= k && k <= high
 
 -- | The set of spaces a knight can be on,
 -- not taking into account moves off the board.
-knightMoveUnbounded (x, y) =
+moveKnightUnbounded :: Coordinate -> [Coordinate]
+moveKnightUnbounded (x, y) =
   [
     (x - 2, y - 1),
     (x - 2, y + 1),
@@ -18,14 +23,16 @@ knightMoveUnbounded (x, y) =
   ]
 
 -- | The set of spaces a knight can be on after one move.
-knightMove currentSpace = do
-  nextSpace <- knightMoveUnbounded currentSpace
+moveKnight :: Coordinate -> [Coordinate]
+moveKnight currentSpace = do
+  nextSpace <- moveKnightUnbounded currentSpace
   guard (inbounds nextSpace)
   return nextSpace
 
--- | The set of spaces a knight can be on after exactly 3 moves.
-knightMove3 currentSpace = knightMove currentSpace >>= knightMove >>= knightMove
+-- | The set of spaces a knight can be on after exactly `n` moves.
+knightMoves :: Natural -> Coordinate -> [Coordinate]
+knightMoves n = foldl (>=>) return (replicate (fromIntegral n) moveKnight)
 
--- | Whether a square is reachable by a knight in exactly 3 moves.
-reachable3 :: (Num a1, Num a2, Ord a1, Ord a2) => (a1, a2) -> (a1, a2) -> Bool
-reachable3 a b = b `elem` knightMove3 a
+-- | Whether a square is reachable by a knight in exactly `n` moves.
+reachable :: Natural -> Coordinate -> Coordinate -> Bool
+reachable n a b = b `elem` knightMoves n a

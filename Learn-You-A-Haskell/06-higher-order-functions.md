@@ -85,7 +85,8 @@ In this case, we can use `foldl1`, which just uses the first element for the ini
 sum' xs = foldl1 (+) xs
 ```
 
-In general, we can perform this simplification whenever the initial value of the accumulator is the zero value of the function.
+In general, we can perform this simplification whenever the initial value of the accumulator is the zero value of the function and we don't care about empty lists.
+`foldl1` will raise an error on an empty list.
 
 One final simplification we can make is to take advantage of partial application and define the function in **point-free** style:
 
