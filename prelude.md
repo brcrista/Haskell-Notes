@@ -58,6 +58,10 @@ dropWhile
 either
 elem
 encodeFloat
+enumFrom
+enumFromThen
+enumFromThenTo
+enumFromTo
 error
 even
 exp
@@ -75,6 +79,7 @@ foldl1
 foldMap
 foldr
 foldr1
+fromEnum
 fromInteger
 fromIntegral
 fromRational
@@ -167,6 +172,7 @@ take
 takeWhile
 tan
 tanh
+toEnum
 toInteger
 toRational
 truncate

@@ -27,19 +27,24 @@
 
 ## Learning path
 
-- [ ] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
+- [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [ ] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [ ] Re-implement `Prelude`
-- [ ] Add QuickCheck tests to `Identities.hs`
-- [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
-- [x] Falling water in Haskell
-- [x] Equilibrium index in Haskell
-- [ ] Project Euler 1-20
+- [ ] `Data.Foldable` and `Data.Traversable`
+- [ ] `Data.Function`
 - [ ] Regexes
 - [ ] Calling a REST API
-- [ ] Combinators
 - [ ] Semigroups
 - [ ] Arrows
+- [ ] Lenses
+
+### Projects
+- [ ] Add QuickCheck tests to `Identities.hs`
+- [ ] Project Euler 1-20
+- [ ] Re-implement `Prelude`
+- [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
+- [x] Falling Water in Haskell
+- [x] Equilibrium Index in Haskell
+- [x] Spiral Matrix in Haskell
 
 ## Installation
 
