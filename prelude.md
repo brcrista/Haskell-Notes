@@ -102,6 +102,7 @@ iterate
 last
 lcm
 length
+lex
 lines
 log
 logBase
@@ -140,6 +141,7 @@ quot
 quotRem
 read
 reads
+readsPrec
 realToFrac
 recip
 rem
@@ -156,6 +158,8 @@ seq
 sequence
 sequenceA
 show
+shows
+showsPrec
 significand
 signum
 sin
@@ -202,6 +206,7 @@ Integer
 IOError
 Ordering
 Rational
+ReadS
 ShowS
 String
 ```
