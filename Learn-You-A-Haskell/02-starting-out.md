@@ -61,6 +61,7 @@ infixr 5 ++ -- define the `++` operator to be right-associative with a precedenc
 ```
 
 ### Some built-in functions
+
 - `not`
 - `succ`
 - `mod`
@@ -116,12 +117,14 @@ Of course, the non-strict evaluation works in Haskell because of currying.
     - Other languages need iterators to do this.
 
 ### List operators
+
 - The `++` operator concatenates lists.
 - The `:` ("cons") operator prepends an element to a list.
 - `!!` gets an element out of a list by index.
 - The equality and comparison operators perform element-by-element comparisons on lists.
 
 ### List functions
+
 - `head` / `tail`
 - `init` / `last`
 - `length`

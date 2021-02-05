@@ -75,6 +75,33 @@ factorial n = n * (factorial $ n - 1)
 
 Without the annotation `factorial :: Integral a => a -> a`, the compiler will infer `Num` here and there's nothing to stop you from saying `factorial 0.5`.
 
+### Monomorphism restriction
+
+Another reason to provide an explicit type is the **monomorphism restriction**.
+*Monomorphism* is the antonym of *polymorphism*.
+In some cases, the compiler will actually infer a *less* generic type.
+For example, the function
+
+```hs
+plus = (+)
+```
+
+will get inferred as
+
+```hs
+plus :: Integer -> Integer -> Integer
+```
+
+instead of
+
+```hs
+plus :: Num a => a -> a -> a
+```
+
+Note, though, that the monomorphism restriction is turned off by default in GHCi.
+
+For more information, see <https://wiki.haskell.org/Monomorphism_restriction>.
+
 ## Typeclasses
 
 The `(Integral a, Show a)` to the left of the `=>` in those function types are **typeclasses**.
