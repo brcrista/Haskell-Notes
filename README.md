@@ -28,7 +28,7 @@
 ## Learning path
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
-- [ ] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
+- [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
 - [ ] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [ ] `Debug.Trace`
