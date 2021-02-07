@@ -26,3 +26,12 @@ cartesian3 xs ys zs = (,,) <$> xs <*> ys <*> zs
 
 cartesianPower :: Applicative f => f a -> f (a, a)
 cartesianPower = duplicate cartesian
+
+curry3 :: ((a, b, c) -> d) -> a -> b -> c -> d
+curry3 f x y z = f (x, y, z)
+
+uncurry3 :: (a -> b -> c -> d) -> (a, b, c) -> d
+uncurry3 f (x, y, z) = f x y z
+
+toList :: Foldable t => t a -> [a]
+toList = foldr (:) []

@@ -179,6 +179,7 @@ tanh
 toEnum
 toInteger
 toRational
+traverse
 truncate
 uncurry
 undefined

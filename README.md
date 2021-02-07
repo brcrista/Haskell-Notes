@@ -29,7 +29,7 @@
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [ ] `Data.Foldable` and `Data.Traversable`
+- [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [ ] `Debug.Trace`
 - [ ] Regexes

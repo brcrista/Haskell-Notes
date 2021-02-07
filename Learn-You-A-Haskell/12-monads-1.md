@@ -113,6 +113,7 @@ The meaning of `>>=` is to "flat map" -- map the function over the list to produ
 
 Not all monads are monoids, but some are.
 The `MonadPlus` typeclass represents monads that are also monoids.
+It lives in the `Control.Monad` module.
 
 ```hs
 class Monad m => MonadPlus m where
