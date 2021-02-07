@@ -39,6 +39,7 @@
 - [ ] Lenses
 
 ### Projects
+
 - [ ] Add QuickCheck tests to `Identities.hs`
 - [ ] Project Euler 1-20
 - [ ] Re-implement `Prelude`
@@ -46,6 +47,7 @@
 - [x] Falling Water in Haskell
 - [x] Equilibrium Index in Haskell
 - [x] Spiral Matrix in Haskell
+- [ ] BST
 
 ## Installation
 
