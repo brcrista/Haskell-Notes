@@ -32,11 +32,17 @@
 - [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [x] `Debug.Trace`
-- [ ] Regexes
-- [ ] Calling a REST API
 - [ ] Semigroups
 - [ ] Arrows
 - [ ] Lenses
+- [ ] `System.FilePath`
+- [ ] `Data.Time`
+- [ ] Regexes
+- [ ] `Control.Concurrent`
+- [ ] `async`
+- [ ] JSON (`aeson`)
+- [ ] Sending HTTP requests (`http-client` and `wreq`)
+- [ ] Calling a REST API
 
 ### Projects
 
