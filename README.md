@@ -6,6 +6,7 @@
 
 - [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
+- [*What I Wish I Knew When Learning Haskell*](http://dev.stephendiehl.com/hask/)
 
 ### References
 
@@ -29,9 +30,13 @@
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
+- [x] [Haskell: The Bad Parts (Part 1)](https://www.snoyman.com/blog/2020/10/haskell-bad-parts-1/)
+- [x] [Haskell: The Bad Parts (Part 2)](https://www.snoyman.com/blog/2020/11/haskell-bad-parts-2/)
+- [ ] [All About Strictness](https://www.fpcomplete.com/haskell/tutorial/all-about-strictness/)
 - [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [x] `Debug.Trace`
+- [ ] `Data.Text`
 - [ ] Semigroups
 - [ ] Arrows
 - [ ] Lenses
