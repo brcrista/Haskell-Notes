@@ -31,7 +31,7 @@
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
 - [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
-- [ ] `Debug.Trace`
+- [x] `Debug.Trace`
 - [ ] Regexes
 - [ ] Calling a REST API
 - [ ] Semigroups
