@@ -46,3 +46,11 @@ f*g(x) = g(f(x))
 We should go with the definition that's more useful, and there are pros and cons to each.
 Haskell defines it the first way.
 With the concept of functors, function composition provides an additional benefit: functions are functors with `fmap = (.)`.
+
+## Laziness
+
+While a fully realized lazy-by-default language is an interesting experiment, and feels very nice for doing math, I'm not sure it's a good tool for software engineering.
+Some drawbacks of laziness:
+- Violates the principle of failing fast
+- Makes it easy to consume lots of memory accidentally
+- Makes it difficult to reason about memory usage

@@ -102,6 +102,7 @@ Strictness is the abstract mathematical concept while laziness is an implementat
 When you call a function, the arguments are evaluated first, and then the function is called.
 **Non-strict** evaluation is "outside-in" evaluation.
 C's "short-circuiting" `&&` and `||` operators are familiar examples of non-strict evaluation.
+Also, if you just make all variables into functions / lambdas in a language like JavaScript and call those functions when you need the results, that would be non-strict too.
 
 For example, in the evaluation of `a + b * c`:
 - Strict: `b * c` first, then `a + _`

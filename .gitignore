@@ -3,7 +3,10 @@
 *.hi
 *.o
 
+Laziness
 rpn
+Strictness
+Strictness2
 testIO
 testQuickCheck
 todo
