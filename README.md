@@ -38,7 +38,7 @@
 - [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [x] `Debug.Trace`
-- [ ] `Data.Text`
+- [x] `Data.Text`
 - [ ] Semigroups
 - [ ] Arrows
 - [ ] Lenses
