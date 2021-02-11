@@ -34,7 +34,7 @@
 - [x] [Haskell: The Bad Parts (Part 2)](https://www.snoyman.com/blog/2020/11/haskell-bad-parts-2/)
 - [x] [Tail recursion](https://wiki.haskell.org/Tail_recursion)
 - [x] [All About Strictness](https://www.fpcomplete.com/haskell/tutorial/all-about-strictness/)
-- [ ] [Fixing foldl](https://www.well-typed.com/blog/2014/04/fixing-foldl/)
+- [x] [Fixing foldl](https://www.well-typed.com/blog/2014/04/fixing-foldl/)
 - [x] `Data.Foldable` and `Data.Traversable`
 - [ ] `Data.Function`
 - [x] `Debug.Trace`

@@ -162,6 +162,6 @@ Both types are strict in their keys, but `Data.Map.Strict` will force evaluation
 
 ### `foldl`
 
-`foldl` is notorious for consuming lots of memory by building up a long chain of thunks before evaluating anything.
-If space is a concern, always use `Data.List.foldl'`.
+`foldl` is notorious for consuming lots of memory by building up an *O(n)* chain of thunks before evaluating anything.
+If space is a concern, always use `Data.List.foldl'`, which evaluates the function at each step before getting the next element out of the list.
 Despite being in the `Data.List` module, it will still work on any `Foldable`.
