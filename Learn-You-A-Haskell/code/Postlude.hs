@@ -7,16 +7,17 @@ module Postlude(
 )
 where
 
-import Control.Monad
+import Control.Applicative (liftA2, liftA3)
+import Control.Monad (join)
 
 negative :: Integer -> Integer
 negative = negate . abs
 
 cartesian :: Applicative f => f a -> f b -> f (a, b)
-cartesian xs ys = (,) <$> xs <*> ys
+cartesian = liftA2 (,)
 
 cartesian3 :: Applicative f => f a -> f b -> f c -> f (a, b, c)
-cartesian3 xs ys zs = (,,) <$> xs <*> ys <*> zs
+cartesian3 = liftA3 (,,)
 
 cartesianPower :: Applicative f => f a -> f (a, a)
 cartesianPower = join cartesian
