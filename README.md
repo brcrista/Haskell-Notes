@@ -46,12 +46,14 @@
 - [ ] `System.FilePath`
 - [ ] `Data.Time`
 - [ ] Regexes
-- [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
-- [ ] `Control.Concurrent`
-- [ ] `async`
 - [ ] JSON (`aeson`)
 - [ ] Sending HTTP requests (`http-client` and `wreq`)
 - [ ] Calling a REST API
+- [ ] Concurrency
+    - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
+    - [ ] Bartosz Milewski Haskell lectures 6-1 - 8-2
+    - [ ] `Control.Concurrent`
+    - [ ] `async`
 
 ### Projects
 
