@@ -1,4 +1,5 @@
-import Control.Applicative
+import Control.Applicative (ZipList (..), getZipList)
+import Data.List (transpose)
 
 data Player = PlayerX | PlayerO deriving Show
 data Square = X | O | Empty deriving Show
@@ -25,8 +26,7 @@ rows :: Board -> [[Square]]
 rows = id
 
 columns :: Board -> [[Square]]
-columns board = map column [0 .. 2]
-  where column j = (!! j) <$> board
+columns = transpose
 
 diagonals :: Board -> [[Square]]
 diagonals board =
