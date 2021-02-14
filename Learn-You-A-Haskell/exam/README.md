@@ -1,5 +1,9 @@
 # Exam
 
+**Time:** 50 minutes
+
+You may use GHCi.
+
 To get started, run
 
 ```bash
@@ -20,17 +24,20 @@ Put the answers in those files.
     -- Define `foldl` just for lists.
     -- Note that the actual definition of `foldl` uses `Foldable t => t a` instead of [a].
     ```
-2. Implement the `(.)` the `($)` operators and give their type signatures.
-3. Give the type signatures of the following functions:
+    *Hint:* Use `import Prelude()` to appease the compiler.
+2. Implement the `(.)` the `($)` operators and give their type signatures. Don't worry about fixity declarations.
+   *Hint:* Use `import Prelude()` to appease the compiler.
+3. Give the type signatures (no implementations) of the following functions:
 
     ```hs
     fmap
     (<*>)
     (>>=)
     ```
+    *Hint:* Use `import Prelude(Functor, Applicative, Monad)` to appease the compiler.
 4. What is the difference between a typeclass and a type constructor? Give an example of each.
-5. List the functor laws.
-6. List the monad laws.
+5. List the functor laws with their names and definitions.
+6. List the monad laws with their names and definitions.
 7. What is a **sum type**? What is a **product type**?
 8. Write a function in Haskell that produces an infinite list of the Fibonacci numbers.
 9. Implement quicksort in Haskell.
