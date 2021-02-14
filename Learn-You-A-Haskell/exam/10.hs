@@ -25,12 +25,11 @@ rows :: Board -> [[Square]]
 rows = id
 
 columns :: Board -> [[Square]]
-columns board =
-  [
-    (!!) <$> board <*> [0],
-    (!!) <$> board <*> [1],
-    (!!) <$> board <*> [2]
-  ]
+columns = transpose
+
+transpose :: [[a]] -> [[a]]
+transpose matrix = map column [0 .. length matrix - 1]
+  where column j = (!! j) <$> matrix
 
 diagonals :: Board -> [[Square]]
 diagonals board =
