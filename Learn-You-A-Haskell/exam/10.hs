@@ -17,7 +17,7 @@ allInARow row
   | otherwise      = Nothing
 
 directions :: Board -> [[Square]]
-directions board = concat $ [rows, columns, diagonals] <*> [board]
+directions board = concatMap ($ board) [rows, columns, diagonals]
 
 rows :: Board -> [[Square]]
 rows = id
@@ -26,11 +26,11 @@ columns :: Board -> [[Square]]
 columns = transpose
 
 diagonals :: Board -> [[Square]]
-diagonals board =
+diagonals board = map ($ board)
   [
     zipWith (!!) <*> indices,
     zipWith (!!) <*> reverse . indices
-  ] <*> [board]
+  ]
   where indices = zipWith const [0 ..]
 
 {-
