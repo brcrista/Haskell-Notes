@@ -3,7 +3,9 @@
 To get started, run
 
 ```bash
-touch {01..10}.md
+touch {01..03}.hs
+touch {04..07}.md
+touch {08..10}.hs
 ```
 
 in this directory.
