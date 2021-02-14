@@ -1,9 +1,13 @@
 -- This module contains Prelude-like functions that aren't actually in Prelude.
 module Postlude(
-  negative,
   cartesian,
   cartesian3,
-  cartesianPower
+  cartesianPower,
+  curry3,
+  first,
+  negative,
+  toList,
+  uncurry3
 )
 where
 
@@ -30,3 +34,8 @@ uncurry3 f (x, y, z) = f x y z
 
 toList :: Foldable t => t a -> [a]
 toList = foldr (:) []
+
+first :: [Maybe a] -> Maybe a
+first ((Just x) : xs) = Just x
+first (Nothing  : xs) = first xs
+first []              = Nothing
