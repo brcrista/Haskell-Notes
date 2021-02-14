@@ -39,3 +39,7 @@ first :: [Maybe a] -> Maybe a
 first ((Just x) : xs) = Just x
 first (Nothing  : xs) = first xs
 first []              = Nothing
+
+-- Pointfree helpers
+range :: Enum a => a -> a -> [a]
+range a b = [a .. b]
