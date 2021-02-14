@@ -25,12 +25,8 @@ rows :: Board -> [[Square]]
 rows = id
 
 columns :: Board -> [[Square]]
-columns board =
-  [
-    (!!) <$> board <*> [0],
-    (!!) <$> board <*> [1],
-    (!!) <$> board <*> [2]
-  ]
+columns board = map column [0 .. 2]
+  where column j = (!! j) <$> board
 
 diagonals :: Board -> [[Square]]
 diagonals board =

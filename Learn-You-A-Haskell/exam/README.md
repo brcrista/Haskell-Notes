@@ -41,4 +41,4 @@ Put the answers in those files.
 7. What is a **sum type**? What is a **product type**?
 8. Write a function in Haskell that produces an infinite list of the Fibonacci numbers.
 9. Implement quicksort in Haskell.
-10. Write a function in Haskell that evaluates a tic-tac-toe board to see which player, if either, has one the game.
+10. Write a function in Haskell that evaluates a tic-tac-toe board to see which player, if either, has one the game. Assume that the board is a valid game position.
