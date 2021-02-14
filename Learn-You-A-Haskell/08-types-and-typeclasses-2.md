@@ -1,8 +1,6 @@
 # Making Our Own Types and Typeclasses
 
-## Algebraic data types
-
-### Union types
+## Data constructors
 
 We can define a new type with the `data` keyword:
 
@@ -54,9 +52,9 @@ module Shapes(
 )
 ```
 
-### Sum types
+## Records
 
-Sum types, also called **records**, give you a way to define a data constructor and a bunch of functions for operating on it.
+**Records** give you a way to define a data constructor and a bunch of functions for operating on it.
 
 So, we could define `Shape` as
 
@@ -102,6 +100,27 @@ They'd each be used like:
 
 The `newtype` keyword can be used in this case where a new type is just wrapping an instance of an old type.
 It's a bit faster at runtime than the equivalent `data` declaration.
+
+## Algebraic data types
+
+The ways to combine data constructors form an algebra on the set of types.
+A `data` declration like
+
+```hs
+data StringOrBool = S String | B Bool
+```
+
+is called a **sum type** or an **or type**.
+If we look at the types as sets and use `|S|` to denote the cardinality of the set `S`, then `|StringOrBool| = |String| + |Bool|`.
+
+A `data` declration like
+
+```hs
+data StringAndBool = SB String Bool
+```
+
+is called a **product type** or an **and type**.
+As with sum types, product types are so named because `|StringOrBool| = |String| * |Bool|`.
 
 ## Type constructors
 
