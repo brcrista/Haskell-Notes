@@ -1,4 +1,3 @@
-import Control.Applicative (ZipList (..), getZipList)
 import Data.List (transpose)
 
 data Player = PlayerX | PlayerO deriving Show
@@ -31,8 +30,8 @@ columns = transpose
 diagonals :: Board -> [[Square]]
 diagonals board =
   [
-    getZipList $ (!!) <$> ZipList board <*> ZipList [0, 1, 2],
-    getZipList $ (!!) <$> ZipList board <*> ZipList [2, 1, 0]
+    zipWith (!!) board [0, 1, 2],
+    zipWith (!!) board [2, 1, 0]
   ]
 
 {-
