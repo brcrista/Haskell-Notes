@@ -30,3 +30,7 @@ uncurry3 f (x, y, z) = f x y z
 
 toList :: Foldable t => t a -> [a]
 toList = foldr (:) []
+
+-- Pointfree helpers
+range :: Enum a => a -> a -> [a]
+range a b = [a .. b]
