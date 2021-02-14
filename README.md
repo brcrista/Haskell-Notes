@@ -45,6 +45,7 @@
 - [ ] `System.FilePath`
 - [ ] `Data.Time`
 - [ ] Regexes
+- [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
 - [ ] `Control.Concurrent`
 - [ ] `async`
 - [ ] JSON (`aeson`)
