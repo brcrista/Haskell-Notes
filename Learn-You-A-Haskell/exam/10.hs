@@ -1,3 +1,5 @@
+import Control.Applicative
+
 data Player = PlayerX | PlayerO deriving Show
 data Square = X | O | Empty deriving Show
 
@@ -14,25 +16,33 @@ first []              = Nothing
 threeInARow :: [Square] -> Maybe Player
 threeInARow [X, X, X] = Just PlayerX
 threeInARow [O, O, O] = Just PlayerO
-threeInARow _ = Nothing
+threeInARow _         = Nothing
 
 directions :: Board -> [[Square]]
-directions board = concat [rows board, columns board, diagonals board]
+directions board = concat $ [rows, columns, diagonals] <*> [board]
 
 rows :: Board -> [[Square]]
-rows board = [board !! 0, board !! 1, board !! 2]
+rows = id
 
 columns :: Board -> [[Square]]
 columns board =
   [
-    [(board !! 0) !! 0, (board !! 1) !! 0, (board !! 2) !! 0],
-    [(board !! 0) !! 1, (board !! 1) !! 1, (board !! 2) !! 1],
-    [(board !! 0) !! 2, (board !! 1) !! 2, (board !! 2) !! 2]
+    (!!) <$> board <*> [0],
+    (!!) <$> board <*> [1],
+    (!!) <$> board <*> [2]
   ]
 
 diagonals :: Board -> [[Square]]
 diagonals board =
   [
-    [(board !! 0) !! 0, (board !! 1) !! 1, (board !! 2) !! 2],
-    [(board !! 0) !! 2, (board !! 1) !! 1, (board !! 2) !! 0]
+    getZipList $ (!!) <$> ZipList board <*> ZipList [0, 1, 2],
+    getZipList $ (!!) <$> ZipList board <*> ZipList [2, 1, 0]
   ]
+
+{-
+Tests:
+evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [Empty, Empty, Empty]] @?= Nothing
+evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [X, X, X]]             @?= Just PlayerX
+evaluateBoard [[Empty, Empty, X], [Empty, Empty, X], [X, Empty, X]]                 @?= Just PlayerX
+evaluateBoard [[O, Empty, X], [X, O, X], [X, Empty, O]]                             @?= Just PlayerO
+-}
