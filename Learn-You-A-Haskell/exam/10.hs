@@ -7,12 +7,14 @@ data Square = X | O | Empty deriving (Eq, Show)
 type Board = [[Square]]
 
 evaluateBoard :: Board -> Maybe Player
-evaluateBoard board = listToMaybe $ mapMaybe threeInARow $ directions board
+evaluateBoard board = listToMaybe $ mapMaybe allInARow $ directions board
 
-threeInARow :: [Square] -> Maybe Player
-threeInARow [X, X, X] = Just PlayerX
-threeInARow [O, O, O] = Just PlayerO
-threeInARow _         = Nothing
+-- "Row" here means any direction (row, column, diagonal).
+allInARow :: [Square] -> Maybe Player
+allInARow row
+  | all (== X) row = Just PlayerX
+  | all (== O) row = Just PlayerO
+  | otherwise      = Nothing
 
 directions :: Board -> [[Square]]
 directions board = concat $ [rows, columns, diagonals] <*> [board]
@@ -26,9 +28,10 @@ columns = transpose
 diagonals :: Board -> [[Square]]
 diagonals board =
   [
-    zipWith (!!) board [0, 1, 2],
-    zipWith (!!) board [2, 1, 0]
-  ]
+    zipWith (!!) <*> indices,
+    zipWith (!!) <*> reverse . indices
+  ] <*> [board]
+  where indices = zipWith const [0 ..]
 
 {-
 Tests:
@@ -36,4 +39,5 @@ evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [Empty, Empty, Empt
 evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [X, X, X]]             == Just PlayerX
 evaluateBoard [[Empty, Empty, X], [Empty, Empty, X], [X, Empty, X]]                 == Just PlayerX
 evaluateBoard [[O, Empty, X], [X, O, X], [X, Empty, O]]                             == Just PlayerO
+evaluateBoard [[O, Empty, X], [Empty, X, X], [X, Empty, O]]                         == Just PlayerX
 -}
