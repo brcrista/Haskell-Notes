@@ -1,17 +1,13 @@
 import Data.List (transpose)
+import Data.Maybe (listToMaybe, mapMaybe)
 
-data Player = PlayerX | PlayerO deriving Show
-data Square = X | O | Empty deriving Show
+data Player = PlayerX | PlayerO deriving (Eq, Show)
+data Square = X | O | Empty deriving (Eq, Show)
 
 type Board = [[Square]]
 
 evaluateBoard :: Board -> Maybe Player
-evaluateBoard board = first $ map threeInARow (directions board)
-
-first :: [Maybe a] -> Maybe a
-first ((Just x) : xs) = Just x
-first (Nothing  : xs) = first xs
-first []              = Nothing
+evaluateBoard board = listToMaybe $ mapMaybe threeInARow $ directions board
 
 threeInARow :: [Square] -> Maybe Player
 threeInARow [X, X, X] = Just PlayerX
@@ -36,8 +32,8 @@ diagonals board =
 
 {-
 Tests:
-evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [Empty, Empty, Empty]] @?= Nothing
-evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [X, X, X]]             @?= Just PlayerX
-evaluateBoard [[Empty, Empty, X], [Empty, Empty, X], [X, Empty, X]]                 @?= Just PlayerX
-evaluateBoard [[O, Empty, X], [X, O, X], [X, Empty, O]]                             @?= Just PlayerO
+evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [Empty, Empty, Empty]] == Nothing
+evaluateBoard [[Empty, Empty, Empty], [Empty, Empty, Empty], [X, X, X]]             == Just PlayerX
+evaluateBoard [[Empty, Empty, X], [Empty, Empty, X], [X, Empty, X]]                 == Just PlayerX
+evaluateBoard [[O, Empty, X], [X, O, X], [X, Empty, O]]                             == Just PlayerO
 -}
