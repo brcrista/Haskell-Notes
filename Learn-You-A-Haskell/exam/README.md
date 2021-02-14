@@ -1,5 +1,14 @@
 # Exam
 
+To get started, run
+
+```bash
+touch {01..10}.md
+```
+
+in this directory.
+Put the answers in those files.
+
 1. Implement the following functions from `Prelude`:
 
     ```hs
