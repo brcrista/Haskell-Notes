@@ -2,9 +2,11 @@
 
 module Prelude.Foldable where
 
-import GHC.Base (Bool (..), flip, (&&), (||))
-import GHC.Num
+import GHC.Base (Bool (..), not, (&&), (||))
+import GHC.Classes (Ord(max, min), Eq((==)))
+import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
+import Prelude.Base ((.), flip)
 import Prelude.List
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.
@@ -53,36 +55,36 @@ or :: [Bool] -> Bool
 or = foldl (||) False
 
 -- sum :: (Num a, Foldable t) => t a -> a
--- sum :: Num a => [a] -> a
--- sum = foldl (+) 0
+sum :: Num a => [a] -> a
+sum = foldl (+) 0
 
--- -- product :: (Num a, Foldable t) => t a -> a
--- product :: Num a => [a] -> a
--- product = foldl (*) 1
+-- product :: (Num a, Foldable t) => t a -> a
+product :: Num a => [a] -> a
+product = foldl (*) 1
 
 -- maximum :: (Ord a, Foldable t) => t a -> a
--- maximum :: Ord a => [a] -> a
--- maximum = foldl1 max
+maximum :: Ord a => [a] -> a
+maximum = foldl1 max
 
--- -- minimum :: (Ord a, Foldable t) => t a -> a
--- minimum :: Ord a => [a] -> a
--- minimum = foldl1 min
+-- minimum :: (Ord a, Foldable t) => t a -> a
+minimum :: Ord a => [a] -> a
+minimum = foldl1 min
 
--- -- any :: Foldable t => (a -> Bool) -> t a -> Bool
--- any :: (a -> Bool) -> [a] -> Bool
--- any f = or . map f
+-- any :: Foldable t => (a -> Bool) -> t a -> Bool
+any :: (a -> Bool) -> [a] -> Bool
+any f = or . map f
 
--- -- all :: Foldable t => (a -> Bool) -> t a -> Bool
--- all :: (a -> Bool) -> [a] -> Bool
--- all f = and . map f
+-- all :: Foldable t => (a -> Bool) -> t a -> Bool
+all :: (a -> Bool) -> [a] -> Bool
+all f = and . map f
 
--- -- elem :: (Eq a, Foldable t) => a -> t a -> Bool
--- elem :: Eq a => a -> [a] -> Bool
--- elem x = any (== x)
+-- elem :: (Eq a, Foldable t) => a -> t a -> Bool
+elem :: Eq a => a -> [a] -> Bool
+elem x = any (== x)
 
--- -- notElem :: (Eq a, Foldable t) => a -> t a -> Bool
--- notElem :: Eq a => a -> [a] -> Bool
--- notElem x = not . elem x
+-- notElem :: (Eq a, Foldable t) => a -> t a -> Bool
+notElem :: Eq a => a -> [a] -> Bool
+notElem x = not . elem x
 
 -- length :: Foldable t => t a -> Int
 length :: [a] -> Int
