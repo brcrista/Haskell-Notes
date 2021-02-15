@@ -8,7 +8,7 @@ import Base.Data.Function ((.))
 import Base.Data.List ((++))
 
 -- We need GHC's Monad to work with `do`
-import Prelude (return)
+import GHC.Base (return)
 import GHC.IO (IO)
 import GHC.Show (Show(..))
 import System.IO(getChar, putChar)
