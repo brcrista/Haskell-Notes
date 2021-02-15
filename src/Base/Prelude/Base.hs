@@ -4,16 +4,11 @@ module Base.Prelude.Base(
   Applicative(..),
   Functor(..),
   Monad(..),
-  String,
-  error,
-  undefined
+  String
 ) where
 
 import Base.Data.Function (const, (.))
 -- TODO minimize GHC imports
-import GHC.Base (error, undefined)
-import GHC.Classes (Eq, Ord((<), (>)))
-import GHC.Show (Show)
 import GHC.Types (Char)
 
 type String = [Char]

@@ -3,10 +3,10 @@
 module Base.Data.Foldable where
 
 import Base.Core.Classes (Ord, Eq((==)), max, min)
+import Base.Core.Err (error)
 import Base.Data.Bool (Bool(..), not, (&&), (||))
 import Base.Data.Function ((.), flip,)
 import Base.Data.List (reverse, map)
-import Base.Prelude.Base (error)
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
 
