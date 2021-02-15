@@ -2,6 +2,9 @@
 
 module Base.Data.Tuple where
 
+-- This would be the definition of () if it were valid Haskell:
+-- data () = ()
+
 fst :: (a, b) -> a
 fst (x, _) = x
 

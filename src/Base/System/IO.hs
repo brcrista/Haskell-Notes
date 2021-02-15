@@ -1,9 +1,11 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Prelude.IO where
+module Base.System.IO where
 
 import Base.Core.Classes ((==))
-import Base.Prelude.Base (String, (++), (.), return)
+import Base.Data.Function ((.))
+import Base.Data.List ((++))
+import Base.Prelude.Base (String, return)
 import GHC.IO
 import GHC.Show (Show(..))
 import System.IO(getChar, putChar)

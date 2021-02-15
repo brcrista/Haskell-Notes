@@ -89,4 +89,4 @@ import Base.Data.Maybe
 import Base.Data.Function
 import Base.Data.Tuple
 import Base.Prelude.Base
-import Base.Prelude.IO
+import Base.System.IO

@@ -1,6 +1,28 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Data.List where
+module Base.Data.List(
+  (++),
+  cycle,
+  drop,
+  dropWhile,
+  filter,
+  head,
+  init,
+  last,
+  map,
+  repeat,
+  replicate,
+  reverse,
+  tail,
+  take,
+  takeWhile,
+  unzip,
+  unzip3,
+  zip,
+  zip3,
+  zipWith,
+  zipWith3
+) where
 
 import GHC.Base ((++))
 import GHC.Num ((-))
@@ -15,6 +37,7 @@ import Base.Prelude.Base (Functor(..), error)
 instance Functor [] where
   fmap = map
 
+-- Duplicated from Base.Data.Foldable
 emptyListError = error "empty list"
 
 map :: (a -> b) -> [a] -> [b]

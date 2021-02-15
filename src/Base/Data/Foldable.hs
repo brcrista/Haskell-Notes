@@ -5,9 +5,13 @@ module Base.Data.Foldable where
 import Base.Core.Classes (Ord, Eq((==)), max, min)
 import Base.Data.Bool (Bool(..), not, (&&), (||))
 import Base.Data.Function ((.), flip,)
-import Base.Data.List (emptyListError, reverse, map)
+import Base.Data.List (reverse, map)
+import Base.Prelude.Base (error)
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
+
+-- Duplicated from Base.Data.List
+emptyListError = error "empty list"
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
