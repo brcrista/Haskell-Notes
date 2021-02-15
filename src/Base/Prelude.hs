@@ -84,6 +84,7 @@ import Base.Data.Either
 import Base.Data.Foldable
 import Base.Data.List
 import Base.Data.Maybe
+import Base.Data.Function
 import Base.Data.Tuple
 import Base.Prelude.Base
 import Base.Prelude.IO
