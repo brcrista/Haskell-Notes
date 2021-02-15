@@ -1,14 +1,51 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.List where
+module Base.Data.List(
+  (++),
+  cycle,
+  drop,
+  dropWhile,
+  filter,
+  head,
+  init,
+  last,
+  map,
+  repeat,
+  replicate,
+  reverse,
+  tail,
+  take,
+  takeWhile,
+  unzip,
+  unzip3,
+  zip,
+  zip3,
+  zipWith,
+  zipWith3
+) where
 
-import GHC.Base (Bool, (++), error, otherwise)
-import GHC.Classes
+import GHC.Base ((++))
 import GHC.Num ((-))
 import GHC.Types (Int)
-import Prelude.Tuple (fst, snd)
+import Base.Core.Classes (Ord((<), (<=)))
+import Base.Core.Err (error)
+import Base.Data.Bool (Bool, otherwise)
+import Base.Data.Functor (Functor(..))
+import Base.Data.Tuple (fst, snd)
 
+-- This would be the definition of [a] if it were valid Haskell:
+-- data [a] = [] | a : [a]
+instance Functor [] where
+  fmap = map
+
+-- Duplicated from Base.Data.Foldable
 emptyListError = error "empty list"
+
+map :: (a -> b) -> [a] -> [b]
+map f xs = [f x | x <- xs]
+
+filter :: (a -> Bool) -> [a] -> [a]
+filter f xs = [x | x <- xs, f x]
 
 head :: [a] -> a
 head [] = emptyListError
@@ -77,12 +114,6 @@ dropWhile f all@(x : xs)
 -- span :: (a -> Bool) -> [a] -> ([a], [a])
 
 -- splitAt :: Int -> [a] -> ([a], [a])
-
-map :: (a -> b) -> [a] -> [b]
-map f xs = [f x | x <- xs]
-
-filter :: (a -> Bool) -> [a] -> [a]
-filter f xs = [x | x <- xs, f x]
 
 zip :: [a] -> [b] -> [(a, b)]
 zip = zipWith (,)

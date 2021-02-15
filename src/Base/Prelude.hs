@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude
+module Base.Prelude
   -- (
   --   all,
   --   and,
@@ -79,11 +79,20 @@ module Prelude
   -- )
 where
 
-import Prelude.Base
-import Prelude.Either
-import Prelude.Foldable
-import Prelude.IO
-import Prelude.List
-import Prelude.Maybe
-import Prelude.Num
-import Prelude.Tuple
+import Base.Control.Applicative
+import Base.Control.Monad
+import Base.Core.Classes
+import Base.Core.Num
+import Base.Core.Types
+import Base.Data.Bool
+import Base.Data.Either
+import Base.Data.Foldable
+import Base.Data.Function
+import Base.Data.Functor
+import Base.Data.List
+import Base.Data.Maybe
+import Base.Data.Monoid
+import Base.Data.Semigroup
+import Base.Data.Tuple
+import Base.Prelude.Base
+import Base.System.IO

@@ -1,13 +1,17 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.Foldable where
+module Base.Data.Foldable where
 
-import GHC.Base (Bool (..), not, (&&), (||))
-import GHC.Classes (Ord(max, min), Eq((==)))
+import Base.Core.Classes (Ord, Eq((==)), max, min)
+import Base.Core.Err (error)
+import Base.Data.Bool (Bool(..), not, (&&), (||))
+import Base.Data.Function ((.), flip,)
+import Base.Data.List (reverse, map)
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
-import Prelude.Base ((.), flip)
-import Prelude.List
+
+-- Duplicated from Base.Data.List
+emptyListError = error "empty list"
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
