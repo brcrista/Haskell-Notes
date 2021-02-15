@@ -2,6 +2,8 @@
 
 module Base.Data.Function where
 
+-- TODO fixity declarations for operators
+
 id :: a -> a
 id x = x
 

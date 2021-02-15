@@ -5,10 +5,10 @@ module Base.Data.List where
 import GHC.Base ((++))
 import GHC.Num ((-))
 import GHC.Types (Int)
+import Base.Core.Classes (Ord((<), (<=)))
 import Base.Data.Bool (Bool, otherwise)
 import Base.Data.Tuple (fst, snd)
 import Base.Prelude.Base (Functor(..), error)
-import Base.Prelude.Classes (Ord((<), (<=)))
 
 -- This would be the definition of [a] if it were valid Haskell:
 -- data [a] = [] | a : [a]

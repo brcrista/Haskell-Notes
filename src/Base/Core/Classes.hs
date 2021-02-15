@@ -1,12 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Prelude.Classes(
+module Base.Core.Classes(
   Eq(..),
   Ord(..),
   compare,
   max,
   min
 ) where
+
 import Base.Data.Bool (otherwise)
 import GHC.Classes (Ord((<), (<=), (>), (>=)), Eq((==), (/=)))
 import GHC.Types (Ordering(..))

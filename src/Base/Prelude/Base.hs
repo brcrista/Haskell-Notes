@@ -9,6 +9,7 @@ module Base.Prelude.Base(
   undefined
 ) where
 
+import Base.Data.Function (const, (.))
 -- TODO minimize GHC imports
 import GHC.Base (error, undefined)
 import GHC.Classes (Eq, Ord((<), (>)))
@@ -17,7 +18,6 @@ import GHC.Types (Char)
 
 type String = [Char]
 
--- TODO fixity declarations for operators
 -- TODO <$>
 -- TODO Monoid
 -- TODO Semigroup

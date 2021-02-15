@@ -1,11 +1,11 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Prelude.Num where
+module Base.Core.Num where
 
 import GHC.Num
 import GHC.Real
+import Base.Core.Classes (Eq(..))
 import Base.Data.Bool (Bool)
-import Base.Prelude.Classes (Eq(..))
 
 subtract :: Num a => a -> a -> a
 subtract x y = y - x

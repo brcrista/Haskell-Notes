@@ -2,10 +2,10 @@
 
 module Base.Prelude.IO where
 
+import Base.Core.Classes ((==))
+import Base.Prelude.Base (String, (++), (.), return)
 import GHC.IO
 import GHC.Show (Show(..))
-import Base.Prelude.Base (String, (++), (.), return)
-import Base.Prelude.Classes ((==))
 import System.IO(getChar, putChar)
 
 getLineRecursive :: String -> IO String

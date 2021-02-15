@@ -2,12 +2,12 @@
 
 module Base.Data.Foldable where
 
+import Base.Core.Classes (Ord, Eq((==)), max, min)
 import Base.Data.Bool (Bool(..), not, (&&), (||))
 import Base.Data.Function ((.), flip,)
 import Base.Data.List (emptyListError, reverse, map)
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
-import Base.Prelude.Classes (Ord, Eq((==)), max, min)
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b

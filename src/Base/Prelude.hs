@@ -79,6 +79,8 @@ module Base.Prelude
   -- )
 where
 
+import Base.Core.Classes
+import Base.Core.Num
 import Base.Data.Bool
 import Base.Data.Either
 import Base.Data.Foldable
@@ -88,4 +90,3 @@ import Base.Data.Function
 import Base.Data.Tuple
 import Base.Prelude.Base
 import Base.Prelude.IO
-import Base.Prelude.Num
