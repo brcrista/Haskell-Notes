@@ -4,6 +4,7 @@ module Base.Data.Bool(
   Bool(..),
   (&&),
   (||),
+  bool,
   not,
   otherwise
 ) where
@@ -28,3 +29,7 @@ _     || _     = True
 
 otherwise :: Bool
 otherwise = True
+
+bool :: a -> a -> Bool -> a
+bool x _ False = x
+bool _ y True  = y
