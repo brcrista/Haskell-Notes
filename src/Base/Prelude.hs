@@ -1,5 +1,7 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
+-- TODO: can't load the module yet; need to fix up imports / exports
+
 module Base.Prelude
   -- (
   --   all,
