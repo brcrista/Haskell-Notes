@@ -95,20 +95,20 @@ This has three important consequences:
 Haskell is often described as **lazy**, which means that expressions are not evaluated until they are needed.
 Of course, this is a natural property of functions in most programming languages.
 So if everything is a function, then everything is lazy!
-
 However, the language spec only says that Haskell "non-strict."
-Strictness is the abstract mathematical concept while laziness is an implementation technique.
+That is, it doesn't *guarantee* laziness, it just doesn't guarantee strictness.
+
 **Strict** evaluation is the "inside-out" evaluation familiar from languages such as C and Python.
 When you call a function, the arguments are evaluated first, and then the function is called.
-**Non-strict** evaluation is "outside-in" evaluation.
-C's "short-circuiting" `&&` and `||` operators are familiar examples of non-strict evaluation.
-Also, if you just make all variables into functions / lambdas in a language like JavaScript and call those functions when you need the results, that would be non-strict too.
+**Lazy** evaluation is "outside-in" evaluation.
+C's "short-circuiting" `&&` and `||` operators are familiar examples of lazy evaluation.
+Also, if you just make all variables into functions / lambdas in a language like JavaScript and call those functions when you need the results, that would be lazy too.
 
 For example, in the evaluation of `a + b * c`:
 - Strict: `b * c` first, then `a + _`
-- Non-strict: `a + _` first, then `b * c`
+- lazy: `a + _` first, then `b * c`
 
-Of course, the non-strict evaluation works in Haskell because of currying.
+Of course, the lazy evaluation works in Haskell because of currying.
 
 ## Lists
 

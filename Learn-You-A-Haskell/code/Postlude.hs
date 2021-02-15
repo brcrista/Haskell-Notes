@@ -35,6 +35,10 @@ uncurry3 f (x, y, z) = f x y z
 toList :: Foldable t => t a -> [a]
 toList = foldr (:) []
 
+-- Using `zipWith` instead of length` lets this work with infinite lists.
+indices :: [a] -> [Int]
+indices = zipWith const [0 ..]
+
 first :: [Maybe a] -> Maybe a
 first ((Just x) : xs) = Just x
 first (Nothing  : xs) = first xs

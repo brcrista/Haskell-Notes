@@ -30,7 +30,7 @@
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [ ] [Exam](./Learn-You-A-Haskell/exam/README.md)
+- [x] [Exam](./Learn-You-A-Haskell/exam/README.md)
 - [x] [Haskell: The Bad Parts (Part 1)](https://www.snoyman.com/blog/2020/10/haskell-bad-parts-1/)
 - [x] [Haskell: The Bad Parts (Part 2)](https://www.snoyman.com/blog/2020/11/haskell-bad-parts-2/)
 - [x] [Tail recursion](https://wiki.haskell.org/Tail_recursion)
@@ -51,7 +51,7 @@
 - [ ] Calling a REST API
 - [ ] Concurrency
     - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
-    - [ ] Bartosz Milewski Haskell lectures 6-1 - 8-2
+    - [ ] [Bartosz Milewski's *Parallel and Concurrent Haskell* lectures](https://www.youtube.com/watch?v=N6sOMGYsvFA&list=PLbgaMIhjbmEm_51-HWv9BQUXcmHYtl4sw)
     - [ ] `Control.Concurrent`
     - [ ] `async`
 
