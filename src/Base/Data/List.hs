@@ -2,14 +2,26 @@
 
 module Base.Data.List where
 
+import GHC.Base ((++))
 import GHC.Num ((-))
 import GHC.Types (Int)
 import Base.Data.Bool (Bool, otherwise)
 import Base.Data.Tuple (fst, snd)
-import Base.Prelude.Base ((++), map, error)
+import Base.Prelude.Base (Functor(..), error)
 import Base.Prelude.Classes (Ord((<), (<=)))
 
+-- This would be the definition of [a] if it were valid Haskell:
+-- data [a] = [] | a : [a]
+instance Functor [] where
+  fmap = map
+
 emptyListError = error "empty list"
+
+map :: (a -> b) -> [a] -> [b]
+map f xs = [f x | x <- xs]
+
+filter :: (a -> Bool) -> [a] -> [a]
+filter f xs = [x | x <- xs, f x]
 
 head :: [a] -> a
 head [] = emptyListError
@@ -78,9 +90,6 @@ dropWhile f all@(x : xs)
 -- span :: (a -> Bool) -> [a] -> ([a], [a])
 
 -- splitAt :: Int -> [a] -> ([a], [a])
-
-filter :: (a -> Bool) -> [a] -> [a]
-filter f xs = [x | x <- xs, f x]
 
 zip :: [a] -> [b] -> [(a, b)]
 zip = zipWith (,)

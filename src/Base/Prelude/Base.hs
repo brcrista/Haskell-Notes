@@ -6,24 +6,19 @@ module Base.Prelude.Base(
   Monad(..),
   String,
   (.),
-  (++),
   ($),
   const,
   error,
   flip,
   id,
-  map,
   undefined
 ) where
 
 -- TODO minimize GHC imports
-import GHC.Base (error, undefined, (++))
+import GHC.Base (error, undefined)
 import GHC.Classes (Eq, Ord((<), (>)))
 import GHC.Show (Show)
 import GHC.Types (Char)
-
--- This would be the definition of [a] if it were valid Haskell:
--- data [a] = [] | a : [a]
 
 type String = [Char]
 
@@ -42,9 +37,6 @@ f $ x = f x
 (.) :: (b -> c) -> (a -> b) -> (a -> c)
 (f . g) x = f (g x)
 
-map :: (a -> b) -> [a] -> [b]
-map f xs = [f x | x <- xs]
-
 -- TODO fixity declarations for operators
 -- TODO <$>
 -- TODO Monoid
@@ -58,9 +50,6 @@ class Functor f where
   (<$)  :: a -> f b -> f a
 
   (<$)  = fmap . const
-
-instance Functor [] where
-  fmap = map
 
 -- TODO Functor instances for tuples and functions
 
