@@ -38,6 +38,7 @@ and
 any
 asin
 asinh
+asTypeOf
 atan
 atan2
 atanh
@@ -185,6 +186,7 @@ truncate
 uncurry
 undefined
 unlines
+until
 unwords
 unzip
 unzip3
