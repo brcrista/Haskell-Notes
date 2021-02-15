@@ -2,11 +2,10 @@
 
 module Prelude.Foldable where
 
-import GHC.Base (Bool (..), not, (&&), (||))
-import GHC.Classes (Ord(max, min), Eq((==)))
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
-import Prelude.Base ((.), flip)
+import Prelude.Base (Bool(..), not, (&&), (||), (.), flip)
+import Prelude.Classes (Ord(max, min), Eq((==)))
 import Prelude.List
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.

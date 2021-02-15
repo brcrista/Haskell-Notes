@@ -2,10 +2,10 @@
 
 module Prelude.List where
 
-import GHC.Base (Bool, (++), error, otherwise)
-import GHC.Classes
 import GHC.Num ((-))
 import GHC.Types (Int)
+import Prelude.Base (Bool, (++), map, error, otherwise)
+import Prelude.Classes (Ord((<), (<=)))
 import Prelude.Tuple (fst, snd)
 
 emptyListError = error "empty list"
@@ -77,9 +77,6 @@ dropWhile f all@(x : xs)
 -- span :: (a -> Bool) -> [a] -> ([a], [a])
 
 -- splitAt :: Int -> [a] -> ([a], [a])
-
-map :: (a -> b) -> [a] -> [b]
-map f xs = [f x | x <- xs]
 
 filter :: (a -> Bool) -> [a] -> [a]
 filter f xs = [x | x <- xs, f x]
