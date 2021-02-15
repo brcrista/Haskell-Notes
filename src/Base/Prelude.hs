@@ -79,6 +79,7 @@ module Prelude
   -- )
 where
 
+import Data.Bool
 import Prelude.Base
 import Prelude.Either
 import Prelude.Foldable

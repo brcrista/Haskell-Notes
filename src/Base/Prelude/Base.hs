@@ -2,50 +2,25 @@
 
 module Prelude.Base(
   Applicative(..),
-  Bool(..),
   Functor(..),
   Monad(..),
   String,
   (.),
-  (&&),
   (++),
-  (||),
   ($),
   const,
   error,
   flip,
   id,
   map,
-  not,
-  otherwise,
   undefined
 ) where
 
 -- TODO minimize GHC imports
-import GHC.Base (Bool(..), error, undefined, (++))
+import GHC.Base (error, undefined, (++))
 import GHC.Classes (Eq, Ord((<), (>)))
 import GHC.Show (Show)
 import GHC.Types (Char)
-
--- Trying to use a custom Bool causes some problems.
--- GHC.Num functions return GHC.Base.Bool,
--- and guards depend on a LHS evaluating to GHC.Base.Bool.
--- data Bool = False | True deriving (Eq, Ord, Show)
-
-not :: Bool -> Bool
-not False = True
-not True  = False
-
-(&&) :: Bool -> Bool -> Bool
-True && True = True
-_    && _    = False
-
-(||) :: Bool -> Bool -> Bool
-False || False = False
-_     || _     = True
-
-otherwise :: Bool
-otherwise = True
 
 -- This would be the definition of [a] if it were valid Haskell:
 -- data [a] = [] | a : [a]
