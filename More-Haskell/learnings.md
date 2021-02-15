@@ -54,3 +54,16 @@ Some drawbacks of laziness:
 - Violates the principle of failing fast
 - Makes it easy to consume lots of memory accidentally
 - Makes it difficult to reason about memory usage
+
+## Why I wouldn't use Haskell in production
+
+I think Haskell is one of the best languages out there for solving math problems (along with Python and C++, depending on the application) and the best there is for formal work and testing out theorems.
+However, there are a few reasons I wouldn't use it to build production software:
+
+- Laziness-by-default can cause your code to consume lots of memory without you realizing it
+- Relatively small standard library that is missing core functionality such as an HTTP client
+- Inflexibililty around I/O makes it hard to "just stick a trace in there"
+- Lack of a good IDE and other tooling
+- Steep learning curve
+
+Haskell is deeply influential to the functional programming discipline, but I would rather choose a more pragmatic language such as F# for building software.
