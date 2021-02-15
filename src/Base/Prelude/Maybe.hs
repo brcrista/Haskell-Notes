@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.Maybe where
+module Base.Prelude.Maybe where
 
 data Maybe a = Nothing | Just a
 

@@ -1,12 +1,12 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.Foldable where
+module Base.Prelude.Foldable where
 
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
-import Prelude.Base (Bool(..), not, (&&), (||), (.), flip)
-import Prelude.Classes (Ord(max, min), Eq((==)))
-import Prelude.List
+import Base.Prelude.Base (Bool(..), not, (&&), (||), (.), flip)
+import Base.Prelude.Classes (Ord(max, min), Eq((==)))
+import Base.Prelude.List
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b

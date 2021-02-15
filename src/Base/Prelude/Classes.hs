@@ -1,16 +1,15 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.Classes(
+module Base.Prelude.Classes(
   Eq(..),
   Ord(..),
   compare,
   max,
   min
 ) where
-
+import Base.Data.Bool (otherwise)
 import GHC.Classes (Ord((<), (<=), (>), (>=)), Eq((==), (/=)))
 import GHC.Types (Ordering(..))
-import Prelude.Base (otherwise)
 
 compare :: Ord a => a -> a -> Ordering
 compare x y

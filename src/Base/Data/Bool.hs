@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Data.Bool(
+module Base.Data.Bool(
   Bool(..),
   (&&),
   (||),

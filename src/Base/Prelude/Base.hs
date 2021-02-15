@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.Base(
+module Base.Prelude.Base(
   Applicative(..),
   Functor(..),
   Monad(..),

@@ -1,12 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.List where
+module Base.Prelude.List where
 
 import GHC.Num ((-))
 import GHC.Types (Int)
-import Prelude.Base (Bool, (++), map, error, otherwise)
-import Prelude.Classes (Ord((<), (<=)))
-import Prelude.Tuple (fst, snd)
+import Base.Data.Bool (Bool, otherwise)
+import Base.Prelude.Base ((++), map, error)
+import Base.Prelude.Classes (Ord((<), (<=)))
+import Base.Prelude.Tuple (fst, snd)
 
 emptyListError = error "empty list"
 

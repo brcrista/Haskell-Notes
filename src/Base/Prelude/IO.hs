@@ -1,11 +1,11 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Prelude.IO where
+module Base.Prelude.IO where
 
 import GHC.IO
 import GHC.Show (Show(..))
-import Prelude.Base (String, (++), (.), return)
-import Prelude.Classes ((==))
+import Base.Prelude.Base (String, (++), (.), return)
+import Base.Prelude.Classes ((==))
 import System.IO(getChar, putChar)
 
 getLineRecursive :: String -> IO String
