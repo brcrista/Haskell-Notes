@@ -3,10 +3,13 @@
 module Base.System.IO where
 
 import Base.Core.Classes ((==))
+import Base.Core.Types (String)
 import Base.Data.Function ((.))
 import Base.Data.List ((++))
-import Base.Prelude.Base (String, return)
-import GHC.IO
+
+-- We need GHC's Monad to work with `do`
+import Prelude (return)
+import GHC.IO (IO)
 import GHC.Show (Show(..))
 import System.IO(getChar, putChar)
 
