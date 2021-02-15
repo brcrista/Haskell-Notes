@@ -104,6 +104,9 @@ It's a bit faster at runtime than the equivalent `data` declaration.
 ## Algebraic data types
 
 The ways to combine data constructors form an algebra on the set of types.
+
+### Sum types
+
 A `data` declration like
 
 ```hs
@@ -111,16 +114,85 @@ data StringOrBool = S String | B Bool
 ```
 
 is called a **sum type** or an **or type**.
-If we look at the types as sets and use `|S|` to denote the cardinality of the set `S`, then `|StringOrBool| = |String| + |Bool|`.
 
-A `data` declration like
+We can define a generic sum type:
+
+```hs
+data Sum a b = Type1 a | Type2 b
+```
+
+But this is isomorphic to the `Either` type constructor defined in `Prelude`:
+
+```hs
+data Either a b = Left a | Right b
+```
+
+If we look at the types as sets and use `|S|` to denote the cardinality of the set `S`, then `|Sum a b| = |a| + |b|`.
+
+### Product types
+
+A `data` declaration like
 
 ```hs
 data StringAndBool = SB String Bool
 ```
 
 is called a **product type** or an **and type**.
-As with sum types, product types are so named because `|StringOrBool| = |String| * |Bool|`.
+
+We can define a generic product type:
+
+```hs
+data Product a b = Product a b
+```
+
+But this is isomorphic to the built-in type constructor `(,)`.
+
+Records are another way to make product types with built-in functions for accessing (called **projecting**) the data.
+
+As with sum types, product types are so named because `|Product a b| = |a| * |b|`.
+
+### The `Void` and unit types
+
+Algebras need **identity elements**.
+For numbers, the identity element for addition is 0 and for multiplication it is 1.
+The identity type for sum types is `Data.Void`, which is a type with no values.
+The identity type for product types is `()`, the unit type, which is a type with one value.
+
+Now, the values of the type `(Int, ())` are not equal to values of the type `Int`, but the two types are isomorphic.
+
+`Void` is also the zero value for product types, following the equation `|Product a b| = |a| * |b|`.
+Because `Void` has no values, `|Product a Void| = |a| * |Void| = |a| * 0 = 0`.
+Therefore, it's not possible to construct an actual value of type like `Product Bool Void`.
+
+However, it is possible to declare expressions with this type, but the expression cannot be fully evaluated.
+For example, we can do this just fine:
+
+```hs
+> x = (True, undefined) :: (Bool, Void)
+> fst x
+True
+```
+
+but calling `print x` would throw an exception.
+
+Also note that any number of units in a product type is still just isomorphic to unit:
+
+```hs
+Data Twonit = ((), ())
+```
+
+So if `Void` corresponds to 0 and `()` corresponds to 1, what corresponds to 2?
+Well, that's the sum type of unit plus unit:
+
+```hs
+data Bool = True () | False ()
+```
+
+But since there's only one possible value for `()`, that's isomorphic to
+
+```hs
+data Bool = True | False
+```
 
 ## Type constructors
 
@@ -309,10 +381,18 @@ The `Ord` requirement keeps it from being an instance of `Functor` since `fmap` 
 ## Kinds
 
 We've seen that Haskell has both a compile-time type language (types and type constructors) and a run-time computation language (values and functions).
-We want to be able to reason about type constructors in the same way as we can reason about functions, though to talk about type constructors as having types is a bit confusing.
+In the run-time computation language, we have types like this:
 
-The **kind** of a type is the number and order of other concrete types or type constructors needed to construct a concrete type from a given type.
-So actually, all types have a kind, not just type constructors.
+```hs
+> :t True
+True :: Bool
+
+> :t (||)
+(||) :: Bool -> Bool -> Bool
+```
+
+Types and type constructors also have types themselves -- or rather, **kinds**.
+Haskell describes the kinds of types with the same syntax as the types of functions.
 You can inspect the kind of a type in GHCi with `:k`:
 
 ```hs
@@ -328,6 +408,8 @@ Maybe :: * -> *
 > :k Data.Map.Map
 Data.Map.Map :: * -> * -> *
 ```
+
+The `*` in the kind annotations means "any Haskell type."
 
 Say we make a type constructor like
 

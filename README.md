@@ -51,7 +51,7 @@
 - [ ] Calling a REST API
 - [ ] Concurrency
     - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
-    - [ ] Bartosz Milewski Haskell lectures 6-1 - 8-2
+    - [ ] [Bartosz Milewski's *Parallel and Concurrent Haskell* lectures](https://www.youtube.com/watch?v=N6sOMGYsvFA&list=PLbgaMIhjbmEm_51-HWv9BQUXcmHYtl4sw)
     - [ ] `Control.Concurrent`
     - [ ] `async`
 
