@@ -2,8 +2,11 @@
 
 module Prelude.List where
 
+import GHC.Base (Bool, (++), error, otherwise)
+import GHC.Classes
+import GHC.Num ((-))
 import GHC.Types (Int)
-import Prelude.Base (Bool)
+import Prelude.Tuple (fst, snd)
 
 emptyListError = error "empty list"
 

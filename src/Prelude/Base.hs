@@ -2,17 +2,33 @@
 
 module Prelude.Base where
 
+-- TODO minimize GHC imports
+import GHC.Classes (Eq, Ord)
+import GHC.Show (Show)
 import GHC.Types (Char)
 
-data Bool = False | True -- deriving (Eq, Ord, Show)
+-- Trying to use a custom Bool causes some problems.
+-- GHC.Num functions return GHC.Base.Bool,
+-- and guards depend on a LHS evaluating to GHC.Base.Bool.
+-- data Bool = False | True deriving (Eq, Ord, Show)
 
-(&&) :: Bool -> Bool -> Bool
-True && True = True
-_    && _    = False
+-- not :: Bool -> Bool
+-- not False = True
+-- not True  = False
 
-not :: Bool -> Bool
-not False = True
-not True = False
+-- (&&) :: Bool -> Bool -> Bool
+-- True && True = True
+-- _    && _    = False
+
+-- (||) :: Bool -> Bool -> Bool
+-- False || False = False
+-- _     || _     = True
+
+-- otherwise :: Bool
+-- otherwise = True
+
+-- This would be the definition of [a] if it were valid Haskell:
+-- data [a] = [] | a : [a]
 
 type String = [Char]
 
@@ -26,9 +42,6 @@ flip :: (a -> b -> c) -> (b -> a -> c)
 flip f y x = f x y
 
 -- error :: String -> a
-
-otherwise :: Bool
-otherwise = True
 
 -- compare :: Ord a => a -> a -> Ordering
 -- compare x y
@@ -45,6 +58,3 @@ otherwise = True
 -- min x y
 --   | x < y = x
 --   | otherwise = y
-
-
-

@@ -2,8 +2,9 @@
 
 module Prelude.Foldable where
 
+import GHC.Base (Bool (..), flip, (&&), (||))
+import GHC.Num
 import GHC.Types (Int)
-import Prelude.Base (Bool, flip)
 import Prelude.List
 
 -- Replace Foldable with list to get simpler definitions that are better for learning.

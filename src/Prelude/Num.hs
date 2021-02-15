@@ -2,7 +2,10 @@
 
 module Prelude.Num where
 
-import Prelude.Base (Bool)
+import GHC.Classes
+import GHC.Num
+import GHC.Real
+import GHC.Base (Bool)
 
 subtract :: Num a => a -> a -> a
 subtract x y = y - x
