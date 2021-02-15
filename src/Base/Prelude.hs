@@ -80,11 +80,11 @@ module Base.Prelude
 where
 
 import Base.Data.Bool
+import Base.Data.Either
+import Base.Data.Foldable
+import Base.Data.List
+import Base.Data.Maybe
+import Base.Data.Tuple
 import Base.Prelude.Base
-import Base.Prelude.Either
-import Base.Prelude.Foldable
 import Base.Prelude.IO
-import Base.Prelude.List
-import Base.Prelude.Maybe
 import Base.Prelude.Num
-import Base.Prelude.Tuple

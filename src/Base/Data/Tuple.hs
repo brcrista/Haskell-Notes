@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Prelude.Tuple where
+module Base.Data.Tuple where
 
 fst :: (a, b) -> a
 fst (x, _) = x

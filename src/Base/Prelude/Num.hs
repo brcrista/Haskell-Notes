@@ -4,7 +4,7 @@ module Base.Prelude.Num where
 
 import GHC.Num
 import GHC.Real
-import Base.Prelude.Base (Bool)
+import Base.Data.Bool (Bool)
 import Base.Prelude.Classes (Eq(..))
 
 subtract :: Num a => a -> a -> a

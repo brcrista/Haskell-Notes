@@ -1,6 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 
-module Base.Prelude.Either where
+module Base.Data.Either where
 
 data Either a b = Left a | Right b
 

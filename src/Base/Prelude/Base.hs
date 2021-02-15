@@ -62,6 +62,8 @@ class Functor f where
 instance Functor [] where
   fmap = map
 
+-- TODO Functor instances for tuples and functions
+
 -- TODO Applicative laws
 class Functor f => Applicative f where
   pure   :: a -> f a
