@@ -3,9 +3,10 @@
 module Prelude.Base where
 
 -- TODO minimize GHC imports
-import GHC.Classes (Eq, Ord)
+import GHC.Base (otherwise)
+import GHC.Classes (Eq, Ord(..))
 import GHC.Show (Show)
-import GHC.Types (Char)
+import GHC.Types (Char, Ordering(..))
 
 -- Trying to use a custom Bool causes some problems.
 -- GHC.Num functions return GHC.Base.Bool,
@@ -48,19 +49,20 @@ f $ x = f x
 (f . g) x = f (g x)
 
 -- error :: String -> a
+-- undefined :: a
 
--- compare :: Ord a => a -> a -> Ordering
--- compare x y
---   | x < y = LT
---   | x > y = GT
---   | otherwise = EQ
+compare :: Ord a => a -> a -> Ordering
+compare x y
+  | x < y = LT
+  | x > y = GT
+  | otherwise = EQ
 
--- max :: Ord a => a -> a -> a
--- max x y
---   | x > y = x
---   | otherwise = y
+max :: Ord a => a -> a -> a
+max x y
+  | x > y = x
+  | otherwise = y
 
--- min :: Ord a => a -> a -> a
--- min x y
---   | x < y = x
---   | otherwise = y
+min :: Ord a => a -> a -> a
+min x y
+  | x < y = x
+  | otherwise = y
