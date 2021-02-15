@@ -31,7 +31,9 @@ diagonals board = map ($ board)
     zipWith (!!) <*> indices,
     zipWith (!!) <*> reverse . indices
   ]
-  where indices = zipWith const [0 ..]
+
+indices :: [a] -> [Int]
+indices = zipWith const [0 ..]
 
 {-
 Tests:
