@@ -158,25 +158,37 @@ Let's come up with an implementation of `fmap` that breaks the laws.
 
 ```hs
 fmap :: (a -> b) -> [a] -> [b]
-fmap _ _ = []
+fmap _ [] = []
+fmap f (x : _) = [f x]
 ```
 
 ```hs
 -- Identity law
 fmap id [] = []
-fmap id [1, 2] = [] -- Nope!
+fmap id [1, 2] = [1] -- Nope!
 
 -- Distributive property
 square x = x * x
 
 fmap ((+1) . square) [1, 2]
-= []
+= [(+1) . square $ 1]
+= [(+1) $ 1 * 1]
+= [2]
 
 fmap (+1) . fmap square $ [1, 2]
 = fmap (+1) $ fmap square [1, 2]
-= fmap (+1) []
-= [] -- Ok
+= fmap (+1) [square 1]
+= fmap (+1) [1]
+= [(+1) 1]
+= [2] -- Ok
 ```
+
+So if we think of a functor as a container of objects, the laws require that the application cannot change the shape of the container.
+
+The laws aren't just there to be a nuisance.
+Besides giving us algebraic identities to work with,
+they help us reason about what problems functors can help us solve.
+For example, we know that we can't use `map` to flatten a list of lists since that would require changing the number of elements in the list, and functors shouldn't do that.
 
 ## Applicative functors
 
