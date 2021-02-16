@@ -114,6 +114,7 @@ data StringOrBool = S String | B Bool
 ```
 
 is called a **sum type** or an **or type**.
+If we equate types with sets, then the sum operation on types is equivalent to set union.
 
 We can define a generic sum type:
 
@@ -138,6 +139,7 @@ data StringAndBool = SB String Bool
 ```
 
 is called a **product type** or an **and type**.
+If we equate types with sets, then the sum operation on types is equivalent to the Cartesian product.
 
 We can define a generic product type:
 

@@ -1,6 +1,7 @@
 # Prelude
 
 `Prelude` is the portion of the Haskell standard library that is automatically imported for every program ("built-ins").
+Nothing is really defined in `Prelude` itself -- it's just re-exporting types and functions that are defined elsewhere.
 
 ## Functions
 
