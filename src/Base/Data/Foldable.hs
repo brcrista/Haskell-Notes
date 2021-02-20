@@ -6,7 +6,7 @@ import Base.Core.Classes (Ord, Eq((==)), max, min)
 import Base.Core.Err (error)
 import Base.Data.Bool (Bool(..), not, (&&), (||))
 import Base.Data.Function ((.), flip,)
-import Base.Data.List (reverse, map)
+import Base.Data.List ((++), reverse, map)
 import GHC.Num (Num((+), (*)))
 import GHC.Types (Int)
 
@@ -98,8 +98,13 @@ length = foldl plusOne 0
 
 -- null :: Foldable t => t a -> Bool
 null :: [a] -> Bool
-null [] = True
-null xs = False
+null []      = True
+null (_ : _) = False
 
 -- concat :: Foldable t => t [a] -> [a]
--- concatMap :: Foldable t => (a -> [b]) -> t [a] -> [b]
+concat :: [[a]] -> [a]
+concat = foldr (++) []
+
+-- concatMap :: Foldable t => (a -> [b]) -> t a -> [b]
+concatMap :: (a -> [b]) -> [a] -> [b]
+concatMap f = concat . map f
