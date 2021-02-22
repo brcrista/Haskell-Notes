@@ -1,8 +1,8 @@
-## Algebraic data types
+# Algebraic data types
 
 The ways to combine data constructors form an algebra on the set of types.
 
-### Sum types
+## Sum types
 
 A `data` declration like
 
@@ -27,7 +27,7 @@ data Either a b = Left a | Right b
 
 If we look at the types as sets and use `|S|` to denote the cardinality of the set `S`, then `|Sum a b| = |a| + |b|`.
 
-### Product types
+## Product types
 
 A `data` declaration like
 
@@ -50,7 +50,7 @@ Records are another way to make product types with built-in functions for access
 
 As with sum types, product types are so named because `|Product a b| = |a| * |b|`.
 
-### The `Void` and unit types
+## The void and unit types
 
 Algebras need **identity elements**.
 For numbers, the identity element for addition is 0 and for multiplication it is 1.
@@ -93,7 +93,7 @@ But since there's only one possible value for `()`, that's isomorphic to
 data Bool = True | False
 ```
 
-### List as an algebraic type
+## Lists as an algebraic type
 
 The power of algebraic types is that they give us a language to describe other types.
 Specifically, we can manipulate *equations* of types.
