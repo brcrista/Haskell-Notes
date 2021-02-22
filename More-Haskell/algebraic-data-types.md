@@ -175,3 +175,48 @@ y = 1 + x
 ```
 
 So at each level, we can either have an empty tree, or a value of type `a` and two more binary trees.
+
+## Alternate representations
+
+Consider this type definition.
+Can we show that it also represents the binary tree type?
+
+```hs
+data Node a = Node a (Maybe (Node a)) (Maybe (Node a)) deriving Show
+type Tree a = Maybe (Node a)
+```
+
+If we write the second definition as algebraic formulas, we get
+
+```js
+1 + x(1 + y)(1 + y)
+= 1 + x(y^2 + 2y + 1)
+= 1 + xy^2 + 2xy + x
+```
+
+If we rewrite that as a type definition, we get
+
+```hs
+data Tree a =
+  Unit
+  | Node a (Tree a) (Tree a)
+  | Node' Bool a (Tree a)
+  | Node'' a
+```
+
+The second data constructor `Node'` is the same as `Node` except that it only takes one subtree.
+But we can just represent this using `Node`, and using the `Bool` parameter to tell us whether the subtree is the left or the right child.
+
+If the `Bool` is confusing, we can also rewrite `2xy` as `xy + xy`:
+
+```hs
+data Tree a =
+  Unit
+  | Node   a  (Tree a) (Tree a)
+  | Left   a  (Tree a)
+  | Right  a (Tree a)
+  | Node'' a
+```
+
+Likewise, the third data constructor `Node''` is equivalent to `Node a Unit Unit`.
+Therefore, we can confirm that this type definition represents the same set of values as the previous definition.
