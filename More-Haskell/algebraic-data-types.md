@@ -116,7 +116,7 @@ It's also recursive and is defined in terms of `List a`.
 We can map this type definition to the equation:
 
 ```js
-List(a) = 1 + a * List(a)
+y = 1 + xy
 ```
 
 While we don't actually have subtraction and addition defined for types, we could still manipulate this algebraically to solve for `List(a)` and verify that the solution works for types as well.
@@ -124,7 +124,7 @@ We could also solve this by using a **fixed point**, or recursively substituting
 Either way, the solution to this equation is actually the geometric series:
 
 ```js
-List(a) = 1 + a + a^2 + a^3 + ...
+y = 1 + x + x^2 + x^3 + ...
 ```
 
 If we convert back to the type language, this is:
@@ -134,3 +134,44 @@ List a = () | (a) | (a, a) | (a, a, a) | ...
 ```
 
 Haskell has no way to represent an infinite sum type like this, but we can see that the recursive definition is equivalent!
+
+## Trees as an algebraic type
+
+We can define a binary tree as
+
+```hs
+data Tree a = Empty | a (Tree a) (Tree a)
+```
+
+The algebraic representation of this type is
+
+```js
+y = 1 + xy^2
+```
+
+The algebraic solution for this equation in terms of `y` is
+
+```js
+y = (1 +/- sqrt(1 - 4x)) / 2x
+```
+
+which doesn't make sense for types.
+But we can do the fixed point method:
+
+```js
+y = 1 + xy^2
+  = 1 + x(1 + xy^2)(1 + xy^2)
+  = 1 + x(1 + x(1 + xy^2)(1 + xy^2))(1 + x(1 + xy^2)(1 + xy^2))
+```
+
+we can write this in a more suggestive manner:
+
+```js
+y = 1 + x
+        1 + x
+            1 + xy^2
+        1 + x
+            1 + xy^2
+```
+
+So at each level, we can either have an empty tree, or a value of type `a` and two more binary trees.
