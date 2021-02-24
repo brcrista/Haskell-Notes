@@ -2,17 +2,10 @@
 
 ## Resources
 
-### Tutorials
-
-- [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
-- [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [*What I Wish I Knew When Learning Haskell*](http://dev.stephendiehl.com/hask/)
-
 ### References
 
 - [Hackage: base](https://hackage.haskell.org/package/base-4.14.0.0)
 - [Prelude source code](https://www.haskell.org/onlinereport/standard-prelude.html)
-- [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
 - [Numeric types quick reference](https://martingalemeasure.wordpress.com/2014/07/07/haskell-numeric-types-quick-reference/)
 
 ### Ecosystem
@@ -30,6 +23,8 @@
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
+- [ ] [*What I Wish I Knew When Learning Haskell*](http://dev.stephendiehl.com/hask/)
+- [ ] [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
 - [x] [Exam](./Learn-You-A-Haskell/exam/README.md)
 - [x] [Haskell: The Bad Parts (Part 1)](https://www.snoyman.com/blog/2020/10/haskell-bad-parts-1/)
 - [x] [Haskell: The Bad Parts (Part 2)](https://www.snoyman.com/blog/2020/11/haskell-bad-parts-2/)
