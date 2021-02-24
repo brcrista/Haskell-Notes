@@ -184,6 +184,8 @@ fmap (+1) . fmap square $ [1, 2]
 ```
 
 So if we think of a functor as a container of objects, the laws require that the application cannot change the shape of the container.
+In Haskell, the second functor law is actually implied by the first.
+In category theory, though, that isn't true in general, so it's included here for completeness.
 
 The laws aren't just there to be a nuisance.
 Besides giving us algebraic identities to work with,
