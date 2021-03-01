@@ -7,6 +7,10 @@ import Control.Monad (join)
 negative :: Num a => a -> a
 negative = negate . abs
 
+-- | The sublist of a list from positions `i` to `j`, inclusive.
+slice :: Int -> Int -> [a] -> [a]
+slice i j = take (j - i + 1) . drop i
+
 -- | The Cartesian product `S1 x S2`.
 cartesian :: Applicative f => f a -> f b -> f (a, b)
 cartesian = liftA2 (,)
