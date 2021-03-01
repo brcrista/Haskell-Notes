@@ -1,13 +1,23 @@
 # Identities
 
 ```hs
--- From https://wiki.haskell.org/Currying>
+-- From https://wiki.haskell.org/Currying
 (,) = curry id
 fst = uncurry const
 snd = (uncurry . flip) const
 swap = (uncurry . flip . curry) id
 
+-- From https://crypto.stanford.edu/~blynn/haskell/why.html
+const <*> const = id
+const (<*>) <*> const = (.)
+
+-- Functor
+fmap f $ xs = f <$> xs
+
+-- Applicative
 [f x y | x <- xs, y <- ys] = f <$> xs <*> ys
+
+-- Monad
 [f x y | x <- xs, y <- ys] = xs >>= \x -> ys >>= \y -> return (f x y)
 
 m >>= f = join $ fmap f m
