@@ -15,6 +15,9 @@ Everything is a function:
 - Polymorphic "values"
 - Functions can be defined as other functions
 
+Immutability:
+- Need to copy the whole data structure if you are just changing one value, but you never need to deep copy
+
 Laziness:
 - Separate data production from data consumption
 - Currying by default
