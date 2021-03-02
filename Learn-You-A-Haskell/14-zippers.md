@@ -21,18 +21,19 @@ You can store the previous elements in a second list.
 Then the **zipper** is the pair of previous elements and upcoming elements:
 
 ```hs
-newtype Zipper a = Zipper { focus :: ([a], [a]) } deriving Show
+-- Note: you need to `reverse` the left elements when getting them back out
+newtype ListZipper a = ListZipper { focus :: ([a], [a]) } deriving Show
 
-start :: [a] -> Zipper a
-start xs = Zipper ([], xs)
+start :: [a] -> ListZipper a
+start xs = ListZipper ([], xs)
 
-next :: Zipper a -> Zipper a
-next (Zipper (behind, [])) = error "end of list"
-next (Zipper (behind, x : xs)) = Zipper (x : behind, xs)
+next :: ListZipper a -> ListZipper a
+next (ListZipper (_, [])) = error "end of list"
+next (ListZipper (xs, y : ys)) = ListZipper (y : xs, ys)
 
-prev :: Zipper a -> Zipper a
-prev (Zipper ([], xs)) = error "beginning of list"
-prev (Zipper (x : xs, ahead)) = Zipper (xs, x : ahead)
+prev :: ListZipper a -> ListZipper a
+prev (ListZipper ([], _)) = error "beginning of list"
+prev (ListZipper (x : xs, ys)) = ListZipper (xs, x : ys)
 ```
 
 As you traverse the list, element move from the "ahead" list into the "behind" list:
@@ -41,7 +42,7 @@ As you traverse the list, element move from the "ahead" list into the "behind" l
 import Data.Function
 
 > start [1..10] & next & next
-Zipper {focus = ([2,1],[3,4,5,6,7,8,9,10])}
+ListZipper {focus = ([2,1],[3,4,5,6,7,8,9,10])}
 ```
 
 As you can see, zippers are so named because it's like a zipper moving back and forth across the list.

@@ -43,6 +43,7 @@ first ((Just x) : xs) = Just x
 first (Nothing  : xs) = first xs
 first []              = Nothing
 
--- Pointfree helpers
+-- | A function that performs the language-primitive range operation.
+-- | This is useful for pointfree definitions.
 range :: Enum a => a -> a -> [a]
 range a b = [a .. b]
