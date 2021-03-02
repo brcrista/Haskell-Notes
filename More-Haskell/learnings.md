@@ -61,12 +61,14 @@ I think Haskell is one of the best languages out there for solving math problems
 However, there are a few reasons I wouldn't use it to build production software:
 
 - Laziness-by-default can cause your code to consume lots of memory without you realizing it
+- Laziness-by-default means errors are never fail-fast and don't have stack traces
+- Implementing an algorithm efficiently with immutable data can sometimes be extremely difficul (ex. [the Sieve of Eratosthenes](https://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf))
 - Relatively small standard library that is missing core functionality such as an HTTP client
 - Base Prelude contains some unsafe or unperformant functions
 - Libraries tend not to work together
 - Libraries tend not to be maintained
 - Slow prototyping
-- Inflexibililty around I/O makes it hard to "just stick a trace in there"
+- Inflexibililty around I/O makes it hard to "just stick a log line in there"
 - Lack of a good IDE and other tooling
 - Not a language usually targeted by SDKs, have to write custom wrappers around REST APIs, for example
 - Steep learning curve
