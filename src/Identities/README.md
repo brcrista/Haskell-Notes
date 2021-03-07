@@ -18,14 +18,18 @@ fmap f $ xs = f <$> xs
 [f x y | x <- xs, y <- ys] = f <$> xs <*> ys
 
 -- Monad
+-- import Control.Monad
 [f x y | x <- xs, y <- ys] = xs >>= \x -> ys >>= \y -> return (f x y)
 
 m >>= f = join $ fmap f m
 
--- import Control.Monad
 filter pred xs = xs >>= \x -> guard (pred x) >> return x
 
 [0 .. n] >>= const xs = take (n * length xs) $ cycle xs
+
+-- Unproved, just my own conjecture
+g :: a -> a -> c -- Does this hold for any monad?
+fmap f . join g = g <*> f
 
 -- import Data.Function
 -- From http://hackage.haskell.org/package/base-4.14.1.0/docs/Data-Function.html#v:on
