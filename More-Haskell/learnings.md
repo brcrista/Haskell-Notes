@@ -22,6 +22,8 @@ Laziness:
 - Separate data production from data consumption
 - Currying by default
 - Streaming I/O by default
+- Memoization by default
+    - As long as the implementation is smart enough to reuse thunks, which GHC is
 - Can use normal lists / strings to represent data produced on-demand (ex. no need for a special "stream" type)
 
 Currying by default:
