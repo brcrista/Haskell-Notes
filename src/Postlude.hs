@@ -19,7 +19,7 @@ cartesian = liftA2 (,)
 cartesian3 :: Applicative f => f a -> f b -> f c -> f (a, b, c)
 cartesian3 = liftA3 (,,)
 
--- | The Cartesian product of a set with itself, e.g. `R^2`, 
+-- | The Cartesian product of a set with itself, e.g. `R^2`,
 cartesianSquare :: Applicative f => f a -> f (a, a)
 cartesianSquare = join cartesian
 
@@ -47,3 +47,7 @@ first []              = Nothing
 -- | This is useful for pointfree definitions.
 range :: Enum a => a -> a -> [a]
 range a b = [a .. b]
+
+-- This is also defined in the `lens` package.
+(<&>) :: Functor f => f a -> (a -> b) -> f b
+(<&>) = flip (<$>)
