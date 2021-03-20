@@ -49,5 +49,12 @@ range :: Enum a => a -> a -> [a]
 range a b = [a .. b]
 
 -- This is also defined in the `lens` package.
+infixl 4 <&> -- same fixity as <$>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
 (<&>) = flip (<$>)
+
+-- Cf. C#'s null-coalescing operator `??`.
+infixr 2 ?? -- same fixity as ||
+(??) :: Maybe a -> Maybe a -> Maybe a
+(Just x) ?? _ = Just x
+_        ?? y = y
