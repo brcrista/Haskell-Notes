@@ -53,7 +53,7 @@
 ### Projects
 
 - [ ] Add QuickCheck tests to `Identities.hs`
-- [ ] Project Euler 1-20
+- [x] Project Euler 1-20
 - [ ] Re-implement `Prelude`
 - [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
 - [x] Falling Water in Haskell
