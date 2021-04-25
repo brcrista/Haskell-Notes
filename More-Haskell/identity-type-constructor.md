@@ -10,7 +10,7 @@ newtype Identity a = Identity { runIdentity :: a }
 If it wasn't for the selector function, it could just be written as
 
 ```hs
-data Id a = Id a
+data Identity a = Identity a
 ```
 
 which shows what it is a little more clearly.
@@ -25,6 +25,14 @@ The [real-life definiiton](https://downloads.haskell.org/~ghc/latest/docs/html/l
 The functor implementation is:
 
 ```hs
-instance Functor Id where
-    fmap f (Id x) = Id (f x)
+instance Functor Identity where
+    fmap f (Identity x) = Identity (f x)
+```
+
+The monad implementation is:
+
+```hs
+instance Monad Identity where
+    return x = Identity x
+    ix >>= f = f $ runIdentity ix
 ```
