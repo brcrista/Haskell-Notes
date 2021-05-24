@@ -34,5 +34,14 @@ The monad implementation is:
 ```hs
 instance Monad Identity where
     return x = Identity x
-    ix >>= f = f $ runIdentity ix
+    m >>= f = f $ runIdentity m
 ```
+
+Note that the monad implementation is non-strict.
+If we wrote it like
+
+```hs
+(Identity x) >>= f = f x
+```
+
+It would be strict because pattern-matching forces evaluation.
