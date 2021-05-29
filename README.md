@@ -38,11 +38,11 @@
 - [ ] Semigroups
 - [ ] Arrows
 - [ ] Lenses
-- [ ] `System.FilePath`
+- [x] `System.FilePath`
 - [ ] `Data.Time`
 - [ ] Regexes
-- [ ] JSON (`aeson`)
-- [ ] Sending HTTP requests (`http-client` and `wreq`)
+- [x] JSON (`aeson`)
+- [x] Sending HTTP requests (`http-client` and `wreq`)
 - [ ] Calling a REST API
 - [ ] `async`
 - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
