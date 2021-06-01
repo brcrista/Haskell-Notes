@@ -43,7 +43,7 @@
 - [ ] Regexes
 - [x] JSON (`aeson`)
 - [x] Sending HTTP requests (`http-client` and `wreq`)
-- [ ] Calling a REST API
+- [x] Calling a REST API
 - [ ] `async`
 - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
 - [x] [Bartosz Milewski's *Parallel and Concurrent Haskell* lectures](https://www.youtube.com/watch?v=N6sOMGYsvFA&list=PLbgaMIhjbmEm_51-HWv9BQUXcmHYtl4sw)
