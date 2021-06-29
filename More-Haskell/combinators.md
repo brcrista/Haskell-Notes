@@ -1,7 +1,9 @@
 # Combinators
 
-A **combinator** is a higher-order function that is defined only in terms of function application and other combinators.
+A **combinator** is a function that is defined only in terms of function application and other combinators.
 In fact, we've already met several combinators: `.`, `$`, `id`, `const`, `flip`, `fmap`, `<*>`, and `=<<`.
+However, a function like `succ n = n + 1` is not a combinator because it uses `+` and `1`.
+So a more precise way to define a combinator is as a function that only uses names that are passed in as parameters.
 
 Combinators are useful for creating new functions out of old ones in well-known ways.
 They are also useful for defining functions in **point-free** style.
@@ -137,8 +139,37 @@ It also works like `join` in that it turns a binary function into a `unary` func
 `Data.Function.fix` returns the least **fixed point** of a function.
 `fix` is an implementation of the **Y combinator**.
 
-- <https://stackoverflow.com/questions/4787421/how-do-i-use-fix-and-how-does-it-work>
+- <https://mvanier.livejournal.com/2897.html>
 - <http://www.vex.net/~trebla/haskell/fix.xhtml>
 - <https://medium.com/@cdsmithus/fixpoints-in-haskell-294096a9fc10>
 - <https://en.wikibooks.org/wiki/Haskell/Fix_and_recursion>
-- <https://en.wikibooks.org/wiki/Haskell/Denotational_semantics>
+
+### Y combinator
+
+The **Y combinator** encodes recursion.
+Even if a language does not explicitly support recursion, if it supports first-class functions, we can create recursion.
+
+Consider the definition of a factorial:
+
+```hs
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+```
+
+This uses **explicit recursion** because `factorial` is defined in terms of itself.
+We can remove this though by passing in the function to call as a parameter:
+
+```hs
+almostFactorial _ 0 = 1
+almostFactorial f n = n * f (n - 1)
+```
+
+Now, there's no recursion here (at least, not *explicit recursion*).
+But some function `f` exists that turns `almostFactorial` into `factorial`.
+The Y combinator finds this function:
+
+```hs
+import Data.Function (fix)
+
+factorial = fix almostFactorial
+```
