@@ -1,3 +1,7 @@
+#!/usr/bin/env stack runghc
+
+-- Prerequisite: stack install QuickCheck
+
 {-# LANGUAGE TemplateHaskell #-}
 
 import Test.QuickCheck
