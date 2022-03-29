@@ -93,6 +93,38 @@ But since there's only one possible value for `()`, that's isomorphic to
 data Bool = True | False
 ```
 
+## Functions as an algebraic data type
+
+We have seen that the type constructor `|` is equivalent to `+` and that `(,)` is equivalent to `*`.
+Now, we'll see that `->` is equivalent to `^` (exponentiation).
+
+Consider the function type
+
+```hs
+data Func :: Maybe Bool -> Bool
+```
+
+How many possible functions are in this type?
+In this case, we consider two functions to be the same if they map the same inputs to the same outputs.
+Let's start listing out the possibilities:
+
+| Input      | Output |
+| ---------- | ------ |
+| Just True  | False  |
+| Just False | False  |
+| Nothing    | False  |
+
+| Input      | Output |
+| ---------- | ------ |
+| Just True  | True   |
+| Just False | False  |
+| Nothing    | False  |
+
+By the Product Rule of combinatorics, there are 2 possible outputs for each of the three possible inputs.
+So, there are `2 * 2 * 2 = 2 ^ 3 = 8` total possible mappings.
+
+In general, and by the same reasoning, `|a -> b| = |b| ^ |a|`.
+
 ## Lists as an algebraic type
 
 The power of algebraic types is that they give us a language to describe other types.
@@ -176,7 +208,7 @@ y = 1 + x
 
 So at each level, we can either have an empty tree, or a value of type `a` and two more binary trees.
 
-## Alternate representations
+### Alternate representations
 
 Consider this type definition.
 Can we show that it also represents the binary tree type?
