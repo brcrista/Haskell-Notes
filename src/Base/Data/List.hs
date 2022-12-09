@@ -79,7 +79,7 @@ cycle xs = xs ++ cycle xs
 
 reverse :: [a] -> [a]
 reverse [] = []
-reverse (x : xs) = reverse xs ++ [x]
+reverse xs = (last xs) : reverse (init xs)
 
 -- iterate :: (a -> a) -> a -> [a]
 
