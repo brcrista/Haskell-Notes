@@ -11,8 +11,12 @@ This is a re-implementation of Haskell's base libraries for learning purposes.
 
 ## Testing
 
-To load a GHCi prompt without standard Prelude, run
+Navigate to `src/` (the directory above this one) and run `ghci`.
 
-```bash
-ghci -XNoImplicitPrelude
+At the `ghci` prompt, run:
+
+```
+:set -XNoImplicitPrelude
+:m -Prelude
+:l Base/Prelude.hs
 ```

@@ -93,8 +93,8 @@ import Base.Data.Function
 import Base.Data.Functor
 import Base.Data.List
 import Base.Data.Maybe
-import Base.Data.Monoid
-import Base.Data.Semigroup
+-- import Base.Data.Monoid
+-- import Base.Data.Semigroup
 import Base.Data.Tuple
-import Base.Prelude.Base
+-- import Base.Prelude.Base
 import Base.System.IO
