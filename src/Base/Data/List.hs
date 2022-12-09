@@ -78,8 +78,10 @@ cycle [] = emptyListError
 cycle xs = xs ++ cycle xs
 
 reverse :: [a] -> [a]
-reverse [] = []
-reverse xs = (last xs) : reverse (init xs)
+reverse xs = reverseRecursive xs []
+  where
+    reverseRecursive [] ys = ys
+    reverseRecursive (x : xs) ys = reverseRecursive xs (x : ys)
 
 -- iterate :: (a -> a) -> a -> [a]
 
