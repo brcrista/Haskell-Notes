@@ -1,0 +1,19 @@
+resolver: ghc-9.0.1
+
+allow-newer: true
+extra-deps:
+  - ansi-terminal-0.11
+  - ansi-wl-pprint-0.6.9
+  - call-stack-0.3.0
+  - clock-0.8.2
+  - colour-2.3.5
+  - dlist-1.0
+  - Glob-0.10.1
+  - optparse-applicative-0.16.1.0
+  - tagged-0.8.6.1
+  - tasty-1.4.0.3
+  - tasty-discover-4.2.2
+  - tasty-hunit-0.10.0.3
+  - transformers-compat-0.6.6
+  - unbounded-delays-0.1.1.1
+  - wcwidth-0.0.2
