@@ -1,9 +1,6 @@
-import System.Environment
-
-main = do
-    args <- getArgs
-    let count = read $ head args
-    putStrLn $ unwords $ fizzBuzz count
+module FizzBuzz (
+    fizzBuzz
+) where
 
 fizzBuzz :: Int -> [String]
 fizzBuzz n = fmap fizzBuzzSingle [0 .. n]

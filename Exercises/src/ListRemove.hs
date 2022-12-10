@@ -1,3 +1,7 @@
+module ListRemove (
+    remove
+) where
+
 remove :: Int -> [a] -> [a]
 remove _ [] = []
 remove n (x:xs) = removeRecursive n x xs

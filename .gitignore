@@ -3,6 +3,8 @@
 *.hi
 *.o
 
+
+.stack-work/
 Laziness
 rpn
 Strictness
