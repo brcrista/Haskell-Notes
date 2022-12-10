@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a634d07c92b206988111b721fa7071958f931d799305333305bf8ddf48369810
+-- hash: 7a7e22f7a9f1566b3ed0a63d7218f13836c30cec9f242ffb0ad04d39bdf96aae
 
 name:           Haskell
 version:        1.0.0.0
@@ -14,6 +14,8 @@ library
   exposed-modules:
       EquilibriumIndex
       FallingWater
+      FizzBuzz
+      ListRemove
       SpiralMatrix
   other-modules:
       Paths_Haskell
