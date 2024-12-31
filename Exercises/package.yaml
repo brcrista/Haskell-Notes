@@ -12,9 +12,12 @@ tests:
     main: Spec.hs
     source-dirs: test
     ghc-options:
-      - -threaded
       - -rtsopts
+      - -threaded
+      - -Wall
+      - -Werror
       - -with-rtsopts=-N
+      - -Wno-warning=x-partial
     dependencies:
       - Haskell
       - tasty

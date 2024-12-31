@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7a7e22f7a9f1566b3ed0a63d7218f13836c30cec9f242ffb0ad04d39bdf96aae
+-- hash: 2d12fcf47b0d82cd30df19fe0adca53f48ca8eb83bb01493c75c655038481179
 
 name:           Haskell
 version:        1.0.0.0
@@ -36,7 +36,7 @@ test-suite Haskell-test
       Paths_Haskell
   hs-source-dirs:
       test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -rtsopts -threaded -Wall -Werror -with-rtsopts=-N -Wno-warning=x-partial
   build-depends:
       Haskell
     , base >=4.7 && <5
