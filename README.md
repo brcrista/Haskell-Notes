@@ -23,8 +23,6 @@
 
 - [x] [*Learn You a Haskell for a Great Good!*](http://learnyouahaskell.com)
 - [x] [*A Gentle Introduction to Haskell*](https://www.haskell.org/tutorial/index.html)
-- [ ] [*What I Wish I Knew When Learning Haskell*](http://dev.stephendiehl.com/hask/)
-- [ ] [*Typeclassopedia*](https://wiki.haskell.org/Typeclassopedia)
 - [x] [Exam](./Learn-You-A-Haskell/exam/README.md)
 - [x] [Haskell: The Bad Parts (Part 1)](https://www.snoyman.com/blog/2020/10/haskell-bad-parts-1/)
 - [x] [Haskell: The Bad Parts (Part 2)](https://www.snoyman.com/blog/2020/11/haskell-bad-parts-2/)
@@ -62,10 +60,8 @@
 
 ## Installation
 
-The easiest way to get up and running with Haskell "IRL" is with [Stack](https://docs.haskellstack.org/en/stable/README/).
+The easiest way to get up and running with Haskell is with [Stack](https://docs.haskellstack.org/en/stable/tutorial/).
 This will install GHC (the compiler), Cabal (the build system and package manager), and Stack (a Cabal wrapper for reproducible builds and isolated environments).
-
-When creating a project, `stack new` will give you a template to work from.
 
 ### VSCode
 
