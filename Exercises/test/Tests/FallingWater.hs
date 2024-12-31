@@ -5,7 +5,7 @@ import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 
-test_FallingWater = caseGroup "Falling Water"
+test_FallingWater = caseGroup "Falling water"
   [
     fallingWater [] @?= [],
     fallingWater [0] @?= [0],
