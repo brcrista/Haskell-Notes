@@ -104,10 +104,25 @@ By the way, if pattern matching fails at some point in a `do` block, the `fail` 
 Some monads will just have this call `error`.
 `Maybe` just defines it as `fail = const Nothing`.
 
-## Lists as monads
+## Lists as a monad instance
 
 For lists, `return = (:[])` and `fail = const []`.
 The meaning of `>>=` is to "flat map" -- map the function over the list to produce a list of lists and then flatten the result.
+
+## Functions as a monad instance
+
+`(a ->)` is a monad instance:
+
+```hs
+> (*2) >>= (+) $ 10
+30
+```
+
+so
+
+```hs
+(*2) >>= (+) = \ x -> (x * 2) + x
+```
 
 ## `MonadPlus`
 
