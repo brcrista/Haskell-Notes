@@ -37,24 +37,7 @@ toList = foldr (:) []
 indices :: [a] -> [Int]
 indices = zipWith const [0 ..]
 
--- | The first `Just` element in a list or `Nothing` if there is none.
-first :: [Maybe a] -> Maybe a
-first ((Just x) : xs) = Just x
-first (Nothing  : xs) = first xs
-first []              = Nothing
-
 -- | A function that performs the language-primitive range operation.
 -- | This is useful for pointfree definitions.
 range :: Enum a => a -> a -> [a]
 range a b = [a .. b]
-
--- This is also defined in the `lens` package.
-infixl 4 <&> -- same fixity as <$>
-(<&>) :: Functor f => f a -> (a -> b) -> f b
-(<&>) = flip (<$>)
-
--- Cf. C#'s null-coalescing operator `??`.
-infixr 2 ?? -- same fixity as ||
-(??) :: Maybe a -> Maybe a -> Maybe a
-(Just x) ?? _ = Just x
-_        ?? y = y
