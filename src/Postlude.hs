@@ -41,3 +41,13 @@ indices = zipWith const [0 ..]
 -- | This is useful for pointfree definitions.
 range :: Enum a => a -> a -> [a]
 range a b = [a .. b]
+
+-- | Compose a unary function with a binary function to map it over the binary function's result.
+-- | From <https://wiki.haskell.org/Pointfree>.
+-- | For example, these two definitions of `length` are equivalent:
+-- | @
+-- | length = foldl (\x -> succ . const x) 0
+-- | length = foldl (succ `dot` const) 0
+-- | @
+dot :: (b -> c) -> (a1 -> a2 -> b) -> a1 -> a2 -> c
+dot = (.).(.)
