@@ -51,7 +51,6 @@
 
 - [ ] Add QuickCheck tests to `Identities.hs`
 - [x] Project Euler 1-20
-- [ ] Re-implement `Prelude`
 - [ ] Read the [`Prelude` source code](https://www.haskell.org/onlinereport/standard-prelude.html)
 - [x] Falling Water in Haskell
 - [x] Equilibrium Index in Haskell
