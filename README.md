@@ -121,6 +121,5 @@ You can also end up with irregular indentation (# of spaces not divisible by 4 o
 
 ### I/O
 
-- Try to keep pure and impure (`do`) code in separate modules
 - Don't write code where a different order of evaluation may lead to incorrect results.
     - Common example: reading and writing to the same file
