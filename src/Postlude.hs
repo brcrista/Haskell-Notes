@@ -29,9 +29,6 @@ curry3 f x y z = f (x, y, z)
 uncurry3 :: (a -> b -> c -> d) -> (a, b, c) -> d
 uncurry3 f (x, y, z) = f x y z
 
-toList :: Foldable t => t a -> [a]
-toList = foldr (:) []
-
 -- | The range of indices for a list.
 -- Implementation note: Using `zipWith` instead of length` lets this work with infinite lists.
 indices :: [a] -> [Int]
