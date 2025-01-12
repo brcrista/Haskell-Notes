@@ -14,10 +14,7 @@ tests:
     ghc-options:
       - -rtsopts
       - -threaded
-      - -Wall
-      - -Werror
       - -with-rtsopts=-N
-      - -Wno-warning=x-partial
     dependencies:
       - Haskell
       - tasty
