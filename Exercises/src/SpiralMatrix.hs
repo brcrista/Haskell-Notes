@@ -14,9 +14,9 @@ innerMatrix matrix = [middle row | row <- middle matrix]
 outerMatrix :: [[a]] -> [a]
 outerMatrix matrix = concat [topRow, middle rightColumn, reverse bottomRow, reverse $ middle leftColumn]
   where
+    height      = length matrix
     -- Assume the matrix is not jagged.
     width       = length $ head matrix
-    height      = length matrix
     topRow      = head matrix
     rightColumn = column (width - 1) matrix
     -- If we only have one row or column, make sure we don't double-count.
@@ -29,4 +29,4 @@ middle [_] = []
 middle xs  = tail . init $ xs
 
 column :: Int -> Matrix a -> [a]
-column i = map (!! i)
+column i = fmap (!! i)
