@@ -30,7 +30,7 @@
 - [x] [All About Strictness](https://www.fpcomplete.com/haskell/tutorial/all-about-strictness/)
 - [x] [Fixing foldl](https://www.well-typed.com/blog/2014/04/fixing-foldl/)
 - [x] `Data.Foldable` and `Data.Traversable`
-- [ ] `Data.Function`
+- [x] `Data.Function`
 - [x] `Debug.Trace`
 - [x] `Data.Text`
 - [ ] Semigroups

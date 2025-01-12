@@ -136,18 +136,69 @@ It also works like `join` in that it turns a binary function into a `unary` func
 
 ## The `fix` function
 
-`Data.Function.fix` returns the least **fixed point** of a function.
-`fix` is an implementation of the **Y combinator**.
-
 - <https://mvanier.livejournal.com/2897.html>
 - <http://www.vex.net/~trebla/haskell/fix.xhtml>
 - <https://medium.com/@cdsmithus/fixpoints-in-haskell-294096a9fc10>
 - <https://en.wikibooks.org/wiki/Haskell/Fix_and_recursion>
 
+`Data.Function.fix` returns the least **fixed point** of a function. It's defined as:
+
+```hs
+fix :: (a -> a) -> a
+fix f = x where x = f x
+```
+
+It's defined exactly as it sounds, but how does this work? It also seems to get caught in infinite loops easily, as you'd expect:
+
+```hs
+>>> fix id
+-- Loops forever
+>>> let square = join (*)
+>>> fix square
+-- Loops forever
+>>> fix (const 10)
+10
+```
+
+However, its purpose isn't really for finding fixed points, but for encoding recursion as a function.
+
+### Fixed points in Haskell
+
+We can define a function that looks for a fixed point from a starting guess:
+
+```hs
+fixpoint :: (a -> a) -> a -> a
+fixpoint f x
+  | f x == x = x
+  | otherwise = fixpoint f (f x)
+```
+
+This will find the fixpoint when `f` *converges* to its fixed point from a starting point:
+
+```hs
+>>> fixpoint id 1
+1
+>>> fixpoint id 10
+>>> fixpoint square 1
+1
+>>> fixpoint square 0
+0
+>>> fixpoint square 2
+-- Loops forever
+>>> fixpoint square (-1)
+1
+>>> fixpoint (const 10) 1
+10
+```
+
+However, it's obvious that not every function as a fixed point, such as `succ`.
+
+Haskell semantically rescues its fixed function (and its notions of functions in general) by adding the **bottom** value (⊥) to every set. (This is in the realm of denotational semantics, which means how Haskell programs map to theoretical mathematical concepts.) ⊥ means that a function never returns a value, either because it loops forever or throws an exception. So then, `fix succ = ⊥` since `succ ⊥ = ⊥`.
+
 ### Y combinator
 
-The **Y combinator** encodes recursion.
-Even if a language does not explicitly support recursion, if it supports first-class functions, we can create recursion.
+`fix` is an implementation of the **Y combinator**.
+Even if a language does not explicitly support recursion, but it supports first-class functions, we can create recursion with the Y-combinator.
 
 Consider the definition of a factorial:
 
