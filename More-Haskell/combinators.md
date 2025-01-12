@@ -198,7 +198,7 @@ Haskell semantically rescues its fixed function (and its notions of functions in
 ### Y combinator
 
 `fix` is an implementation of the **Y combinator**.
-Even if a language does not explicitly support recursion, but it supports first-class functions, we can create recursion with the Y-combinator.
+We can think of this as a function that defines recursion generally for all other functions.
 
 Consider the definition of a factorial:
 
