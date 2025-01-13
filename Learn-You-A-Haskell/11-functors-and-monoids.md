@@ -260,18 +260,8 @@ Just 1
 Coming from object-oriented languages, `pure` is interesting.
 In Java and C#, interfaces don't usually specify a way to construct an object.
 
-The `<*>` operator is a generalized version of `applyList` and `applyMaybe` up above.
+The "sequential application" operator `<*>` is a generalized version of `applyList` and `applyMaybe` up above.
 Note that any instance of `Applicative` must also be a `Functor`.
-
-Note the similarity of `<*>` and `fmap`:
-
-```hs
-> :t fmap
-fmap :: Functor f => (a -> b) -> f a -> f b
-
-> :t (<*>)
-(<*>) :: Applicative f => f (a -> b) -> f a -> f b
-```
 
 You can even write stuff like
 

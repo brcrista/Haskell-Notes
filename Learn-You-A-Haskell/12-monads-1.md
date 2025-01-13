@@ -41,8 +41,9 @@ Let's compare the operations we have:
 If we just use `Monad` for the type constraint (since monads are also functors and applicative functors and the `=<<` operator (defined as `(=<<) = flip (>>=)`), we can see the similarity more clearly:
 
 ```hs
+( $ ) :: Monad m =>   (a -> b) -> m a -> m b
 (<$>) :: Monad m =>   (a -> b) -> m a -> m b
-(<$>) :: Monad m => m (a -> b) -> m a -> m b
+(<*>) :: Monad m => m (a -> b) -> m a -> m b
 (=<<) :: Monad m => (a -> m b) -> m a -> m b
 ```
 
@@ -123,6 +124,16 @@ so
 ```hs
 (*2) >>= (+) = \ x -> (x * 2) + x
 ```
+
+Here are the type signatures for the various application operators using `m = ((->) r)`:
+
+```hs
+(<$>) :: (a -> b) -> (r -> a) -> (r -> b)
+(<*>) :: (r -> a -> b) -> (r -> a) -> (r -> b)
+(=<<) :: (a -> r -> b) -> (r -> a) -> (r -> b)
+```
+
+When `a = r`, `<*>` and `=<<` do the same thing.
 
 ## `MonadPlus`
 

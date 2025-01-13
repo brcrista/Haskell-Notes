@@ -151,12 +151,12 @@ fix f = x where x = f x
 It's defined exactly as it sounds, but how does this work? It also seems to get caught in infinite loops easily, as you'd expect:
 
 ```hs
->>> fix id
+> fix id
 -- Loops forever
->>> let square = join (*)
->>> fix square
+> let square = join (*)
+> fix square
 -- Loops forever
->>> fix (const 10)
+> fix (const 10)
 10
 ```
 
@@ -176,18 +176,18 @@ fixpoint f x
 This will find the fixpoint when `f` *converges* to its fixed point from a starting point:
 
 ```hs
->>> fixpoint id 1
+> fixpoint id 1
 1
->>> fixpoint id 10
->>> fixpoint square 1
+> fixpoint id 10
+> fixpoint square 1
 1
->>> fixpoint square 0
+> fixpoint square 0
 0
->>> fixpoint square 2
+> fixpoint square 2
 -- Loops forever
->>> fixpoint square (-1)
+> fixpoint square (-1)
 1
->>> fixpoint (const 10) 1
+> fixpoint (const 10) 1
 10
 ```
 
