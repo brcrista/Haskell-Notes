@@ -33,11 +33,13 @@ height Empty = 0
 height (Tree _ left right) = 1 + max (length left) (length right)
 
 -- | Flip a tree on a vertical axis such that all left subtrees become right subtrees.
+-- | Identity: mirror . mirror = id
 mirror :: Tree a -> Tree a
 mirror Empty = Empty
 mirror (Tree x left right) = Tree x (mirror right) (mirror left)
 
 -- | Make a new tree with the same elements and `subtreeLeft` as the root.
+-- | Identity: rotateLeft = mirror . rotateRight . mirror
 rotateLeft :: Tree a -> Tree a
 rotateLeft Empty = Empty
 rotateLeft tree@(Tree x left right)
@@ -46,6 +48,7 @@ rotateLeft tree@(Tree x left right)
     Tree y outer inner -> Tree y outer (Tree x inner right)
 
 -- | Make a new tree with the same elements and `subtreeRight` as the root.
+-- | Identity: rotateRight = mirror . rotateLeft . mirror
 rotateRight :: Tree a -> Tree a
 rotateRight Empty = Empty
 rotateRight tree@(Tree x left right)

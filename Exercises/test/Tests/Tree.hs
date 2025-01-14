@@ -18,7 +18,7 @@ balancedTree = Tree 1 (singleton 0) (singleton 2)
 
 test_functorIdentity = caseGroup "Functor identity law"
   [
-    fmap id emptyTree @?= emptyTree,
+    fmap id emptyTree @?= id emptyTree,
     fmap id singletonTree @?= id singletonTree,
     fmap id leftTree @?= id leftTree,
     fmap id rightTree @?= id rightTree,
@@ -107,6 +107,15 @@ test_mirror = caseGroup "mirror"
     mirror leftTree @?= rightTree,
     mirror rightTree @?= leftTree,
     mirror balancedTree @?= Tree 1 (singleton 2) (singleton 0)
+  ]
+
+test_mirrorIdentity = caseGroup "Mirror identity"
+  [
+    (mirror . mirror) emptyTree @?= id emptyTree,
+    (mirror . mirror) singletonTree @?= id singletonTree,
+    (mirror . mirror) leftTree @?= id leftTree,
+    (mirror . mirror) rightTree @?= id rightTree,
+    (mirror . mirror) balancedTree @?= id balancedTree
   ]
 
 test_rotateLeft = caseGroup "rotateLeft"
