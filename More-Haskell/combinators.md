@@ -195,6 +195,14 @@ However, it's obvious that not every function as a fixed point, such as `succ`.
 
 Haskell semantically rescues its fixed function (and its notions of functions in general) by adding the **bottom** value (⊥) to every set. (This is in the realm of denotational semantics, which means how Haskell programs map to theoretical mathematical concepts.) ⊥ means that a function never returns a value, either because it loops forever or throws an exception. So then, `fix succ = ⊥` since `succ ⊥ = ⊥`.
 
+`⊥` is defined to be less than any other element. So, we can say that `fix` returns the *least* fixed point of its argument. In other words, `fix` will "return" `⊥` for functions where `⊥` is a fixed point of the function.
+However, for functions that are not, `fix` will return the fixed point:
+
+```hs
+> const 10 undefined
+10
+```
+
 ### Y combinator
 
 `fix` is an implementation of the **Y combinator**.
@@ -224,3 +232,30 @@ import Data.Function (fix)
 
 factorial = fix almostFactorial
 ```
+
+This makes sense because we want to find `f = factorial`.
+
+### Using `fix`
+
+As a second example, let's look at another basic recursive function: `map`.
+Normally that's defined as like:
+
+```hs
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x : xs) = f x : map f xs
+```
+
+We can define it using `fix` as
+
+```hs
+fixMap :: ((a -> b) -> [a] -> [b]) -> (a -> b) -> [a] -> [b]
+fixMap _ _ [] = []
+fixMap rec f (x : xs) = f x : rec f xs
+
+map = fix fixMap
+```
+
+These examples are contrived and aren't very useful since using `fix` doesn't simplify anything.
+The main use case for `fix` is to avoid defining a recursive helper function (conventionally named `go`),
+which often happens in a `do` block. See [this thread](https://www.reddit.com/r/haskell/comments/59hdn6/the_fix_function_is_one_of_my_faves_so_i_wrote_a/) for some examples.
