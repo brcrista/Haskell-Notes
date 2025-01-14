@@ -1,6 +1,6 @@
-module Tests.BinaryTree where
+module Tests.Tree where
 
-import BinaryTree
+import Tree
 import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
@@ -9,7 +9,7 @@ import Tests.Helpers
 -- fmap id = id
 -- fmap (f . g) = fmap f . fmap g
 
-emptyTree :: Num a => BinaryTree a
+emptyTree :: Num a => Tree a
 emptyTree = Nil
 singletonTree = Node 0 Nil Nil
 leftTree = Node 2 (Node 1 singletonTree Nil) Nil
