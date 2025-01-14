@@ -11,10 +11,10 @@ import Tests.Helpers
 
 emptyTree :: Num a => Tree a
 emptyTree = Nil
-singletonTree = Node 0 Nil Nil
-leftTree = Node 2 (Node 1 singletonTree Nil) Nil
-rightTree = Node 2 Nil (Node 1 Nil singletonTree)
-balancedTree = Node 1 (Node 0 Nil Nil) (Node 2 Nil Nil)
+singletonTree = singleton 0
+leftTree = Node 2 (Node 1 (singleton 0) Nil) Nil
+rightTree = Node 2 Nil (Node 1 Nil (singleton 0))
+balancedTree = Node 1 (singleton 0) (singleton 2)
 
 test_functorIdentity = caseGroup "Functor identity law"
   [
@@ -106,16 +106,16 @@ test_mirror = caseGroup "mirror"
     mirror singletonTree @?= singletonTree,
     mirror leftTree @?= rightTree,
     mirror rightTree @?= leftTree,
-    mirror balancedTree @?= Node 1 (Node 2 Nil Nil) (Node 0 Nil Nil)
+    mirror balancedTree @?= Node 1 (singleton 2) (singleton 0)
   ]
 
 test_rotateLeft = caseGroup "rotateLeft"
   [
     rotateLeft emptyTree @?= emptyTree,
     rotateLeft singletonTree @?= singletonTree,
-    rotateLeft leftTree @?= Node 1 singletonTree (Node 2 Nil Nil),
+    rotateLeft leftTree @?= Node 1 (singleton 0) (singleton 2),
     rotateLeft rightTree @?= rightTree,
-    rotateLeft balancedTree @?= Node 0 Nil (Node 1 Nil (Node 2 Nil Nil))
+    rotateLeft balancedTree @?= Node 0 Nil (Node 1 Nil (singleton 2))
   ]
 
 test_rotateRight = caseGroup "rotateRight"
@@ -123,6 +123,6 @@ test_rotateRight = caseGroup "rotateRight"
     rotateRight emptyTree @?= emptyTree,
     rotateRight singletonTree @?= singletonTree,
     rotateRight leftTree @?= leftTree,
-    rotateRight rightTree @?= Node 1 (Node 2 Nil Nil) singletonTree,
+    rotateRight rightTree @?= Node 1 (singleton 2) (singleton 0),
     rotateRight balancedTree @?= leftTree
   ]

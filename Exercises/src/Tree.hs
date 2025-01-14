@@ -12,6 +12,9 @@ instance Foldable Tree where
   foldr _ acc Nil = acc
   foldr f acc (Node x left right) = f x (foldr f (foldr f acc right) left)
 
+singleton :: a -> Tree a
+singleton x = Node x Nil Nil
+
 toMaybe :: Tree a -> Maybe a
 toMaybe Nil = Nothing
 toMaybe (Node x _ _) = Just x
