@@ -10,11 +10,11 @@ import Tests.Helpers
 -- fmap (f . g) = fmap f . fmap g
 
 emptyTree :: Num a => Tree a
-emptyTree = Nil
+emptyTree = Empty
 singletonTree = singleton 0
-leftTree = Node 2 (Node 1 (singleton 0) Nil) Nil
-rightTree = Node 2 Nil (Node 1 Nil (singleton 0))
-balancedTree = Node 1 (singleton 0) (singleton 2)
+leftTree = Tree 2 (Tree 1 (singleton 0) Empty) Empty
+rightTree = Tree 2 Empty (Tree 1 Empty (singleton 0))
+balancedTree = Tree 1 (singleton 0) (singleton 2)
 
 test_functorIdentity = caseGroup "Functor identity law"
   [
@@ -106,16 +106,16 @@ test_mirror = caseGroup "mirror"
     mirror singletonTree @?= singletonTree,
     mirror leftTree @?= rightTree,
     mirror rightTree @?= leftTree,
-    mirror balancedTree @?= Node 1 (singleton 2) (singleton 0)
+    mirror balancedTree @?= Tree 1 (singleton 2) (singleton 0)
   ]
 
 test_rotateLeft = caseGroup "rotateLeft"
   [
     rotateLeft emptyTree @?= emptyTree,
     rotateLeft singletonTree @?= singletonTree,
-    rotateLeft leftTree @?= Node 1 (singleton 0) (singleton 2),
+    rotateLeft leftTree @?= Tree 1 (singleton 0) (singleton 2),
     rotateLeft rightTree @?= rightTree,
-    rotateLeft balancedTree @?= Node 0 Nil (Node 1 Nil (singleton 2))
+    rotateLeft balancedTree @?= Tree 0 Empty (Tree 1 Empty (singleton 2))
   ]
 
 test_rotateRight = caseGroup "rotateRight"
@@ -123,6 +123,6 @@ test_rotateRight = caseGroup "rotateRight"
     rotateRight emptyTree @?= emptyTree,
     rotateRight singletonTree @?= singletonTree,
     rotateRight leftTree @?= leftTree,
-    rotateRight rightTree @?= Node 1 (singleton 2) (singleton 0),
+    rotateRight rightTree @?= Tree 1 (singleton 2) (singleton 0),
     rotateRight balancedTree @?= leftTree
   ]
