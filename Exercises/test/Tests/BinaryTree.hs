@@ -25,6 +25,15 @@ test_functorIdentity = caseGroup "Functor identity law"
     fmap id balancedTree @?= id balancedTree
   ]
 
+test_functorDistributive = caseGroup "Functor distributive law"
+  [
+    fmap (succ . (*2)) emptyTree @?= (fmap succ . fmap (*2)) emptyTree,
+    fmap (succ . (*2)) singletonTree @?= (fmap succ . fmap (*2)) singletonTree,
+    fmap (succ . (*2)) leftTree @?= (fmap succ . fmap (*2)) leftTree,
+    fmap (succ . (*2)) rightTree @?= (fmap succ . fmap (*2)) rightTree,
+    fmap (succ . (*2)) balancedTree @?= (fmap succ . fmap (*2)) balancedTree
+  ]
+
 test_foldr = caseGroup "foldr"
   [
     foldr (+) 0 emptyTree @?= 0,
