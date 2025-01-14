@@ -80,3 +80,22 @@ test_sum = caseGroup "sum"
     sum rightTree @?= 3,
     sum balancedTree @?= 3
   ]
+
+-- `length` returns the number of nodes in the tree
+test_length = caseGroup "length"
+  [
+    length emptyTree @?= 0,
+    length singletonTree @?= 1,
+    length leftTree @?= 3,
+    length rightTree @?= 3,
+    length balancedTree @?= 3
+  ]
+
+test_height = caseGroup "height"
+  [
+    height emptyTree @?= 0,
+    height singletonTree @?= 1,
+    height leftTree @?= 3,
+    height rightTree @?= 3,
+    height balancedTree @?= 2
+  ]
