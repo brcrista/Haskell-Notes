@@ -10,6 +10,7 @@ build-type:     Simple
 
 library
   exposed-modules:
+      BinaryTree
       EquilibriumIndex
       FallingWater
       FizzBuzz
@@ -27,6 +28,7 @@ test-suite Exercises-test
   type: exitcode-stdio-1.0
   main-is: TestMain.hs
   other-modules:
+      Tests.BinaryTree
       Tests.EquilibriumIndex
       Tests.FallingWater
       Tests.Helpers
