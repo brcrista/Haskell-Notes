@@ -99,3 +99,30 @@ test_height = caseGroup "height"
     height rightTree @?= 3,
     height balancedTree @?= 2
   ]
+
+test_mirror = caseGroup "mirror"
+  [
+    mirror emptyTree @?= emptyTree,
+    mirror singletonTree @?= singletonTree,
+    mirror leftTree @?= rightTree,
+    mirror rightTree @?= leftTree,
+    mirror balancedTree @?= Node 1 (Node 2 Nil Nil) (Node 0 Nil Nil)
+  ]
+
+test_rotateLeft = caseGroup "rotateLeft"
+  [
+    rotateLeft emptyTree @?= emptyTree,
+    rotateLeft singletonTree @?= singletonTree,
+    rotateLeft leftTree @?= Node 1 singletonTree (Node 2 Nil Nil),
+    rotateLeft rightTree @?= rightTree,
+    rotateLeft balancedTree @?= Node 0 Nil (Node 1 Nil (Node 2 Nil Nil))
+  ]
+
+test_rotateRight = caseGroup "rotateRight"
+  [
+    rotateRight emptyTree @?= emptyTree,
+    rotateRight singletonTree @?= singletonTree,
+    rotateRight leftTree @?= leftTree,
+    rotateRight rightTree @?= Node 1 (Node 2 Nil Nil) singletonTree,
+    rotateRight balancedTree @?= leftTree
+  ]
