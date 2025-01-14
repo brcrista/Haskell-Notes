@@ -1,4 +1,4 @@
-name: Haskell
+name: Exercises
 version: 1.0.0.0
 
 dependencies:
@@ -8,15 +8,15 @@ library:
   source-dirs: src
 
 tests:
-  Haskell-test:
-    main: Spec.hs
+  Exercises-test:
+    main: TestMain.hs
     source-dirs: test
     ghc-options:
       - -rtsopts
       - -threaded
       - -with-rtsopts=-N
     dependencies:
-      - Haskell
+      - Exercises
       - tasty
       - tasty-discover
       - tasty-hunit

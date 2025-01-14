@@ -3,10 +3,8 @@ cabal-version: 1.12
 -- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: cfdf2c5d964848da07773467f6291a9626e3823a7155717fcdde17d65ffb9d38
 
-name:           Haskell
+name:           Exercises
 version:        1.0.0.0
 build-type:     Simple
 
@@ -18,27 +16,27 @@ library
       ListRemove
       SpiralMatrix
   other-modules:
-      Paths_Haskell
+      Paths_Exercises
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
   default-language: Haskell2010
 
-test-suite Haskell-test
+test-suite Exercises-test
   type: exitcode-stdio-1.0
-  main-is: Spec.hs
+  main-is: TestMain.hs
   other-modules:
       Tests.EquilibriumIndex
       Tests.FallingWater
       Tests.Helpers
       Tests.SpiralMatrix
-      Paths_Haskell
+      Paths_Exercises
   hs-source-dirs:
       test
   ghc-options: -rtsopts -threaded -with-rtsopts=-N
   build-depends:
-      Haskell
+      Exercises
     , base >=4.7 && <5
     , tasty
     , tasty-discover
