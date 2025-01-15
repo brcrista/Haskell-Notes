@@ -33,7 +33,7 @@
 - [x] `Data.Function`
 - [x] `Debug.Trace`
 - [x] `Data.Text`
-- [ ] Semigroups
+- [x] Semigroups
 - [ ] Arrows
 - [ ] Lenses
 - [x] `System.FilePath`
