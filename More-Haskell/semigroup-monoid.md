@@ -77,3 +77,5 @@ mempty <> x == x
 ### Instances
 
 The semigroups listed above are all monoids as well. For `Min` and `Max`, the identity elements are `maxBound` and `minBound`, respectively.
+
+`Data.List.NonEmpty` is an example of a type that is a semigroup but *not* a monoid.
