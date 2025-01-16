@@ -11,6 +11,14 @@ instance Show a => Show (List a) where
       go (List x End) = show x
       go (List x xs)  = show x ++ "," ++ go xs
 
+instance Semigroup (List a) where
+  list1 <> End   = list1
+  End   <> list2 = list2
+  (List x xs) <> list2 = List x (xs <> list2)
+
+instance Monoid (List a) where
+  mempty = End
+
 instance Functor List where
   fmap _ End = End
   fmap f (List x xs) = List (f x) (fmap f xs)
