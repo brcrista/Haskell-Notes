@@ -138,13 +138,6 @@ To see why it matters, consider these two calls:
 1
 ```
 
-But, `foldl` won't even work in this case:
-
-```hs
-> foldl (\acc x -> acc) 0 [1..]
-^CInterrupted.
-```
-
 We can see the difference by expanding the two:
 
 ```hs
