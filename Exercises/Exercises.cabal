@@ -32,6 +32,7 @@ test-suite Exercises-test
       Tests.EquilibriumIndex
       Tests.FallingWater
       Tests.Helpers
+      Tests.List
       Tests.SpiralMatrix
       Tests.Tree
       Paths_Exercises
