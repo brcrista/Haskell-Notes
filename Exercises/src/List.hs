@@ -23,6 +23,13 @@ instance Functor List where
   fmap _ End = End
   fmap f (List x xs) = List (f x) (fmap f xs)
 
+instance Applicative List where
+  pure x = List x End
+
+  End <*> xs  = End
+  fs  <*> End = End
+  List f fs <*> xs = (f <$> xs) <> (fs <*> xs)
+
 instance Foldable List where
   foldr _ acc End = acc
   foldr f acc (List x xs) = f x (foldr f acc xs)
