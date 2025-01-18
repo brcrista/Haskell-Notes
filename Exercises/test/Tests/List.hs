@@ -67,3 +67,11 @@ test_length = caseGroup "length"
     length singletonList @?= 1,
     length longList @?= 3
   ]
+
+test_idx = caseGroup "idx"
+  [
+    singletonList `idx` 0 @?= 0,
+    longList `idx` 0 @?= 2,
+    longList `idx` 1 @?= 1,
+    longList `idx` 2 @?= 0
+  ]

@@ -26,3 +26,10 @@ instance Functor List where
 instance Foldable List where
   foldr _ acc End = acc
   foldr f acc (List x xs) = f x (foldr f acc xs)
+
+idx :: List a -> Int -> a
+idx End _ = error "index too large"
+idx (List x xs) n
+  | n  < 0    = error "negative index"
+  | n == 0    = x
+  | otherwise = idx xs (n - 1)
