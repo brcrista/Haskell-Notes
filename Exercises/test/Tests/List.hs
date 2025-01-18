@@ -12,7 +12,7 @@ import Tests.Helpers
 emptyList :: Num a => List a
 emptyList = End
 singletonList = List 0 End
-longList = List 2 (List 1 (List 0 End))
+longList = List 2 . List 1 . List 0 $ End
 
 test_functorIdentity = caseGroup "Functor identity law"
   [
@@ -74,4 +74,11 @@ test_idx = caseGroup "idx"
     longList `idx` 0 @?= 2,
     longList `idx` 1 @?= 1,
     longList `idx` 2 @?= 0
+  ]
+
+test_reverse' = caseGroup "reverse'"
+  [
+    reverse' emptyList @?= emptyList,
+    reverse' singletonList @?= singletonList,
+    reverse' longList @?= (List 0 . List 1 . List 2 $ End)
   ]
