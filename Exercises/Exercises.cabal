@@ -13,6 +13,7 @@ library
       EquilibriumIndex
       FallingWater
       FizzBuzz
+      List
       ListRemove
       SpiralMatrix
       Tree

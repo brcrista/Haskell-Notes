@@ -10,10 +10,10 @@ import Tests.Helpers
 -- fmap (f . g) = fmap f . fmap g
 
 emptyTree :: Num a => Tree a
-emptyTree = Empty
+emptyTree = Nil
 singletonTree = singleton 0
-leftTree = Tree 2 (Tree 1 (singleton 0) Empty) Empty
-rightTree = Tree 2 Empty (Tree 1 Empty (singleton 0))
+leftTree = Tree 2 (Tree 1 (singleton 0) Nil) Nil
+rightTree = Tree 2 Nil (Tree 1 Nil (singleton 0))
 balancedTree = Tree 1 (singleton 0) (singleton 2)
 
 test_functorIdentity = caseGroup "Functor identity law"
@@ -124,7 +124,7 @@ test_rotateLeft = caseGroup "rotateLeft"
     rotateLeft singletonTree @?= singletonTree,
     rotateLeft leftTree @?= Tree 1 (singleton 0) (singleton 2),
     rotateLeft rightTree @?= rightTree,
-    rotateLeft balancedTree @?= Tree 0 Empty (Tree 1 Empty (singleton 2))
+    rotateLeft balancedTree @?= Tree 0 Nil (Tree 1 Nil (singleton 2))
   ]
 
 test_rotateRight = caseGroup "rotateRight"

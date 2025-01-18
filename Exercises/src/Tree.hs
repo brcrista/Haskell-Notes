@@ -1,61 +1,59 @@
 module Tree
 where
 
-data Tree a = Empty | Tree a (Tree a) (Tree a)
+data Tree a = Nil | Tree a (Tree a) (Tree a)
   deriving (Eq, Show)
 
 instance Functor Tree where
-  fmap :: (a -> b) -> Tree a -> Tree b
-  fmap f Empty = Empty
+  fmap f Nil = Nil
   fmap f (Tree x left right) = Tree (f x) (fmap f left) (fmap f right)
 
 instance Foldable Tree where
-  foldr :: (a -> b -> b) -> b -> Tree a -> b
-  foldr _ acc Empty = acc
+  foldr _ acc Nil = acc
   foldr f acc (Tree x left right) = f x (foldr f (foldr f acc right) left)
 
 singleton :: a -> Tree a
-singleton x = Tree x Empty Empty
+singleton x = Tree x Nil Nil
 
 toMaybe :: Tree a -> Maybe a
-toMaybe Empty = Nothing
+toMaybe Nil = Nothing
 toMaybe (Tree x _ _) = Just x
 
 subtreeLeft :: Tree a -> Tree a
-subtreeLeft Empty = Empty
+subtreeLeft Nil = Nil
 subtreeLeft (Tree _ left _) = left
 
 subtreeRight :: Tree a -> Tree a
-subtreeRight Empty = Empty
+subtreeRight Nil = Nil
 subtreeRight (Tree _ _ right) = right
 
 -- | The number of levels in a tree.
 height :: Tree a -> Int
-height Empty = 0
+height Nil = 0
 height (Tree _ left right) = 1 + max (length left) (length right)
 
 -- | Flip a tree on a vertical axis such that all left subtrees become right subtrees.
 -- | Identity: mirror . mirror = id
 mirror :: Tree a -> Tree a
-mirror Empty = Empty
+mirror Nil = Nil
 mirror (Tree x left right) = Tree x (mirror right) (mirror left)
 
 -- | Make a new tree with the same elements and `subtreeLeft` as the root.
 -- | Identity: rotateLeft = mirror . rotateRight . mirror
 rotateLeft :: Tree a -> Tree a
-rotateLeft Empty = Empty
+rotateLeft Nil = Nil
 rotateLeft tree@(Tree x left right)
   = case left of
-    Empty -> tree
+    Nil -> tree
     Tree y outer inner -> Tree y outer (Tree x inner right)
 
 -- | Make a new tree with the same elements and `subtreeRight` as the root.
 -- | Identity: rotateRight = mirror . rotateLeft . mirror
 rotateRight :: Tree a -> Tree a
-rotateRight Empty = Empty
+rotateRight Nil = Nil
 rotateRight tree@(Tree x left right)
   = case right of
-    Empty -> tree
+    Nil -> tree
     Tree y inner outer -> Tree y (Tree x left inner) outer
 
 -- TODO the different walk orders could probably be different instances of `Foldable`.
