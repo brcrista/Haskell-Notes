@@ -34,14 +34,15 @@
 - [x] `Debug.Trace`
 - [x] `Data.Text`
 - [x] Semigroups
-- [ ] Arrows
-- [ ] Lenses
 - [x] `System.FilePath`
-- [ ] `Data.Time`
-- [ ] Regexes
+- [ ] [*A Guide to GHC's Extensions*](https://limperg.de/ghc-extensions/)
 - [x] JSON (`aeson`)
 - [x] Sending HTTP requests (`http-client` and `wreq`)
 - [x] Calling a REST API
+- [ ] `Data.Time`
+- [ ] Regexes
+- [ ] Arrows
+- [ ] Lenses
 - [ ] `async`
 - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
 - [x] [Bartosz Milewski's *Parallel and Concurrent Haskell* lectures](https://www.youtube.com/watch?v=N6sOMGYsvFA&list=PLbgaMIhjbmEm_51-HWv9BQUXcmHYtl4sw)
