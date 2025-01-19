@@ -19,9 +19,9 @@ test_functorIdentity = caseGroup "functor identity law"
 
 test_functorDistributive = caseGroup "functor distributive law"
   [
-    fmap (f . g) emptyList @?= (fmap f . fmap g) emptyList,
-    fmap (f . g) singletonList @?= (fmap f . fmap g) singletonList,
-    fmap (f . g) longList @?= (fmap f . fmap g) longList
+    fmap (fA . gA) emptyList @?= (fmap fA . fmap gA) emptyList,
+    fmap (fA . gA) singletonList @?= (fmap fA . fmap gA) singletonList,
+    fmap (fA . gA) longList @?= (fmap fA . fmap gA) longList
   ]
 
 test_foldr = caseGroup "foldr"
@@ -79,18 +79,18 @@ test_reverse' = caseGroup "reverse'"
     reverse' longList @?= (List 0 . List 1 . List 2 $ End)
   ]
 
-f :: Int -> Int
-f = succ
+fA :: Int -> Int
+fA = succ
 
-g :: Int -> Int
-g = (*2)
+gA :: Int -> Int
+gA = (*2)
 
 test_applicative = caseGroup "applicative"
   [
     (End <*> emptyList) @?= emptyList,
     (End <*> longList) @?= emptyList,
-    ((List f . List g $ End) <*> emptyList) @?= emptyList,
-    ((List f . List g $ End) <*> longList) @?= (List 3 . List 2 . List 1 . List 4 . List 2 . List 0 $ End)
+    ((List fA . List gA $ End) <*> emptyList) @?= emptyList,
+    ((List fA . List gA $ End) <*> longList) @?= (List 3 . List 2 . List 1 . List 4 . List 2 . List 0 $ End)
   ]
 
 test_applicativeIdentity = caseGroup "applicative identity law"
@@ -102,18 +102,52 @@ test_applicativeIdentity = caseGroup "applicative identity law"
 
 test_applicativeComposition = caseGroup "applicative composition law"
   [
-    (pure (.) <*> pure f <*> pure g <*> emptyList) @?= pure f <*> (pure g <*> emptyList),
-    (pure (.) <*> pure f <*> pure g <*> singletonList) @?= pure f <*> (pure g <*> singletonList),
-    (pure (.) <*> pure f <*> pure g <*> longList) @?= pure f <*> (pure g <*> longList)
+    (pure (.) <*> pure fA <*> pure gA <*> emptyList) @?= pure fA <*> (pure gA <*> emptyList),
+    (pure (.) <*> pure fA <*> pure gA <*> singletonList) @?= pure fA <*> (pure gA <*> singletonList),
+    (pure (.) <*> pure fA <*> pure gA <*> longList) @?= pure fA <*> (pure gA <*> longList)
   ]
 
 test_applicativeHomomorphism = caseGroup "applicative homomorphism law"
   [
-    (pure f <*> pure 0) @?= (pure (f 0) :: List Int),
-    (pure f <*> pure 1) @?= (pure (f 1) :: List Int)
+    (pure fA <*> pure 0) @?= (pure (fA 0) :: List Int),
+    (pure fA <*> pure 1) @?= (pure (fA 1) :: List Int)
   ]
 
 test_applicativeInterchange = caseGroup "applicative interchange law"
   [
-    (pure f <*> pure 1) @?= (pure ($ 1) <*> pure f :: List Int)
+    (pure fA <*> pure 1) @?= (pure ($ 1) <*> pure fA :: List Int)
+  ]
+
+fM :: Int -> List Int
+fM x = range 0 x
+
+gM :: Int -> List Int
+gM x
+  | x <= 0 = End
+  | otherwise = List 0 (gM (pred x))
+
+test_monadLeftIdenity = caseGroup "monad left identity law"
+  [
+    (return 0 >>= fM) @?= fM 0,
+    (return 1 >>= fM) @?= fM 1,
+    (return 0 >>= gM) @?= gM 0,
+    (return 1 >>= gM) @?= gM 1
+  ]
+
+test_monadRightIdenity = caseGroup "monad right identity law"
+  [
+    (emptyList >>= return) @?= emptyList,
+    (singletonList >>= return) @?= singletonList,
+    (longList >>= return) @?= longList
+  ]
+
+-- m >>= (\x -> k x >>= h) = (m >>= k) >>= h
+test_monadAssociativity = caseGroup "monad associativity law"
+  [
+    (emptyList >>= (\x -> fM x >>= gM)) @?= ((emptyList >>= fM) >>= gM),
+    (singletonList >>= (\x -> fM x >>= gM)) @?= ((singletonList >>= fM) >>= gM),
+    (longList >>= (\x -> fM x >>= gM)) @?= ((longList >>= fM) >>= gM),
+    (emptyList >>= (\x -> gM x >>= fM)) @?= ((emptyList >>= gM) >>= fM),
+    (singletonList >>= (\x -> gM x >>= fM)) @?= ((singletonList >>= gM) >>= fM),
+    (longList >>= (\x -> gM x >>= fM)) @?= ((longList >>= gM) >>= fM)
   ]

@@ -30,6 +30,10 @@ instance Applicative List where
   fs  <*> End = End
   List f fs <*> xs = (f <$> xs) <> (fs <*> xs)
 
+instance Monad List where
+  End >>= _ = End
+  List x xs >>= f = f x <> (xs >>= f)
+
 instance Foldable List where
   foldr _ acc End = acc
   foldr f acc (List x xs) = f x (foldr f acc xs)
@@ -44,3 +48,8 @@ idx (List x xs) n
 reverse' :: List a -> List a
 reverse' End = End
 reverse' (List x xs) = reverse' xs <> List x End
+
+range :: (Enum a, Ord a) => a -> a -> List a
+range a b
+  | a > b = End
+  | otherwise = List a (range (succ a) b)
