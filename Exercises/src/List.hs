@@ -41,9 +41,6 @@ idx (List x xs) n
   | n == 0    = x
   | otherwise = idx xs (n - 1)
 
-singleton :: a -> List a
-singleton x = List x End
-
 reverse' :: List a -> List a
 reverse' End = End
 reverse' (List x xs) = reverse' xs <> List x End

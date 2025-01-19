@@ -5,10 +5,6 @@ import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 
--- Functor laws:
--- fmap id = id
--- fmap (f . g) = fmap f . fmap g
-
 emptyList :: Num a => List a
 emptyList = End
 singletonList = pure 0
