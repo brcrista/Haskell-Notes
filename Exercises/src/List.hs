@@ -1,6 +1,8 @@
 module List
 where
 
+import Control.Applicative (liftA2)
+
 data List a = End | List a (List a)
   deriving (Eq)
 
@@ -37,6 +39,9 @@ instance Monad List where
 instance Foldable List where
   foldr _ acc End = acc
   foldr f acc (List x xs) = f x (foldr f acc xs)
+
+instance Traversable List where
+  sequenceA = foldr (liftA2 List) (pure End)
 
 idx :: List a -> Int -> a
 idx End _ = error "index too large"
