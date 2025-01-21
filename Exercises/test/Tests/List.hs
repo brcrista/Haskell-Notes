@@ -163,8 +163,8 @@ longList4A = List (Just 2) . List (Just 1) . List Nothing $ End
 
 -- An applicative transformation:
 -- https://hackage.haskell.org/package/base-4.15.0.0/docs/Data-Traversable.html
-tA :: Maybe a -> List a
-tA Nothing = End
+tA :: Maybe a -> [a]
+tA Nothing = []
 tA (Just x) = pure x
 
 test_sequenceA = caseGroup "sequenceA"
