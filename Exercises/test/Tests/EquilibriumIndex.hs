@@ -1,7 +1,6 @@
 module Tests.EquilibriumIndex where
 
 import EquilibriumIndex
-import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 

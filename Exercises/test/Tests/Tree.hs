@@ -1,7 +1,6 @@
 module Tests.Tree where
 
 import Tree
-import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 

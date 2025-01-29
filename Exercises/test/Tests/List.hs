@@ -3,7 +3,6 @@ module Tests.List where
 import Data.Functor.Compose
 import Data.Functor.Identity
 import List
-import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 
