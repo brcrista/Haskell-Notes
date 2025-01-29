@@ -38,7 +38,7 @@ test-suite Exercises-test
       Paths_Exercises
   hs-source-dirs:
       test
-  ghc-options: -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -O -rtsopts -threaded -W -Werror -with-rtsopts=-N
   build-depends:
       Exercises
     , base >=4.7 && <5

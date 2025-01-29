@@ -1,7 +1,6 @@
 module Tests.SpiralMatrix where
 
 import SpiralMatrix
-import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 

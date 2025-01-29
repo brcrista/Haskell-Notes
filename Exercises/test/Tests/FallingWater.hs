@@ -1,7 +1,6 @@
 module Tests.FallingWater where
 
 import FallingWater
-import Test.Tasty
 import Test.Tasty.HUnit
 import Tests.Helpers
 

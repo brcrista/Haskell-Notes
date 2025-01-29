@@ -12,8 +12,11 @@ tests:
     main: TestMain.hs
     source-dirs: test
     ghc-options:
+      - -O
       - -rtsopts
       - -threaded
+      - -W
+      - -Werror
       - -with-rtsopts=-N
     dependencies:
       - Exercises
