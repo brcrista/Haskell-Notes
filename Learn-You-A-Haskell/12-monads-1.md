@@ -35,6 +35,11 @@ Nothing
 ```
 
 In fact, `(>>= id)` has a special name, `join`.
+Haskell could have required `join` to define the typeclass and defined `>>=` as:
+
+```hs
+m >>= f = join $ fmap f m
+```
 
 ### Functors, applicative functors, and monads
 
@@ -45,7 +50,7 @@ Let's compare the operations we have:
 (<$>) :: Functor f => (a -> b) -> f a -> f b
 
 > :t (<*>)
-(<$>) :: Applicative f => f (a -> b) -> f a -> f b
+(<*>) :: Applicative f => f (a -> b) -> f a -> f b
 
 > :t (>>=)
 (>>=) :: Monad m => m a -> (a -> m b) -> m b
