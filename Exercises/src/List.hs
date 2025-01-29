@@ -1,6 +1,9 @@
 module List
 where
 
+import Control.Applicative (Alternative, (<|>), empty, liftA2)
+import Control.Monad (MonadPlus, mzero)
+
 data List a = End | List a (List a)
   deriving (Eq)
 
@@ -33,6 +36,13 @@ instance Applicative List where
 instance Monad List where
   End >>= _ = End
   List x xs >>= f = f x <> (xs >>= f)
+
+instance Alternative List where
+  empty = mempty
+  (<|>) = (<>)
+
+instance MonadPlus List where
+  mzero = mempty
 
 instance Foldable List where
   foldr _ acc End = acc
