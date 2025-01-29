@@ -163,5 +163,8 @@ Both types are strict in their keys, but `Data.Map.Strict` will force evaluation
 ### `foldl`
 
 `foldl` is notorious for consuming lots of memory by building up an *O(n)* chain of thunks before evaluating anything.
-If space is a concern, always use `Data.List.foldl'`, which evaluates the function at each step before getting the next element out of the list.
+~~If space is a concern, always use `Data.List.foldl'`, which evaluates the function at each step before getting the next element out of the list.~~
+
+Actually, according to [this video](https://www.youtube.com/watch?v=j19amq73-qA&list=PLe7Ei6viL6jGp1Rfu0dil1JH1SHk9bgDV&index=26), GHC will do a *strictness analysis* when optimizations are turned on. So, it will turn `foldl` into `foldl'` when possible.
+
 Despite being in the `Data.List` module, it will still work on any `Foldable`.
