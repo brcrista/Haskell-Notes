@@ -21,7 +21,20 @@ This is the key function for monads, and `>>` is just defined in terms of `>>=`.
 Like `fmap`, the monad bind operation applies a function to a value inside a context.
 However, in this case, the function returns its value in the same context.
 If we just used `fmap`, we would end up with `m m b`.
-But `>>=` "flattens" out the result to just `m b`.
+But `>>=` "flattens" out the result to just `m b`:
+
+```hs
+> [[1, 2, 3], [4, 5]] >>= id
+[1,2,3,4,5]
+
+> Just (Just 1) >>= id
+Just 1
+
+> Just Nothing >>= id
+Nothing
+```
+
+In fact, `(>>= id)` has a special name, `join`.
 
 ### Functors, applicative functors, and monads
 
@@ -41,13 +54,22 @@ Let's compare the operations we have:
 If we just use `Monad` for the type constraint (since monads are also functors and applicative functors and the `=<<` operator (defined as `(=<<) = flip (>>=)`), we can see the similarity more clearly:
 
 ```hs
-( $ ) :: Monad m =>   (a -> b) -> m a -> m b
-(<$>) :: Monad m =>   (a -> b) -> m a -> m b
-(<*>) :: Monad m => m (a -> b) -> m a -> m b
-(=<<) :: Monad m => (a -> m b) -> m a -> m b
+( $ ) ::              (a ->   b) ->   a ->   b
+(<$>) :: Monad m =>   (a ->   b) -> m a -> m b
+(<*>) :: Monad m => m (a ->   b) -> m a -> m b
+(=<<) :: Monad m =>   (a -> m b) -> m a -> m b
 ```
 
 The only thing that differs is the type of the function that gets passed.
+
+If we add the implicit parentheses from currying, we can also see that these operations are "lifting" a function into a monad context:
+
+```hs
+( $ ) ::              (a ->   b) -> (  a ->   b)
+(<$>) :: Monad m =>   (a ->   b) -> (m a -> m b)
+(<*>) :: Monad m => m (a ->   b) -> (m a -> m b)
+(=<<) :: Monad m =>   (a -> m b) -> (m a -> m b)
+```
 
 ## Monad instances
 
@@ -128,7 +150,7 @@ so
 Here are the type signatures for the various application operators using `m = ((->) r)`:
 
 ```hs
-(<$>) :: (a -> b) -> (r -> a) -> (r -> b)
+(<$>) :: (a -> b)      -> (r -> a) -> (r -> b)
 (<*>) :: (r -> a -> b) -> (r -> a) -> (r -> b)
 (=<<) :: (a -> r -> b) -> (r -> a) -> (r -> b)
 ```
