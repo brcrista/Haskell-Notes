@@ -1,8 +1,6 @@
 module List
 where
 
-import Control.Applicative (liftA2)
-
 data List a = End | List a (List a)
   deriving (Eq)
 
@@ -28,8 +26,8 @@ instance Functor List where
 instance Applicative List where
   pure x = List x End
 
-  End <*> xs  = End
-  fs  <*> End = End
+  End <*> _   = End
+  _   <*> End = End
   List f fs <*> xs = (f <$> xs) <> (fs <*> xs)
 
 instance Monad List where

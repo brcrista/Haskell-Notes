@@ -5,7 +5,7 @@ data Tree a = Nil | Tree a (Tree a) (Tree a)
   deriving (Eq, Show)
 
 instance Functor Tree where
-  fmap f Nil = Nil
+  fmap _ Nil = Nil
   fmap f (Tree x left right) = Tree (f x) (fmap f left) (fmap f right)
 
 instance Foldable Tree where
