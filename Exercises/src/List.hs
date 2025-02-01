@@ -1,7 +1,7 @@
 module List
 where
 
-import Control.Applicative (Alternative, (<|>), empty, liftA2)
+import Control.Applicative (Alternative, (<|>), empty)
 
 data List a = End | List a (List a)
   deriving (Eq)
