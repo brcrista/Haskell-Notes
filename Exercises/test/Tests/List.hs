@@ -19,6 +19,20 @@ test_semigroupAssociativity = caseGroup "semigroup associativity law"
     ((emptyList <> singletonList) <> longList) @?= (emptyList <> (singletonList <> longList))
   ]
 
+test_monoidRightIdentity = caseGroup "monoid right identity law"
+  [
+    emptyList <> mempty @?= emptyList,
+    singletonList <> mempty @?= singletonList,
+    longList <> mempty @?= longList
+  ]
+
+test_monoidLeftIdentity = caseGroup "monoid left identity law"
+  [
+    mempty <> emptyList @?= emptyList,
+    mempty <> singletonList @?= singletonList,
+    mempty <> longList @?= longList
+  ]
+
 test_functorIdentity = caseGroup "functor identity law"
   [
     fmap id emptyList @?= id emptyList,
