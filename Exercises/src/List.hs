@@ -2,7 +2,6 @@ module List
 where
 
 import Control.Applicative (Alternative, (<|>), empty, liftA2)
-import Control.Monad (MonadPlus, mzero)
 
 data List a = End | List a (List a)
   deriving (Eq)
