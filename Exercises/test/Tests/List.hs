@@ -1,5 +1,6 @@
 module Tests.List where
 
+import Control.Applicative
 import Data.Functor.Compose
 import Data.Functor.Identity
 import List
@@ -10,6 +11,28 @@ emptyList :: Num a => List a
 emptyList = End
 singletonList = pure 0
 longList = List 2 . List 1 . List 0 $ End
+
+test_semigroupAssociativity = caseGroup "semigroup associativity law"
+  [
+    ((emptyList <> emptyList) <> emptyList) @?= (emptyList <> (emptyList <> emptyList)),
+    ((singletonList <> singletonList) <> singletonList) @?= (singletonList <> (singletonList <> singletonList)),
+    ((longList <> longList) <> longList) @?= (longList <> (longList <> longList)),
+    ((emptyList <> singletonList) <> longList) @?= (emptyList <> (singletonList <> longList))
+  ]
+
+test_monoidRightIdentity = caseGroup "monoid right identity law"
+  [
+    emptyList <> mempty @?= emptyList,
+    singletonList <> mempty @?= singletonList,
+    longList <> mempty @?= longList
+  ]
+
+test_monoidLeftIdentity = caseGroup "monoid left identity law"
+  [
+    mempty <> emptyList @?= emptyList,
+    mempty <> singletonList @?= singletonList,
+    mempty <> longList @?= longList
+  ]
 
 test_functorIdentity = caseGroup "functor identity law"
   [
@@ -87,7 +110,6 @@ test_monadRightIdenity = caseGroup "monad right identity law"
     (longList >>= return) @?= longList
   ]
 
--- m >>= (\x -> k x >>= h) = (m >>= k) >>= h
 test_monadAssociativity = caseGroup "monad associativity law"
   [
     (emptyList >>= (\x -> fM x >>= gM)) @?= ((emptyList >>= fM) >>= gM),
@@ -96,6 +118,28 @@ test_monadAssociativity = caseGroup "monad associativity law"
     (emptyList >>= (\x -> gM x >>= fM)) @?= ((emptyList >>= gM) >>= fM),
     (singletonList >>= (\x -> gM x >>= fM)) @?= ((singletonList >>= gM) >>= fM),
     (longList >>= (\x -> gM x >>= fM)) @?= ((longList >>= gM) >>= fM)
+  ]
+
+test_alternativeAssociativity = caseGroup "alternative associativity law"
+  [
+    ((emptyList <|> emptyList) <|> emptyList) @?= (emptyList <|> (emptyList <|> emptyList)),
+    ((singletonList <|> singletonList) <|> singletonList) @?= (singletonList <|> (singletonList <|> singletonList)),
+    ((longList <|> longList) <|> longList) @?= (longList <|> (longList <|> longList)),
+    ((emptyList <|> singletonList) <|> longList) @?= (emptyList <|> (singletonList <|> longList))
+  ]
+
+test_alternativeRightIdentity = caseGroup "alternative right identity law"
+  [
+    emptyList <|> empty @?= emptyList,
+    singletonList <|> empty @?= singletonList,
+    longList <|> empty @?= longList
+  ]
+
+test_alternativeLeftIdentity = caseGroup "alternative left identity law"
+  [
+    empty <|> emptyList @?= emptyList,
+    empty <|> singletonList @?= singletonList,
+    empty <|> longList @?= longList
   ]
 
 test_foldr = caseGroup "foldr"
