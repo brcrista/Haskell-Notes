@@ -11,6 +11,14 @@ emptyList = End
 singletonList = pure 0
 longList = List 2 . List 1 . List 0 $ End
 
+test_semigroupAssociativity = caseGroup "semigroup associativity law"
+  [
+    ((emptyList <> emptyList) <> emptyList) @?= (emptyList <> (emptyList <> emptyList)),
+    ((singletonList <> singletonList) <> singletonList) @?= (singletonList <> (singletonList <> singletonList)),
+    ((longList <> longList) <> longList) @?= (longList <> (longList <> longList)),
+    ((emptyList <> singletonList) <> longList) @?= (emptyList <> (singletonList <> longList))
+  ]
+
 test_functorIdentity = caseGroup "functor identity law"
   [
     fmap id emptyList @?= id emptyList,
