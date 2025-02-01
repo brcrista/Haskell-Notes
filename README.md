@@ -35,7 +35,7 @@
 - [x] `Data.Text`
 - [x] Semigroups
 - [x] `System.FilePath`
-- [ ] [*A Guide to GHC's Extensions*](https://limperg.de/ghc-extensions/)
+- [x] [*A Guide to GHC's Extensions*](https://limperg.de/ghc-extensions/)
 - [x] JSON (`aeson`)
 - [x] Sending HTTP requests (`http-client` and `wreq`)
 - [x] Calling a REST API
