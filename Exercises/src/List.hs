@@ -41,9 +41,6 @@ instance Alternative List where
   empty = mempty
   (<|>) = (<>)
 
-instance MonadPlus List where
-  mzero = mempty
-
 instance Foldable List where
   foldr _ acc End = acc
   foldr f acc (List x xs) = f x (foldr f acc xs)
