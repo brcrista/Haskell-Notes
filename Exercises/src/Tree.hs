@@ -1,14 +1,18 @@
 module Tree
 where
 
-data Tree a = Nil | Tree a (Tree a) (Tree a)
+data Tree a where
+  Nil  :: Tree a
+  Tree :: a -> Tree a -> Tree a -> Tree a
   deriving (Eq, Show)
 
 instance Functor Tree where
+  fmap :: (a -> b) -> Tree a -> Tree b
   fmap _ Nil = Nil
   fmap f (Tree x left right) = Tree (f x) (fmap f left) (fmap f right)
 
 instance Foldable Tree where
+  foldr :: (a -> b -> b) -> b -> Tree a -> b
   foldr _ acc Nil = acc
   foldr f acc (Tree x left right) = f x (foldr f (foldr f acc right) left)
 
@@ -77,6 +81,6 @@ breadthFirstWalkRecursive queue = do
   let Just (queue', node) = pull queue
   let Tree x left right = node
   print x
-  let queue'' = if null left then queue' else push left queue'
+  let queue''  = if null  left then queue'  else push  left queue'
   let queue''' = if null right then queue'' else push right queue''
   breadthFirstWalkRecursive queue'''
