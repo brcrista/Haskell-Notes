@@ -8,10 +8,10 @@ spiral :: Matrix a -> [a]
 spiral [] = []
 spiral matrix = outerMatrix matrix ++ spiral (innerMatrix matrix)
 
-innerMatrix :: [[a]] -> [[a]]
+innerMatrix :: Matrix a -> Matrix a
 innerMatrix matrix = [middle row | row <- middle matrix]
 
-outerMatrix :: [[a]] -> [a]
+outerMatrix :: Matrix a -> [a]
 outerMatrix matrix = concat [topRow, middle rightColumn, reverse bottomRow, reverse $ middle leftColumn]
   where
     height      = length matrix
