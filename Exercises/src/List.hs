@@ -3,7 +3,9 @@ where
 
 import Control.Applicative (Alternative, (<|>), empty)
 
-data List a = End | List a (List a)
+data List a where
+  End  :: List a
+  List :: a -> List a -> List a
   deriving (Eq)
 
 instance Show a => Show (List a) where

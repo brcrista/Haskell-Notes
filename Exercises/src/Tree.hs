@@ -1,7 +1,9 @@
 module Tree
 where
 
-data Tree a = Nil | Tree a (Tree a) (Tree a)
+data Tree a where
+  Nil  :: Tree a
+  Tree :: a -> Tree a -> Tree a -> Tree a
   deriving (Eq, Show)
 
 instance Functor Tree where
