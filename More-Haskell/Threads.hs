@@ -9,7 +9,7 @@ Run with:
 -}
 
 import Control.Concurrent
-import Data.Foldable
+import Control.Monad
 import System.IO
 
 threadHello :: Chan () -> IO ()
@@ -28,9 +28,9 @@ main = do
 
   -- Spawn threads
   endFlags <- newChan
-  for_ [1 .. threadCount] $ do
-    const $ forkIO $ threadHello endFlags
+  replicateM_ threadCount $ do
+    forkIO $ threadHello endFlags
 
   -- Wait for all threads to complete
-  for_ [1 .. threadCount] $ do
-    const $ readChan endFlags
+  replicateM_ threadCount $ do
+    readChan endFlags
