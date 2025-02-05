@@ -12,11 +12,15 @@ import Control.Concurrent
 import Control.Monad
 import System.IO
 
-threadHello :: Chan () -> IO ()
-threadHello endFlags = do
+threadHello :: QSem -> Chan () -> IO ()
+threadHello stdoutLock threadFinished = do
   tid <- myThreadId
+
+  waitQSem stdoutLock
   putStrLn $ "Hello from thread " ++ show tid
-  writeChan endFlags ()
+  signalQSem stdoutLock
+
+  writeChan threadFinished ()
 
 threadCount :: Int
 threadCount = 10
@@ -27,10 +31,11 @@ main = do
   hSetBuffering stdout NoBuffering
 
   -- Spawn threads
-  endFlags <- newChan
+  threadFinished <- newChan
+  stdoutLock <- newQSem 1
   replicateM_ threadCount $ do
-    forkIO $ threadHello endFlags
+    forkIO $ threadHello stdoutLock threadFinished
 
   -- Wait for all threads to complete
   replicateM_ threadCount $ do
-    readChan endFlags
+    readChan threadFinished
