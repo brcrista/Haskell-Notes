@@ -12,14 +12,17 @@ import Control.Concurrent
 import Control.Monad
 import System.IO
 
+putStrLnLocked :: QSem -> String -> IO ()
+putStrLnLocked lock message = do
+  waitQSem lock
+  putStrLn message
+  signalQSem lock
+
 threadHello :: QSem -> Chan () -> IO ()
 threadHello stdoutLock threadFinished = do
   tid <- myThreadId
-
-  waitQSem stdoutLock
-  putStrLn $ "Hello from thread " ++ show tid
-  signalQSem stdoutLock
-
+  let message = "Hello from thread " ++ show tid
+  putStrLnLocked stdoutLock message
   writeChan threadFinished ()
 
 threadCount :: Int
