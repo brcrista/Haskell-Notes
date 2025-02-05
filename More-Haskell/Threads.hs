@@ -18,12 +18,12 @@ putStrLnLocked lock message = do
   putStrLn message
   signalQSem lock
 
-threadHello :: QSem -> Chan () -> IO ()
+threadHello :: QSem -> QSemN -> IO ()
 threadHello stdoutLock threadFinished = do
   tid <- myThreadId
   let message = "Hello from thread " ++ show tid
   putStrLnLocked stdoutLock message
-  writeChan threadFinished ()
+  signalQSemN threadFinished 1
 
 threadCount :: Int
 threadCount = 10
@@ -34,11 +34,10 @@ main = do
   hSetBuffering stdout NoBuffering
 
   -- Spawn threads
-  threadFinished <- newChan
+  threadFinished <- newQSemN 0
   stdoutLock <- newQSem 1
   replicateM_ threadCount $ do
     forkIO $ threadHello stdoutLock threadFinished
 
   -- Wait for all threads to complete
-  replicateM_ threadCount $ do
-    readChan threadFinished
+  waitQSemN threadFinished threadCount
