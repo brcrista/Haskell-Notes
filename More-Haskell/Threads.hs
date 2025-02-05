@@ -8,21 +8,20 @@ Run with:
   ./Threads +RTS -N
 -}
 
+import Control.Applicative
 import Control.Concurrent
+import Control.Exception
 import Control.Monad
 import System.IO
 
-putStrLnLocked :: QSem -> String -> IO ()
-putStrLnLocked lock message = do
-  waitQSem lock
-  putStrLn message
-  signalQSem lock
+withLock :: QSem -> IO a -> IO a
+withLock = liftA2 bracket_ waitQSem signalQSem
 
 threadHello :: QSem -> QSemN -> IO ()
 threadHello stdoutLock threadFinished = do
   tid <- myThreadId
   let message = "Hello from thread " ++ show tid
-  putStrLnLocked stdoutLock message
+  withLock stdoutLock $ putStrLn message
   signalQSemN threadFinished 1
 
 threadCount :: Int
