@@ -1,12 +1,11 @@
 name: Exercises
 version: 1.0.0.0
+language: GHC2021
 
 dependencies:
   - base >= 4.7 && < 5
 
 library:
-  default-extensions:
-    - GHC2021
   source-dirs: src
   ghc-options:
     - -O
