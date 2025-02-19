@@ -6,16 +6,14 @@ dependencies:
   - base >= 4.7 && < 5
 
 library:
-  source-dirs: src
   ghc-options:
     - -O
     - -W
     - -Werror
+  source-dirs: src
 
 tests:
   Exercises-test:
-    main: TestMain.hs
-    source-dirs: test
     ghc-options:
       - -O
       - -rtsopts
@@ -28,3 +26,5 @@ tests:
       - tasty
       - tasty-discover
       - tasty-hunit
+    main: TestMain.hs
+    source-dirs: test
