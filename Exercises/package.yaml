@@ -9,11 +9,8 @@ library:
   source-dirs: src
   ghc-options:
     - -O
-    - -rtsopts
-    - -threaded
     - -W
     - -Werror
-    - -with-rtsopts=-N
 
 tests:
   Exercises-test:

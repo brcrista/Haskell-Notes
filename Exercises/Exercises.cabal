@@ -21,7 +21,7 @@ library
       Paths_Exercises
   hs-source-dirs:
       src
-  ghc-options: -O -rtsopts -threaded -W -Werror -with-rtsopts=-N
+  ghc-options: -O -W -Werror
   build-depends:
       base >=4.7 && <5
   default-language: GHC2021
