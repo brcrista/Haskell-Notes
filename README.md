@@ -39,10 +39,10 @@
 - [x] JSON (`aeson`)
 - [x] Sending HTTP requests (`http-client` and `wreq`)
 - [x] Calling a REST API
-- [ ] `Data.Time`
-- [ ] Regexes
+- [x] [`Data.Time`](https://www.williamyaoh.com/posts/2019-09-16-time-cheatsheet.html)
+- [ ] [Regexes](https://www.williamyaoh.com/posts/2019-04-11-cheatsheet-to-regexes-in-haskell.html)
 - [ ] Arrows
-- [ ] Lenses
+- [ ] [Lenses](https://www.williamyaoh.com/posts/2019-04-25-lens-exercises.html)
 - [ ] `async`
 - [ ] [*Real World Haskell*: Chapter 24](http://book.realworldhaskell.org/read/concurrent-and-multicore-programming.html)
 - [x] [Bartosz Milewski's *Parallel and Concurrent Haskell* lectures](https://www.youtube.com/watch?v=N6sOMGYsvFA&list=PLbgaMIhjbmEm_51-HWv9BQUXcmHYtl4sw)
