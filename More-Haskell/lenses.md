@@ -65,6 +65,12 @@ There are some built-in lenses, like `_1`, `_2`, etc. for tuples or `ix` for lis
 
 ### Examples
 
+A lens expression consists of:
+1. Some data
+1. A lens
+1. A combinator
+1. (For writing) a value or a function
+
 ```hs
 > set _2 22 (0, 1)
 (0,22)
