@@ -61,31 +61,32 @@ There are three core combinators in `Control.Lens`:
 Intuitively, a lens is a function that "focuses" on a data field for either reading or writing.
 Lenses are composable for traversing nested fields.
 
-There are some built-in lenses, like `_1`, `_2`, etc. for tuples:
+There are some built-in lenses, like `_1`, `_2`, etc. for tuples or `ix` for lists. With the `TemplateHaskell` language extension, you can use `makeLenses` to generate lenses for a data type.
+
+### Examples
 
 ```hs
+> set _2 22 (0, 1)
+(0,22)
+
 > _2 .~ 22 $ (0, 1)
 (0,22)
-```
 
-or `ix` for lists:
-
-```hs
 > [1..10] ^? ix 6
 Just 7
-```
 
-```hs
+> over (mapped . _1) succ [(1, 2), (3, 4)]
+[(2,2),(4,4)]
+
 > mapped . _1 %~ succ $ [(1, 2), (3, 4)]
 [(2,2),(4,4)]
-```
 
-```hs
-> (ix 0) . _1 %~ succ $ [(1, 2), (3, 4)]
+> over (ix 0 . _1) succ [(1, 2), (3, 4)]
+[(2,2),(3,4)]
+
+> ix 0 . _1 %~ succ $ [(1, 2), (3, 4)]
 [(2,2),(3,4)]
 ```
-
-With the `TemplateHaskell` language extension, you can use `makeLenses` to generate lenses for a data type.
 
 ## References
 - <https://github.com/ekmett/lens/wiki>
