@@ -1,0 +1,28 @@
+#!/usr/bin/env stack runghc
+
+{-# LANGUAGE TemplateHaskell #-}
+
+module Lenses where
+
+import Control.Lens
+
+-- data Shape =
+--   Circle { center :: (Float, Float), radius :: Float }
+--   | Rectangle { bottomLeftCorner :: (Float, Float), width :: Float, height :: Float }
+--   deriving Show
+
+data Shape =
+  Circle { _center :: (Float, Float), _radius :: Float }
+  | Rectangle { _bottomLeftCorner :: (Float, Float), _width :: Float, _height :: Float }
+  deriving Show
+
+makeLenses ''Shape
+
+main :: IO ()
+main = do
+  let
+    circle = Circle (1, -1) 10
+    -- moveLeftX (x, y) = (pred x, y)
+    -- circle' = Circle (moveLeftX $ center circle) (radius circle)
+    circle' = center . _1 %~ pred $ circle
+  print circle'
