@@ -94,6 +94,83 @@ Just 7
 [(2,2),(3,4)]
 ```
 
+## Exercises
+
+From <https://www.williamyaoh.com/posts/2019-04-25-lens-exercises.html>.
+See `src/LensExercises.hs`.
+
+### I
+
+```hs
+> user1 ^. name
+"qiao.yifan"
+> user1 ^. metadata.numLogins
+20
+> user1 & metadata.numLogins .~ 0
+User
+  { _name = "qiao.yifan"
+  , _userid = 103
+  , _metadata = UserInfo
+    { _numLogins = 0
+    , _associatedIPs =
+      [ "52.39.193.61"
+      , "52.39.193.75"
+      ]
+    }
+  }
+> user1 & metadata.associatedIPs %~ ("192.168.0.2" :)
+User
+  { _name = "qiao.yifan"
+  , _userid = 103
+  , _metadata = UserInfo
+    { _numLogins = 20
+    , _associatedIPs =
+      [ "192.168.0.2"
+      , "52.39.193.61"
+      , "52.39.193.75"
+      ]
+    }
+  }
+> metadata.numLogins %~ (+ 1) $ user1
+User
+  { _name = "qiao.yifan"
+  , _userid = 103
+  , _metadata = UserInfo
+    { _numLogins = 21
+    , _associatedIPs =
+      [ "52.39.193.61"
+      , "52.39.193.75"
+      ]
+    }
+  }
+```
+
+### II
+
+| Compiles? | Code | Correction |
+|--|
+| ❌ | `user1 & email .~ "qyifan@xingxin.com"` | `user1 & name .~ "qyifan@xingxin.com"` |
+| ✅ | `user1 & metadata .~ (UserInfo 17 [])` | |
+| ✅ | `userid .~ -1 $ user1` | |
+| ❌ | `metadata.associatedIPs .~ [ "50.193.0.23" ] & user1` | `user1 & metadata.associatedIPs .~ [ "50.193.0.23" ]` |
+| ❌ | `user1 ^. numLogins.metadata` | `user1 ^. metadata.numLogins` |
+
+
+### III
+
+```hs
+-- Get the associated IP addresses.
+user1 ^. metadata.associatedIPs
+-- Update the user so that the associated IP addresses are in reverse order.
+user1 & metadata.associatedIPs %~ reverse
+-- Update the user so that each word in the name is capitalized.
+user1 & name .~ "Qiao.Yifan"
+-- Set the number of logins to 1.
+user1 & metadata.numLogins .~ 1
+-- Remove all associated IP addresses except the first.
+user1 & metadata.associatedIPs %~ init
+```
+
 ## References
 - <https://github.com/ekmett/lens/wiki>
 - <https://www.williamyaoh.com/posts/2019-04-25-lens-exercises.html>
