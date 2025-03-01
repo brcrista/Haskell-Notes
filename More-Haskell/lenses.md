@@ -48,6 +48,9 @@ Lenses simplify this:
 Circle {_center = (0.0,-1.0), _radius = 10.0}
 ```
 
+Note that lenses compose right-to-left instead of left-to-right as functions normally do.
+That is, the leftmost lens in a series of compositions is the first to be evaluated.
+
 ## How to Use Lenses
 
 The `lens` package and its `Control.Lens` module provide the canonical implementation of lenses.
@@ -169,6 +172,61 @@ user1 & name .~ "Qiao.Yifan"
 user1 & metadata.numLogins .~ 1
 -- Remove all associated IP addresses except the first.
 user1 & metadata.associatedIPs %~ init
+```
+
+### IV
+
+```hs
+infixr 4 .~
+(.~) :: ((a -> Identity b) -> s -> Identity t) -> b -> s -> t
+lens .~ newValue = runIdentity . lens (const $ Identity newValue) s
+
+infixr 4 %~
+(%~) :: ((a -> Identity b) -> s -> Identity t) -> (a -> b) -> s -> t
+lens %~ f = runIdentity . lens (Identity . f) s
+
+infixl 8 ^.
+(^.) :: s -> ((a -> Const a b) -> s -> Const a t) -> a
+s ^. lens = getConst $ lens Const s
+
+name' :: Functor f => (Text -> f Text) -> User -> f User
+name' fn user = fn (_name user) $> user
+```
+
+Function composition is defined as
+
+```hs
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
+f . g = \x -> f $ g x
+```
+
+And composed lenses have the type
+
+```hs
+lens1 :: Functor f => (a -> f a) -> (b -> f b)
+lens2 :: Functor f => (b -> f b) -> (c -> f c)
+
+lens2 . lens1 :: (a -> f a) -> c -> f c
+```
+
+The composition of two unary functions takes a value of type `a` as its parameter.
+The composition of two lenses, when used with a lens combinator, takes a value of type `c`.
+
+Internally, this inversion happens because the right-hand lens returns a function which is forwarded as the first argument of the left-hand lens and the getter wrapped by the lens is passed to it.
+
+For example:
+
+```hs
+metadata :: Functor f => (UserInfo -> f UserInfo) -> User -> f User
+metadata fn s = fn (_metadata s) $> s
+
+numLogins :: Functor f => (Int -> f Int) -> UserInfo -> f UserInfo
+numLogins fn s = fn (_numLogins s) $> s
+
+metadata . numLogins
+= \fn -> metadata $ numLogins fn
+= \fn -> metadata $ \s -> fn (_numLogins s) $> s
+= \fn -> \s' -> (\s -> fn (_numLogins s) $> s) (_metadata s') $> s'
 ```
 
 ## References
