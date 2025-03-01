@@ -75,6 +75,9 @@ A lens expression consists of:
 1. (For writing) a value or a function
 
 ```hs
+> set (ix 3) 22 [1..5]
+[1,2,3,22,5]
+
 > set _2 22 (0, 1)
 (0,22)
 
